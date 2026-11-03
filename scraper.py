@@ -35,18 +35,22 @@ def year_for(month):
     return y
 
 POSTERS = {}
+POSTER_W = {}   # ruta publicada -> ancho original de la imagen
 def poster(url):
-    """Descarga, reduce a 300px y guarda como JPEG; devuelve la ruta publicada."""
+    """Descarga, reduce a 600×900 como máximo y guarda como JPEG de buena calidad; devuelve la ruta publicada."""
     if not url: return None
     if url in POSTERS: return POSTERS[url]
     name = hashlib.sha1(url.encode()).hexdigest()[:16] + ".jpg"
     path = f"{OUT}/posters/{name}"
     try:
+        from PIL import Image
         if not os.path.exists(path):
-            from PIL import Image
             im = Image.open(io.BytesIO(get(url, binary=True, tries=1))).convert("RGB")
-            im.thumbnail((300, 450))
-            im.save(path, "JPEG", quality=72, optimize=True)
+            POSTER_W[f"posters/{name}"] = im.size[0]
+            im.thumbnail((600, 900), Image.LANCZOS)
+            im.save(path, "JPEG", quality=84, optimize=True, progressive=True)
+        else:
+            POSTER_W.setdefault(f"posters/{name}", Image.open(path).size[0])
         POSTERS[url] = f"posters/{name}"
     except Exception:
         POSTERS[url] = None
@@ -255,6 +259,7 @@ def ecartelera(name, url):
             t = re.search(r'<p class="tit"><a href="([^"]+)"[^>]*>(.*?)</a>', blk, re.S)
             if not t: continue
             img = (re.search(r'<img[^>]*\ssrc="([^"]+)"', blk) or [None, None])[1]
+            if img: img = re.sub(r"_mini\.(jpg|webp)$", ".jpg", img)
             dr = txt((re.search(r'<p class="dir">Dir\.:(.*?)</p>', blk, re.S) or [None, ""])[1]) or None
             dur = re.search(r"<span>(\d+) min\.</span>", blk)
             for buy, hora, fmt in re.findall(r'<(?:a href="([^"]+)"|span)[^>]*data-session-time="(\d{1,2}:\d{2})" data-session-format="([^"]*)"', blk):
@@ -448,7 +453,7 @@ def wiki_poster(title, alt, year):
 
 def tmdb_poster(title, alt, year):
     m = tmdb_find(title, alt, year, need_poster=True)
-    return "https://image.tmdb.org/t/p/w342" + m["poster_path"] if m and m.get("poster_path") else None
+    return "https://image.tmdb.org/t/p/w780" + m["poster_path"] if m and m.get("poster_path") else None
 
 def tmdb_find(title, alt, year, need_poster=False):
     """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita TMDB_API_KEY o TMDB_TOKEN."""
@@ -505,7 +510,7 @@ def fill_missing_posters(rows):
     week_ago = (TODAY - timedelta(days=7)).isoformat()
     found = 0
     for r in rows:
-        if r.get("cartel"): continue
+        if r.get("cartel") and POSTER_W.get(r["cartel"], 999) >= 400: continue
         ct = clean_title(r["titulo"])
         if not ct: continue
         key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
@@ -519,8 +524,9 @@ def fill_missing_posters(rows):
                 except Exception: url = None
             hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0], "tmdb": has_tmdb}
         if hit.get("url"):
-            r["cartel"] = poster(hit["url"])
-            if r["cartel"]: r["cartelFuente"] = hit.get("fuente") or "web"; found += 1
+            nuevo = poster(hit["url"])
+            if nuevo and (not r.get("cartel") or POSTER_W.get(nuevo, 0) > POSTER_W.get(r["cartel"], 0)):
+                r["cartel"] = nuevo; r["cartelFuente"] = hit.get("fuente") or "web"; found += 1
     with open(f"{OUT}/data/carteles_buscados.json", "w", encoding="utf8") as fh:
         json.dump(cache, fh, ensure_ascii=False, indent=0)
     print(f"Portadas buscadas y encontradas: {found}", file=sys.stderr)

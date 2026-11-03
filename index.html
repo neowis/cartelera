@@ -79,7 +79,42 @@ details.src{margin-top:36px;font-size:13px;color:var(--muted)}
 details.src summary{cursor:pointer;font-weight:700;color:var(--ink)}
 details.src ul{padding-left:18px;columns:2 260px}
 .okc{color:var(--ok)}.badc{color:var(--bad)}
-@media (max-width:520px){.tk{grid-template-columns:72px 1fr auto}.poster,.fake{width:72px}.stub{min-width:84px}.hora{font-size:19px}}
+.pill.s-desconocido{display:none}
+.precio{max-width:9em;text-align:right;overflow-wrap:anywhere}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding-block:12px 40px}
+  h1{font-size:30px}
+  h1 small{font-size:11px;margin-bottom:6px}
+  .fresh{font-size:12px}
+  .bar{position:static;margin-top:12px;padding-block:10px 12px;gap:10px}
+  .tabs{display:flex;width:100%}
+  .tabs button{flex:1;padding:12px 0;font-size:16px}
+  .row{gap:8px}
+  select{flex:1 1 0;min-width:0;font-size:16px;padding:10px}
+  label.tog{font-size:15px;padding:8px 0}
+  label.tog input{width:20px;height:20px}
+  input[type=search]{flex:1 1 100%;font-size:16px;padding:11px 12px}
+  .cines{margin-inline:calc(-1 * max(16px, env(safe-area-inset-left,0px)));padding-inline:max(16px, env(safe-area-inset-left,0px));scrollbar-width:none}
+  .cines::-webkit-scrollbar{display:none}
+  .chip{font-size:15px;padding:9px 14px}
+  .day{margin-top:22px}
+  .day h2{position:sticky;top:env(safe-area-inset-top,0px);z-index:4;background:var(--bg);padding-block:8px;margin:0 0 8px;font-size:22px}
+  .grid{gap:12px}
+  .tk{grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto}
+  .poster,.fake{width:96px;grid-row:1}
+  .info{padding:12px 14px;gap:6px}
+  .info h3{font-size:19px;line-height:1.2}
+  .meta{font-size:15px}
+  .ciclo{font-size:14px}
+  .stub{grid-column:1 / -1;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:8px 14px;border-left:0;border-top:2px dashed var(--line);min-width:0;padding:12px 14px}
+  .stub::before,.stub::after{top:-8px;bottom:auto}
+  .stub::before{left:-8px}.stub::after{left:auto;right:-8px}
+  .hora{font-size:24px}
+  .precio{font-size:15px;max-width:none;text-align:left}
+  .pill{font-size:12px;padding:4px 10px}
+  .buy{margin-left:auto;font-size:15px;padding:8px 14px;border:1.5px solid var(--accent);border-radius:999px}
+}
 @media (prefers-reduced-motion:no-preference){.tk{transition:transform .15s}.tk:hover{transform:translateY(-1px)}}
 </style>
 </head>
@@ -145,10 +180,12 @@ const MUNI = 'Conde Duque y centros municipales';
 const ESTADO = { disponible:'Hay entradas', pocas:'Últimas', agotado:'Agotado', gratis:'Gratis', desconocido:'Sin dato' };
 function hue(s){ let h=0; for (const c of s) h=(h*31+c.charCodeAt(0))%360; return h; }
 function money(r){
-  if (r.precioTexto) return r.precioTexto;
+  const num = typeof r.precio === 'number' ? r.precio.toFixed(2).replace('.',',').replace(',00','') + ' €' : null;
   if (r.precio === 0) return 'Gratis';
-  if (typeof r.precio === 'number') return r.precio.toFixed(2).replace('.',',').replace(',00','') + ' €';
-  return '—';
+  const t = (r.precioTexto || '').replace(/\s*euros?/gi,' €').replace(/\s+/g,' ').trim();
+  if (t && t.length <= 16) return t;
+  if (num) return (/\ba\b|desde|\|/i.test(t) ? 'Desde ' : '') + num;
+  return t ? t.slice(0,16) + '…' : '—';
 }
 function ago(isoStr){
   const m = Math.round((Date.now() - new Date(isoStr).getTime())/60000);

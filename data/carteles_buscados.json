@@ -196,8 +196,8 @@
 "v": 2
 },
 "nosferatu": {
-"url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Wismar_Markt_Nosferatu_01_%28cropped%29.jpg/500px-Wismar_Markt_Nosferatu_01_%28cropped%29.jpg?utm_source=es.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-"fuente": "Wikipedia",
+"url": "https://image.tmdb.org/t/p/w780/1SftujfE9iqZpGJfnREO4IBeeqV.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "Nosferatu",
 "tmdb": true,

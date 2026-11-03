@@ -488,57 +488,89 @@ def _tmdb_get(path, params):
     req = urllib.request.Request(f"https://api.themoviedb.org/3/{path}?" + urllib.parse.urlencode(params), headers=hdr)
     with urllib.request.urlopen(req, timeout=20) as r: return json.load(r)
 
+def _dir_match(movie_id, director):
+    """¿Dirige `director` la película de TMDB `movie_id`? (compara sin tildes ni mayúsculas, tolera nombres parciales)"""
+    dn = _norm(director)
+    try: crew = _tmdb_get(f"movie/{movie_id}/credits", {}).get("crew", [])
+    except Exception: return False
+    for p in crew:
+        if p.get("job") != "Director": continue
+        for n in (p.get("name", ""), p.get("original_name", "")):
+            nn = _norm(n)
+            if nn and (nn == dn or (len(dn) > 6 and (dn in nn or nn in dn)) or nn.split()[-1:] == dn.split()[-1:] and nn.split()[:1] == dn.split()[:1]):
+                return True
+    return False
+
+def _titles_of(m):
+    try:
+        alts = _tmdb_get(f"movie/{m['id']}/alternative_titles", {}).get("titles", [])
+        trs = _tmdb_get(f"movie/{m['id']}/translations", {}).get("translations", [])
+    except Exception: return set()
+    names = {m.get("title", ""), m.get("original_title", "")} | {a.get("title", "") for a in alts} | {(t.get("data") or {}).get("title", "") for t in trs}
+    return {_norm(n) for n in names if n}
+
 def tmdb_find(title, alt, year, need_poster=False, director=None):
     """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita TMDB_API_KEY o TMDB_TOKEN.
-    Acepta el título exacto (y año ±1); si no coincide pero se conocen año y director, comprueba el director en TMDB."""
+    Orden de aceptación (de más a menos seguro):
+      1. título exacto y año ±1;
+      2. mismo año ±1 y el título coincide con alguno de sus títulos en otros idiomas;
+      3. mismo año ±1 y mismo director;
+      4. título exacto y mismo director aunque el año no cuadre (fechas mal puestas por la sala o por TMDB);
+      5. película del director ese mismo año: si su título coincide en algún idioma, o es la única que dirigió ese año."""
     token = os.environ.get("TMDB_TOKEN", "").strip()
     key = os.environ.get("TMDB_API_KEY", "").strip()
     if not token and not key: return None
-    cands = {}
+    ok_p = lambda m: bool(m.get("poster_path")) or not need_poster
+    yr = lambda m: int(m["release_date"][:4]) if (m.get("release_date") or "")[:4].isdigit() else None
+    near = lambda m: year and yr(m) is not None and abs(yr(m) - year) <= 1
+    wanted = {_norm(t) for t in [title, alt] if t}
+    cands, exact_any = {}, {}
     for c in [title] + ([alt] if alt else []):
         for lang in ("es-ES", "en-US", "fr-FR", "it-IT", "ja-JP"):
-            if lang not in ("es-ES", "en-US") and cands: break
+            if lang not in ("es-ES", "en-US") and (cands or exact_any): break
             q = {"query": c, "language": lang, "include_adult": "false"}
             if year: q["year"] = year
-            if not token: q["api_key"] = key
-            hdr = {"Accept": "application/json"}
-            if token: hdr["Authorization"] = "Bearer " + token
-            req = urllib.request.Request("https://api.themoviedb.org/3/search/movie?" + urllib.parse.urlencode(q), headers=hdr)
             try:
-                with urllib.request.urlopen(req, timeout=20) as r: res = json.load(r).get("results", [])
+                res = _tmdb_get("search/movie", q).get("results", [])
+                if year and not res:   # TMDB filtra por año exacto: si no hay nada, se busca sin año
+                    res = _tmdb_get("search/movie", {"query": c, "language": lang, "include_adult": "false"}).get("results", [])
             except Exception:
                 continue
             for m in res:
-                if year and (m.get("release_date") or "")[:4].isdigit() and abs(int(m["release_date"][:4]) - year) <= 1 and (m.get("poster_path") or not need_poster):
-                    cands.setdefault(m["id"], m)
-            same = [m for m in res if (m.get("poster_path") or not need_poster) and _norm(c) in (_norm(m.get("title", "")), _norm(m.get("original_title", "")))]
+                if near(m) and ok_p(m): cands.setdefault(m["id"], m)
+            same = [m for m in res if ok_p(m) and _norm(c) in (_norm(m.get("title", "")), _norm(m.get("original_title", "")))]
+            for m in same: exact_any.setdefault(m["id"], m)
             if year:
-                same = [m for m in same if (m.get("release_date") or "")[:4].isdigit() and abs(int(m["release_date"][:4]) - year) <= 1]
-            if not year and len(same) > 1:
+                same = [m for m in same if near(m)]
+            elif len(same) > 1:
                 same.sort(key=lambda m: -(m.get("popularity") or 0))
                 if (same[1].get("popularity") or 0) * 3 > (same[0].get("popularity") or 0): same = []
             if same:
                 return same[0]
             time.sleep(0.1)
-    # Sin título exacto: mismo año y el título coincide con alguno de sus títulos en otros idiomas
     if year and cands:
-        wanted = {_norm(t) for t in [title, alt] if t}
         for m in list(cands.values())[:6]:
+            if wanted & _titles_of(m): return m
+    if director:
+        if year:
+            for m in list(cands.values())[:6]:
+                if _dir_match(m["id"], director): return m
+        for m in list(exact_any.values())[:4]:
+            if _dir_match(m["id"], director): return m
+        if year:
             try:
-                alts = _tmdb_get(f"movie/{m['id']}/alternative_titles", {}).get("titles", [])
-                trs = _tmdb_get(f"movie/{m['id']}/translations", {}).get("translations", [])
-            except Exception: continue
-            names = {m.get("title", ""), m.get("original_title", "")} | {a.get("title", "") for a in alts} | {(t.get("data") or {}).get("title", "") for t in trs}
-            if wanted & {_norm(n) for n in names if n}:
-                return m
-    # Sin título exacto: mismo año y mismo director
-    if year and director and cands:
-        dn = _norm(director)
-        for m in list(cands.values())[:6]:
-            try: crew = _tmdb_get(f"movie/{m['id']}/credits", {}).get("crew", [])
-            except Exception: continue
-            if any(p.get("job") == "Director" and (_norm(p.get("name", "")) == dn or _norm(p.get("original_name", "")) == dn) for p in crew):
-                return m
+                ppl = _tmdb_get("search/person", {"query": director}).get("results", [])
+                ppl = [p for p in ppl if p.get("known_for_department") == "Directing"] or ppl[:1]
+                if ppl:
+                    crew = _tmdb_get(f"person/{ppl[0]['id']}/movie_credits", {}).get("crew", [])
+                    films = {m["id"]: m for m in crew if m.get("job") == "Director" and ok_p(m)}
+                    same_y = [m for m in films.values() if yr(m) == year]
+                    near_y = [m for m in films.values() if near(m)]
+                    for m in same_y + [m for m in near_y if m not in same_y]:
+                        if wanted & _titles_of(m): return m
+                    if len(same_y) == 1: return same_y[0]
+            except Exception:
+                pass
     return None
 
 def ecartelera_poster(title, alt, year):
@@ -606,13 +638,13 @@ def fill_missing_posters(rows):
         key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
         hit = cache.get(key)
         has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip() or os.environ.get("TMDB_API_KEY", "").strip())
-        if hit is None or (not hit.get("url") and (hit.get("t", "") < week_ago or (has_tmdb and not hit.get("tmdb")) or (has_tmdb and hit.get("v", 1) < 2))):
+        if hit is None or (not hit.get("url") and (hit.get("t", "") < week_ago or (has_tmdb and not hit.get("tmdb")) or (has_tmdb and hit.get("v", 1) < 3))):
             url, src = tmdb_poster(*ct, director=r.get("director")), "TMDB"
             if not url: url, src = ecartelera_poster(*ct), "eCartelera"
             if not url:
                 try: url, src = wiki_poster(*ct), "Wikipedia"
                 except Exception: url = None
-            hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0], "tmdb": has_tmdb, "v": 2}
+            hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0], "tmdb": has_tmdb, "v": 3}
         if hit.get("url"):
             nuevo = poster(hit["url"])
             if nuevo and (not r.get("cartel") or POSTER_W.get(nuevo, 0) > POSTER_W.get(r["cartel"], 0)):
@@ -663,11 +695,11 @@ def fill_synopsis(rows):
             ct = clean_title(r["titulo"])
             if not ct: continue
             k = "tmdb|" + _norm(ct[0]) + f"|{ct[2] or ''}"
-            if k not in cache or (not cache[k].get("t") and (cache[k].get("d", "") < month_ago or cache[k].get("v", 1) < 2)):
+            if k not in cache or (not cache[k].get("t") and (cache[k].get("d", "") < month_ago or cache[k].get("v", 1) < 3)):
                 m = tmdb_find(*ct, director=r.get("director")) if k not in tm else tm[k]
                 tm[k] = m
                 cache[k] = {"t": (m or {}).get("overview", "")[:700], "d": TODAY.isoformat(),
-                            "anio": ((m or {}).get("release_date") or "")[:4], "v": 2}
+                            "anio": ((m or {}).get("release_date") or "")[:4], "v": 3}
             if cache[k].get("t"): r["sinopsis"] = cache[k]["t"]
             if not r.get("anio") and cache[k].get("anio", "").isdigit() and cache[k].get("t"): r["anio"] = int(cache[k]["anio"])
     with open(f"{OUT}/data/sinopsis_cache.json", "w", encoding="utf8") as fh:

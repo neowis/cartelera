@@ -7,7 +7,7 @@ print("Clave TMDB presente:", bool(os.environ.get("TMDB_API_KEY") or os.environ.
 casos = [("El amor solfeando", None, 1930, "Robert Florey"), ("La mujer y el pelele", None, 1929, "Jacques de Baroncelli"),
          ("No soy yo", None, 2024, "Leos Carax"), ("Orange Flavor Wedding", None, 2026, "Christophe Honoré"),
          ("No quiero volver a casa", None, 2000, "Albertina Carri"), ("Fin de jornada", None, 1939, "Julien Duvivier"),
-         ("La mujer fantasma", None, 1947, "Roy del Ruth"), ("El cameraman", None, 1928, "Edward Sedgwick"),
+         ("La mujer fantasma", None, 1947, "Roy del Ruth"), ("Duende y misterio del flamenco", None, 1952, "Edgar Neville"), ("El cameraman", None, 1928, "Edward Sedgwick"),
          ("Romería", None, 2025, "Carla Simón"), ("Medias hermanas", None, 2025, "Yoel Morales"), ("Your name", None, None, None)]
 for t, alt, y, d in casos:
     print(f"\n=== {t} ({y}) dir={d}")

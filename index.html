@@ -141,6 +141,29 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 #peek .fake{padding-bottom:9px}
 @media (hover:none){#peek{display:none}}
 
+/* Selector de fecha */
+.datesel{position:relative;display:flex;justify-content:center}
+#dateBtn{font:900 20px/1 var(--sans);letter-spacing:.005em;text-transform:uppercase;-webkit-text-stroke:.35px currentColor;padding:9px 6px;min-height:44px;white-space:nowrap}
+#dateBtn .caret{font-weight:400;-webkit-text-stroke:0;font-size:.8em}
+.datepop{position:fixed;top:calc(env(safe-area-inset-top,0px) + var(--bar));left:50%;transform:translateX(-50%);z-index:45;width:min(360px,calc(100vw - 24px));background:var(--bg);border:1px solid var(--line);border-top:0;padding:14px 16px 16px}
+.dp-quick{display:flex;gap:8px;margin-bottom:14px}
+.dp-quick button{flex:1;border:1px solid var(--line);border-radius:999px;padding:11px 8px;font:15px var(--sans);text-transform:uppercase;letter-spacing:.01em}
+.dp-quick button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.dp-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.dp-head b{font:400 26px/1 var(--sans);letter-spacing:-.04em;text-transform:capitalize}
+.dp-head button{font:20px var(--sans);width:40px;height:36px;border:1px solid var(--line);border-radius:999px}
+.dp-head button:disabled{opacity:.2;cursor:default}
+.dp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.dp-grid .wd{font:12px var(--serif);padding:4px 0}
+.dp-grid button{position:relative;aspect-ratio:1;font:17px var(--sans);border-radius:999px}
+.dp-grid button:disabled{color:var(--gray);cursor:default}
+.dp-grid button.has::after{content:"";position:absolute;left:50%;bottom:5px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}
+.dp-grid button.tod{font-weight:900}
+.dp-grid button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+@media (hover:hover){.dp-grid button:not(:disabled):not([aria-pressed="true"]):hover{background:var(--soft)}}
+.dp-time{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;font:15px var(--serif)}
+.dp-time select{font:18px var(--sans);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--bg);color:var(--ink)}
+
 /* Barra inferior */
 .bar{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:30;background:var(--yellow);border-bottom:1px solid var(--line);height:var(--bar);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
 .mark{font:400 20px var(--sans);letter-spacing:-.03em;white-space:nowrap}
@@ -169,6 +192,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 #viewPill .n{font-size:9px;line-height:0;vertical-align:super;margin-left:2px}
 body[data-layout="guardadas"] #periodPill{visibility:hidden}
+@media (max-width:899px){#dateBtn{font-size:18px}}
+@media (max-width:379px){#dateBtn{font-size:16px}}
 .only-wide{display:none}
 @media (min-width:900px){
   .pill button{font-size:clamp(15px,1.45vw,20px)}
@@ -231,8 +256,8 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 <nav class="bar" aria-label="Controles">
   <button class="mark" id="markBtn">Info</button>
   <div class="mid">
-    <div class="pill" id="periodPill" role="group" aria-label="Periodo">
-      <button data-v="hoy" id="p-hoy">Hoy</button><button data-v="semana" id="p-semana">Semana</button><button data-v="mes" id="p-mes">Mes</button>
+    <div class="datesel" id="periodPill">
+      <button id="dateBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="datePop"><span id="dateLbl">Hoy</span> <span class="caret" aria-hidden="true">▾</span></button>
     </div>
     <div class="pill" id="viewPill" role="group" aria-label="Vista">
       <button data-l="lista" id="l-lista">Lista</button><button data-l="columnas" id="l-columnas" class="only-wide">Columnas</button><button data-l="guardadas" id="l-guardadas">Guardadas<span class="n" id="favN"></span></button>
@@ -244,11 +269,12 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 </nav>
 
 <div id="peek" aria-hidden="true"></div>
+<div class="datepop" id="datePop" role="dialog" aria-label="Elegir fecha y hora" hidden></div>
 <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT"></div></div>
 
 <script>
 const $ = s => document.querySelector(s);
-const state = { calMonth:null, sin:{}, view:'hoy', layout:'columnas', cines:new Set(), precio:'', ocultar:false, q:'', rows:[], meta:null, loaded:false, failed:false };
+const state = { date:null, from:'', pickMonth:null, calMonth:null, sin:{}, view:'hoy', layout:'columnas', cines:new Set(), precio:'', ocultar:false, q:'', rows:[], meta:null, loaded:false, failed:false };
 try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; (s.cines||[]).forEach(c=>state.cines.add(c)); if (s.layout && s.layout !== 'carteles') state.layout = s.layout; } catch(e){}
 function savePrefs(){ try{ localStorage.setItem('cdb-prefs', JSON.stringify({precio:state.precio, ocultar:state.ocultar, cines:[...state.cines], layout:state.layout})); }catch(e){} }
 
@@ -277,6 +303,7 @@ const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`
 const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 function rangeFor(view){
+  if (view === 'dia' && state.date) return [state.date, state.date];
   const a = new Date(); a.setHours(0,0,0,0);
   const b = new Date(a); b.setDate(b.getDate() + (view==='hoy'?0:view==='semana'?6:30));
   return [iso(a), iso(b)];
@@ -316,6 +343,7 @@ function filtered(){
   return state.rows.filter(r => {
     if (!r.fecha || r.fecha < a || r.fecha > b) return false;
     if (r.fecha === today && r.hora && r.hora < hhmm) return false;
+    if (state.from && r.hora && r.hora < state.from) return false;
     if (state.cines.size && !state.cines.has(r.municipal ? MUNI : r.cine)) return false;
     if (state.ocultar && r.estado === 'agotado') return false;
     if (state.precio !== '') { const p = typeof r.precio==='number' ? r.precio : null; if (p == null || p > Number(state.precio)) return false; }
@@ -425,7 +453,7 @@ function row(r){
 
 /* Render */
 function render(){
-  for (const v of ['hoy','semana','mes']) $('#p-'+v).setAttribute('aria-pressed', String(state.view===v));
+  $('#dateLbl').textContent = dateLabel();
   const wide = matchMedia('(min-width:900px)').matches;
   const layout = (state.layout === 'columnas' && !wide) ? 'lista' : state.layout;
   document.body.dataset.layout = layout;
@@ -648,11 +676,67 @@ function info(){
 $('#filtBtn').onclick = filtros; $('#markBtn').onclick = info;
 
 /* Controles */
-function setView(v){ state.view = v; if (location.hash !== '#'+v) history.replaceState(null,'','#'+v); render(); window.scrollTo({top:0}); }
-document.querySelectorAll('#periodPill button').forEach(b => b.onclick = () => setView(b.dataset.v));
+function dateLabel(){
+  let t;
+  if (state.view === 'dia' && state.date) {
+    const [rel, d] = dayLabel(state.date);
+    t = (rel === 'Hoy' || rel === 'Mañana') ? rel : `${rel.slice(0,3)} ${d}`;
+  } else t = state.view === 'hoy' ? 'Hoy' : 'Todo el mes';
+  return t + (state.from ? ` · ${state.from}` : '');
+}
+function hashFor(){ return state.view === 'dia' && state.date ? 'dia-' + state.date : state.view; }
+function setView(v, date){
+  state.view = v; state.date = v === 'dia' ? date : null;
+  if (v === 'dia' && date === iso(new Date())) { state.view = 'hoy'; state.date = null; }
+  const h = hashFor(); if (location.hash !== '#'+h) history.replaceState(null,'','#'+h);
+  render(); window.scrollTo({top:0});
+}
+function readHash(){
+  const h = location.hash.slice(1);
+  if (h === 'hoy' || h === 'mes') { state.view = h; state.date = null; }
+  else if (h === 'semana') { state.view = 'mes'; }
+  else { const m = h.match(/^dia-(\d{4}-\d{2}-\d{2})$/); if (m && m[1] >= iso(new Date())) { state.view = 'dia'; state.date = m[1]; } }
+}
+function openDatePop(){
+  const pop = $('#datePop'), today = new Date(); today.setHours(0,0,0,0);
+  const sel = state.view === 'dia' ? state.date : (state.view === 'hoy' ? iso(today) : null);
+  const first = state.pickMonth || new Date(today.getFullYear(), today.getMonth(), 1);
+  state.pickMonth = first;
+  const days = new Set(state.rows.map(r => r.fecha));
+  const last = [...days].sort().pop() || iso(today);
+  const q1 = el('button',{'aria-pressed':String(state.view==='hoy'),text:'Hoy'}); q1.onclick = () => { setView('hoy'); closeDatePop(); };
+  const q2 = el('button',{'aria-pressed':String(state.view==='mes'),text:'Todo el mes'}); q2.onclick = () => { setView('mes'); closeDatePop(); };
+  const prev = el('button',{'aria-label':'Mes anterior',text:'←'}), next = el('button',{'aria-label':'Mes siguiente',text:'→'});
+  prev.disabled = first <= new Date(today.getFullYear(), today.getMonth(), 1);
+  next.disabled = iso(new Date(first.getFullYear(), first.getMonth()+1, 1)) > last;
+  prev.onclick = () => { state.pickMonth = new Date(first.getFullYear(), first.getMonth()-1, 1); openDatePop(); };
+  next.onclick = () => { state.pickMonth = new Date(first.getFullYear(), first.getMonth()+1, 1); openDatePop(); };
+  const grid = el('div',{class:'dp-grid'}, ['L','M','X','J','V','S','D'].map(w => el('span',{class:'wd',text:w})));
+  const lead = (first.getDay()+6)%7; for (let i = 0; i < lead; i++) grid.append(el('span'));
+  const dim = new Date(first.getFullYear(), first.getMonth()+1, 0).getDate();
+  for (let d = 1; d <= dim; d++) {
+    const dt = new Date(first.getFullYear(), first.getMonth(), d), f = iso(dt);
+    const b = el('button',{class:(days.has(f)?'has':'')+(f===iso(today)?' tod':''),'aria-pressed':String(f===sel),'aria-label':`${d} de ${MESES_L[dt.getMonth()]}${days.has(f)?', con sesiones':''}`,text:String(d)});
+    b.disabled = dt < today || !days.has(f);
+    b.onclick = () => { setView('dia', f); closeDatePop(); };
+    grid.append(b);
+  }
+  const hs = el('select',{id:'fromSel','aria-label':'Desde la hora'}, el('option',{value:'',text:'Cualquier hora'}),
+    ['10:00','12:00','14:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00'].map(h => el('option',{value:h,text:'Desde las ' + h})));
+  hs.value = state.from;
+  hs.onchange = () => { state.from = hs.value; render(); };
+  pop.replaceChildren(el('div',{class:'dp-quick'}, q1, q2),
+    el('div',{class:'dp-head'}, el('b',{text:`${MESES_L[first.getMonth()]}`}), el('span',{}, prev, ' ', next)),
+    grid, el('div',{class:'dp-time'}, el('span',{text:'Hora'}), hs));
+  pop.hidden = false; $('#dateBtn').setAttribute('aria-expanded','true');
+}
+function closeDatePop(){ $('#datePop').hidden = true; $('#dateBtn').setAttribute('aria-expanded','false'); }
+$('#dateBtn').onclick = e => { e.stopPropagation(); $('#datePop').hidden ? openDatePop() : closeDatePop(); };
+document.addEventListener('click', e => { if (!$('#datePop').hidden && !e.target.closest('#datePop') && !e.target.closest('#dateBtn')) closeDatePop(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#datePop').hidden) { closeDatePop(); $('#dateBtn').focus(); } });
 document.querySelectorAll('#viewPill button').forEach(b => b.onclick = () => { state.layout = b.dataset.l; savePrefs(); render(); });
-window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (['hoy','semana','mes'].includes(h)) { state.view = h; render(); } });
-{ const h = location.hash.slice(1); if (['hoy','semana','mes'].includes(h)) state.view = h; }
+window.addEventListener('hashchange', () => { readHash(); render(); });
+readHash();
 let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(render, 200); });
 setInterval(() => { if (state.loaded) renderFresh(); }, 60000);
 

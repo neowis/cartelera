@@ -1,0 +1,56 @@
+name: Actualizar cartelera
+
+on:
+  schedule:
+    # Horas en UTC: 8:07, 11:07, 14:07, 17:07, 20:07 y 23:07 en Madrid (horario de invierno)
+    - cron: "7 7,10,13,16,19,22 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-cartelera
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install pillow
+
+      - name: Leer carteleras
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
+        run: python3 -I scraper.py "$RUNNER_TEMP/out" | tee "$RUNNER_TEMP/resumen.json"
+
+      - name: Comprobar resultado
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          r = json.load(open(os.path.join(os.environ["RUNNER_TEMP"], "resumen.json")))
+          print("Sesiones:", r["sesiones"], "· Carteles:", r["carteles"])
+          if r["sesiones"] < 50 or r["carteles"] < 20:
+              sys.exit("Resultado sospechoso: no publico para no vaciar la cartelera.")
+          PY
+
+      - name: Publicar
+        run: |
+          rm -rf posters
+          cp -r "$RUNNER_TEMP/out/posters" posters
+          cp "$RUNNER_TEMP"/out/data/*.json data/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A posters data
+          if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
+          git commit -m "Actualizar cartelera"
+          git push

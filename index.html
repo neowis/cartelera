@@ -107,6 +107,27 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   .list{border-top:1px solid #e6e6e6}
 }
 
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 12px;padding:6px max(14px,env(safe-area-inset-right,0px)) 26px max(14px,env(safe-area-inset-left,0px))}
+.mcard{min-width:0;display:flex;flex-direction:column}
+.mposter{display:block;width:100%;aspect-ratio:2/3;overflow:hidden;background:var(--soft)}
+.mposter img{width:100%;height:100%;object-fit:cover}
+.mposter .fake{padding:10px;justify-content:flex-start;gap:28%}
+.mposter .fk-title{display:none}
+.mposter .fk-ico{width:30%}
+.mtitle{margin:9px 0 0;font:400 21px/1.02 var(--sans);letter-spacing:-.04em;overflow-wrap:anywhere;text-wrap:balance}
+.msess{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column}
+.msess li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border-top:1px solid #ececec}
+.msess li.x{display:none}
+.mcard.open .msess li.x{display:grid}
+.mses{display:flex;gap:7px;align-items:baseline;min-width:0;text-align:left;padding:7px 0;min-height:36px}
+.mses .h{font:700 15px/1 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.mses .c{font:12px/1.2 var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.mses.sold{color:var(--gray)}
+.mses.sold .h{text-decoration:line-through}
+.msess .heart{font-size:13px;padding:10px 4px 10px 8px;margin:0}
+.mmore{align-self:flex-start;margin-top:4px;font:12px var(--serif);text-decoration:underline;text-underline-offset:2px;padding:6px 0}
+.mcard.sold .mposter{filter:grayscale(1);opacity:.5}
+
 /* Columnas (solo escritorio) */
 .cols{display:grid;grid-template-columns:1fr 1fr}
 .cols .wall{grid-template-columns:repeat(4,minmax(0,1fr));align-content:start}
@@ -466,6 +487,33 @@ function syncFav(id){
   const n = Object.keys(favs).length; $('#favN').textContent = n ? String(n) : '';
   if (document.body.dataset.layout === 'guardadas') render();
 }
+/* Móvil: dos columnas de carteles, una tarjeta por película y día */
+function mgrid(rs){
+  const groups = new Map();
+  for (const r of rs) { const k = cleanTitle(r).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,' ').trim(); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(r); }
+  const MAX = 3;
+  return el('div',{class:'mgrid'}, [...groups.values()].map(list => {
+    const first = list.find(r => r.cartel) || list[0];
+    const card = el('article',{class:'mcard'+(list.every(r => r.estado === 'agotado') ? ' sold' : '')});
+    card.append(el('button',{class:'mposter','data-id':first.id,'aria-label':`Ficha de ${cleanTitle(first)}`}, art(first)));
+    card.append(el('h3',{class:'mtitle',text:cleanTitle(first)}));
+    const ul = el('ul',{class:'msess'});
+    list.forEach((r, i) => {
+      const st = r.estado === 'agotado' ? ' · agotado' : '';
+      ul.append(el('li',{class: i >= MAX ? 'x' : null},
+        el('button',{class:'mses'+(r.estado==='agotado'?' sold':''),'data-id':r.id,'aria-label':`${cleanTitle(r)}, ${r.hora||''}, ${r.cine}`},
+          el('span',{class:'h',text:r.hora || '—'}), el('span',{class:'c',text:(r.municipal ? r.cine.replace(/^(Biblioteca Pública Municipal|Centro (Socio)?[Cc]ultural)\s*/,'') : r.cine) + st})),
+        heartBtn(r)));
+    });
+    card.append(ul);
+    if (list.length > MAX) {
+      const more = el('button',{class:'mmore',text:`+ ${list.length - MAX} ${list.length - MAX === 1 ? 'sesión' : 'sesiones'} más`});
+      more.onclick = e => { e.stopPropagation(); card.classList.add('open'); more.remove(); };
+      card.append(more);
+    }
+    return card;
+  }));
+}
 function row(r){
   const sold = r.estado === 'agotado';
   const st = sold ? 'Agotado' : r.estado === 'pocas' ? 'Últimas entradas' : '';
@@ -498,6 +546,7 @@ function render(){
     const [rel, d] = dayLabel(f);
     const sec = el('section',{class:'day'}, el('div',{class:'dayh'}, el('h2',{text:rel}), el('small',{text:`${d} · ${rs.length} ${rs.length===1?'sesión':'sesiones'}`})));
     if (layout === 'carteles') sec.append(el('div',{class:'wall'}, rs.map(tile)));
+    else if (layout === 'lista' && matchMedia('(max-width:640px)').matches) sec.append(mgrid(rs));
     else if (layout === 'lista') sec.append(el('div',{class:'list'}, rs.map(row)));
     else sec.append(el('div',{class:'cols'}, el('div',{class:'wall'}, rs.map(tile)), el('div',{class:'list'}, rs.map(row))));
     st.append(sec);

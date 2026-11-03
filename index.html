@@ -95,11 +95,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .tile .fav{position:absolute;right:6px;top:6px;background:var(--bg);color:var(--ink);font-size:14px;padding:5px;border-radius:999px;line-height:0}
 .hsvg{display:block;width:1em;height:1em;overflow:visible}
 .hsvg path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.heart{font-size:clamp(26px,4.4vw,34px);line-height:1;padding:6px;color:inherit;border-radius:999px;align-self:center;margin-top:.15em}
-.heart .hsvg path{stroke-width:1.6}
+.heart{font-size:17px;line-height:1;padding:10px;margin:-10px -4px -10px 0;color:var(--gray);border-radius:999px;align-self:center}
+.heart .hsvg path{stroke-width:1.25}
+@media (hover:hover){.list .row:hover .heart,.list.dim .row.on .heart{color:var(--ink)}}
+@media (min-width:900px){.heart{font-size:15px}}
 .heart[aria-pressed="true"]{color:var(--ink)!important}
 .heart[aria-pressed="true"] .hsvg path,.fav .hsvg path,.favbtn[aria-pressed="true"] .hsvg path{fill:currentColor}
-@media (hover:hover){.heart{transition:transform .12s}.heart:hover{transform:scale(1.12)}}
+@media (hover:hover){.heart{transition:transform .12s,color .12s}.heart:hover{transform:scale(1.15);color:var(--ink)}}
 @media (prefers-reduced-motion:no-preference){.heart[aria-pressed="true"] .hsvg{animation:pop .25s ease-out}}
 @keyframes pop{50%{transform:scale(1.25)}}
 .favbtn .hsvg{width:16px;height:16px}

@@ -284,12 +284,15 @@ def reina_sofia():
             if link in seen: continue
             seen.add(link); fresh += 1
             if "Cine y vídeo" not in blk: continue
-            title = txt((re.search(r'module--title--[^"]*">(.*?)</h2>', blk, re.S) or [None, ""])[1])
+            th = (re.search(r'module--title--[^"]*">(.*?)</h2>', blk, re.S) or [None, ""])[1]
+            ems = [txt(x) for x in re.findall(r"<em>(.*?)</em>", th, re.S) if txt(x)]
+            title = " / ".join(ems) if ems else txt(th)
+            rs_dir = txt(th.split("<em>")[0]).strip(" .") if ems and len(ems) == 1 else None
             sub = txt((re.search(r'module--subtitle--[^"]*">(.*?)</div>', blk, re.S) or [None, ""])[1]) or None
             dm = re.search(r"(\d{1,2}) de (\w+),? (\d{4})\s*-\s*(\d{1,2}:\d{2})", txt((re.search(r'module--dates--[^"]*">(.*?)</p>', blk, re.S) or [None, ""])[1]))
             if not dm or dm.group(2).lower() not in MESES_L: continue
             img = (re.search(r'<img[^>]*src="([^"]+)"', blk) or [None, None])[1]
-            out.append(row(cine="Museo Reina Sofía", titulo=title, ciclo=sub, fecha=date(int(dm.group(3)), MESES_L[dm.group(2).lower()], int(dm.group(1))).isoformat(),
+            out.append(row(cine="Museo Reina Sofía", titulo=title, director=rs_dir or None, ciclo=sub, fecha=date(int(dm.group(3)), MESES_L[dm.group(2).lower()], int(dm.group(1))).isoformat(),
                            hora=dm.group(4).zfill(5), sala="Auditorio", precio=0.0, precioTexto="Gratis hasta completar aforo", estado="gratis",
                            enlace=base + link, cartel=poster(img)))
         if not fresh: break

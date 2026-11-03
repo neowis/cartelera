@@ -444,13 +444,16 @@ def wiki_poster(title, alt, year):
 def tmdb_poster(title, alt, year):
     """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita la variable de entorno TMDB_TOKEN."""
     token = os.environ.get("TMDB_TOKEN", "").strip()
-    if not token: return None
+    key = os.environ.get("TMDB_API_KEY", "").strip()
+    if not token and not key: return None
     for c in [title] + ([alt] if alt else []):
         for lang in ("es-ES", "en-US"):
             q = {"query": c, "language": lang, "include_adult": "false"}
             if year: q["year"] = year
-            req = urllib.request.Request("https://api.themoviedb.org/3/search/movie?" + urllib.parse.urlencode(q),
-                                         headers={"Authorization": "Bearer " + token, "Accept": "application/json"})
+            if not token: q["api_key"] = key
+            hdr = {"Accept": "application/json"}
+            if token: hdr["Authorization"] = "Bearer " + token
+            req = urllib.request.Request("https://api.themoviedb.org/3/search/movie?" + urllib.parse.urlencode(q), headers=hdr)
             try:
                 with urllib.request.urlopen(req, timeout=20) as r: res = json.load(r).get("results", [])
             except Exception:
@@ -498,7 +501,7 @@ def fill_missing_posters(rows):
         if not ct: continue
         key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
         hit = cache.get(key)
-        has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip())
+        has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip() or os.environ.get("TMDB_API_KEY", "").strip())
         if hit is None or (not hit.get("url") and (hit.get("t", "") < week_ago or (has_tmdb and not hit.get("tmdb")))):
             url, src = tmdb_poster(*ct), "TMDB"
             if not url: url, src = ecartelera_poster(*ct), "eCartelera"

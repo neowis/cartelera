@@ -140,17 +140,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .exr .c{font:12px/1.3 var(--sans);color:#666}
 @media (min-width:900px){.exr .t{font-size:22px}.exl{columns:2;column-gap:40px}.exl li{break-inside:avoid}}
 
-.row.grow{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,44%);align-items:start;column-gap:28px;padding-top:12px;padding-bottom:12px;border-top:1px solid #ededed;cursor:default}
-.gttl{font:400 clamp(30px,3.6vw,46px)/1 var(--sans);letter-spacing:-.045em;text-align:left;overflow-wrap:anywhere}
-.gses{list-style:none;margin:0;padding:4px 0 0;display:flex;flex-direction:column}
+.row.grow{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,44%);align-items:start;column-gap:28px;padding-top:8px;padding-bottom:8px;border-top:1px solid #ededed;cursor:default}
+.gttl{font:400 clamp(28px,3.2vw,40px)/1 var(--sans);letter-spacing:-.045em;text-align:left;overflow-wrap:anywhere}
+.gses{list-style:none;margin:0;padding:2px 0 0;display:flex;flex-direction:column;grid-column:2;grid-row:1}
 .gses li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center}
-.gses li+li{border-top:1px solid #f0f0f0}
-.gs{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:12px;align-items:baseline;text-align:left;padding:6px 0;min-width:0}
-.gs .h{font:700 20px var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.gs .c{font:14px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gs .p{font:13px var(--sans);color:#666;white-space:nowrap}
+.gses li+li{border-top:0}
+.gses li.x{display:none}
+.grow.open .gses li.x{display:grid}
+.gmore{grid-column:2;grid-row:2;justify-self:start;font:12px var(--sans);text-decoration:underline;text-underline-offset:2px;padding:2px 0 0}
+.cols .gses{grid-column:1;grid-row:2}
+.cols .gmore{grid-column:1;grid-row:3}
+.gs{display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:10px;align-items:baseline;text-align:left;padding:2px 0;min-width:0}
+.gs .h{font:700 15px var(--sans);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.gs .c{font:13px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gs .p{font:12px var(--sans);color:#666;white-space:nowrap}
 .gs.sold{color:var(--gray)}.gs.sold .h{text-decoration:line-through}
-.gses .heart{font-size:14px;padding:8px}
+.gses .heart{font-size:12px;padding:4px 6px}
 @media (hover:hover){.list .row.grow:hover .gttl,.list.dim .row.grow.on .gttl{font-weight:700;letter-spacing:-.05em}}
 @media (hover:hover){.list.dim .row.grow:not(.on) .gs .p{color:var(--gray)}.gs:hover .c{text-decoration:underline}}
 .cols .row.grow{grid-template-columns:1fr;row-gap:6px}
@@ -535,12 +540,20 @@ function groupFilms(rs){
   return [...groups.values()];
 }
 /* Ordenador: una fila por película con todas sus sesiones */
+function gmore(list){
+  if (list.length <= 3) return null;
+  const n = list.length - 3;
+  const b = el('button',{class:'gmore',text:`+ ${n} ${n === 1 ? 'sesión' : 'sesiones'} más`});
+  b.onclick = e => { e.stopPropagation(); b.closest('.grow').classList.add('open'); b.remove(); };
+  return b;
+}
 function grow(list){
   const first = list.find(r => r.cartel) || list[0];
   const sold = list.every(r => r.estado === 'agotado');
   return el('div',{class:'row grow'+(sold?' sold':''),'data-id':first.id},
     el('button',{class:'gttl','data-id':first.id,text:cleanTitle(first)}),
-    el('ul',{class:'gses'}, list.map(r => el('li',{},
+    gmore(list),
+    el('ul',{class:'gses'}, list.map((r, i) => el('li',{class: i >= 3 ? 'x' : null},
       el('button',{class:'gs'+(r.estado==='agotado'?' sold':''),'data-id':r.id,'aria-label':`${cleanTitle(r)}, ${r.hora||''}, ${r.cine}`},
         el('span',{class:'h',text:r.hora || '—'}),
         el('span',{class:'c',text:r.cine + (r.sala ? ` · ${r.sala}` : '')}),

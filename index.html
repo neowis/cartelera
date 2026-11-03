@@ -148,12 +148,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .barR{display:flex;gap:16px;align-items:baseline;justify-self:end}
 .barR button{font:400 20px var(--sans);letter-spacing:-.03em;white-space:nowrap}
 .barR .n{font:11px var(--sans);vertical-align:super;margin-left:2px}
-.mid{display:flex;justify-content:center;gap:10px;min-width:0}
+.mid{display:flex;justify-content:center;gap:clamp(24px,5vw,72px);min-width:0}
 
 /* Píldora */
 .pill{position:relative;display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--line);border-radius:999px;background:transparent}
 .pill button{position:relative;font:11px/1 var(--sans);letter-spacing:.02em;text-transform:uppercase;padding:9px 14px;white-space:nowrap}
-.pill button+button{border-left:1px solid var(--line)}
+.pill button+button{border-left:0}
+.pill{border:0!important;border-radius:0;gap:clamp(4px,1.6vw,22px);grid-auto-columns:auto}
+.pill button{padding-left:6px!important;padding-right:6px!important}
 .pill button{font-weight:400;color:var(--ink)}
 .pill button[aria-pressed="true"]{font-weight:900;letter-spacing:.01em;-webkit-text-stroke:.35px currentColor}
 @media (hover:hover){.pill button:not([aria-pressed="true"]):hover{font-weight:600}}
@@ -164,7 +166,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @keyframes draw{to{stroke-dashoffset:0}}
 #viewPill{grid-area:view;justify-self:center}
 #viewPill button{font-size:12px;padding:11px 14px}
-#viewPill .n{font-size:9px;vertical-align:super;margin-left:2px}
+#viewPill .n{font-size:9px;line-height:0;vertical-align:super;margin-left:2px}
 body[data-layout="guardadas"] #periodPill{visibility:hidden}
 .only-wide{display:none}
 @media (min-width:900px){
@@ -173,7 +175,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
   .top{padding-top:16px}
 }
 @media (max-width:899px){
-  :root{--bar:112px}
+  :root{--bar:96px}
   .bar{grid-template-columns:auto 1fr auto;grid-template-areas:"mark period filt" "view view view";align-content:center;row-gap:10px}
   .mid{display:contents}
   .mark{grid-area:mark}

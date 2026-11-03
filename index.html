@@ -22,6 +22,8 @@ body{font:16px/1.25 var(--sans);-webkit-font-smoothing:antialiased;padding-top:v
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--yellow)}
 img{max-width:100%;display:block}
 [hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#stage>.day:first-child,#stage>.cal:first-child,#stage>.empty:first-child{border-top:0}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 a{color:inherit}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
@@ -183,7 +185,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 </head>
 <body data-layout="carteles">
 
-<div class="top" id="top"><b>Cartelera de Bolsillo</b><span class="arr">↗</span><span>Madrid, cine barato y distinto</span><span id="fresh">Cargando…</span></div>
+<h1 class="sr-only">Cartelera de Bolsillo</h1>
 <main id="stage" aria-live="polite"></main>
 
 <nav class="bar" aria-label="Controles">
@@ -438,6 +440,7 @@ function renderCal(st){
 function renderFresh(){
   const m = state.meta;
   const n = state.loaded ? filtered().length : 0;
+  if (!$('#fresh')) return;
   $('#fresh').textContent = !state.loaded ? (state.failed ? 'Sin conexión' : 'Cargando…')
     : `${n} sesiones` + (m && m.ultimaActualizacion ? ` · actualizado ${ago(m.ultimaActualizacion)}` : '');
 }

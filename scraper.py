@@ -497,7 +497,10 @@ def _dir_match(movie_id, director):
         if p.get("job") != "Director": continue
         for n in (p.get("name", ""), p.get("original_name", "")):
             nn = _norm(n)
-            if nn and (nn == dn or (len(dn) > 6 and (dn in nn or nn in dn)) or nn.split()[-1:] == dn.split()[-1:] and nn.split()[:1] == dn.split()[:1]):
+            a, b = nn.split(), dn.split()
+            same_last = bool(a and b) and a[-1] == b[-1]
+            close_first = bool(a and b) and (a[0][:4] == b[0][:4])
+            if nn and (nn == dn or (len(dn) > 6 and (dn in nn or nn in dn)) or (same_last and close_first)):
                 return True
     return False
 

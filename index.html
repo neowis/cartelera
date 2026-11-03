@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Cartelera diaria del cine barato y alternativo de Madrid: Cineteca, Doré, Reina Sofía, Berlanga, Círculo, centros culturales y más.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Cartelera de Bolsillo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: una tira de días; cada sesión es una "entrada de cine" con troquel, cartel a la izquierda y matriz con hora/precio a la derecha */
+:root{
+  --bg:#eef0f3; --paper:#ffffff; --ink:#18202b; --muted:#5b6676; --line:#d5dae2;
+  --accent:#2340c9; --accent-ink:#ffffff; --stub:#f5f6fa;
+  --ok:#17803d; --warn:#a85f00; --bad:#c0262d; --free:#7a3fc0;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10141b; --paper:#19202a; --ink:#e8ecf2; --muted:#9aa5b5; --line:#2c3542;
+  --accent:#8fa4ff; --accent-ink:#0e1430; --stub:#141a23;
+  --ok:#5fd18a; --warn:#f0b357; --bad:#ff7b7f; --free:#c39bff; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10141b; --paper:#19202a; --ink:#e8ecf2; --muted:#9aa5b5; --line:#2c3542;
+  --accent:#8fa4ff; --accent-ink:#0e1430; --stub:#141a23;
+  --ok:#5fd18a; --warn:#f0b357; --bad:#ff7b7f; --free:#c39bff; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1;margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1 small{display:block;font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.fresh{font-family:var(--f-mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.dot.live{background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 25%,transparent)}
+.dot.stale{background:var(--warn)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 10px;margin-top:16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tabs{display:inline-flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.tabs button{font:700 14px var(--f-body);background:transparent;color:var(--ink);border:0;padding:8px 18px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.chip{font:400 13px var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+select,input[type=search]{font:400 14px var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+input[type=search]{flex:1 1 180px;min-width:0}
+label.tog{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cines{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;scrollbar-width:thin}
+.summary{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.day{margin-top:28px}
+.day h2{font-family:var(--f-display);font-weight:800;font-size:22px;margin:0 0 12px;display:flex;align-items:baseline;gap:10px}
+.day h2 span{font-family:var(--f-mono);font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:12px}
+.tk{display:grid;grid-template-columns:92px 1fr auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.tk.sold{opacity:.62}
+.poster{width:92px;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--stub);max-width:100%}
+.fake{width:92px;aspect-ratio:2/3;display:flex;align-items:flex-end;padding:8px;box-sizing:border-box;font:800 13px/1.05 var(--f-display);color:#fff;overflow:hidden;word-break:break-word}
+.info{padding:10px 12px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.info h3{margin:0;font-family:var(--f-display);font-weight:800;font-size:17px;line-height:1.15;text-wrap:balance}
+.meta{font-size:13px;color:var(--muted)}
+.cine{font-weight:700;color:var(--ink)}
+.ciclo{font-size:12px;color:var(--muted);font-style:italic}
+.stub{border-left:2px dashed var(--line);background:var(--stub);padding:10px 12px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:6px;min-width:96px;position:relative}
+.stub::before,.stub::after{content:"";position:absolute;left:-8px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.stub::before{top:-8px}.stub::after{bottom:-8px}
+.hora{font:700 22px var(--f-mono);font-variant-numeric:tabular-nums;line-height:1}
+.precio{font:500 13px var(--f-mono);font-variant-numeric:tabular-nums}
+.pill{font:700 11px var(--f-body);letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.s-disponible{color:var(--ok)}.s-pocas{color:var(--warn)}.s-agotado{color:var(--bad)}.s-gratis{color:var(--free)}.s-desconocido{color:var(--muted)}
+.buy{font:700 12px var(--f-body);color:var(--accent);text-decoration:none}
+.buy:hover{text-decoration:underline}
+.empty{margin-top:40px;background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:28px;max-width:640px}
+.empty h2{font-family:var(--f-display);margin:0 0 8px;font-size:22px}
+.empty p{margin:6px 0;color:var(--muted)}
+details.src{margin-top:36px;font-size:13px;color:var(--muted)}
+details.src summary{cursor:pointer;font-weight:700;color:var(--ink)}
+details.src ul{padding-left:18px;columns:2 260px}
+.okc{color:var(--ok)}.badc{color:var(--bad)}
+@media (max-width:520px){.tk{grid-template-columns:72px 1fr auto}.poster,.fake{width:72px}.stub{min-width:84px}.hora{font-size:19px}}
+@media (prefers-reduced-motion:no-preference){.tk{transition:transform .15s}.tk:hover{transform:translateY(-1px)}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <h1><small>Madrid · cine barato y distinto</small>Cartelera de Bolsillo</h1>
+    <div class="fresh" id="fresh"><span class="dot" id="dot"></span><span id="freshTxt">Conectando…</span></div>
+  </header>
+
+  <div class="bar">
+    <div class="row">
+      <div class="tabs" role="group" aria-label="Periodo">
+        <button id="t-hoy" data-v="hoy" aria-pressed="true">Hoy</button>
+        <button id="t-semana" data-v="semana" aria-pressed="false">Semana</button>
+        <button id="t-mes" data-v="mes" aria-pressed="false">Mes</button>
+      </div>
+      <select id="precio" aria-label="Precio máximo">
+        <option value="">Cualquier precio</option>
+        <option value="0">Solo gratis</option>
+        <option value="4">Hasta 4 €</option>
+        <option value="6">Hasta 6 €</option>
+        <option value="9">Hasta 9 €</option>
+      </select>
+      <label class="tog"><input type="checkbox" id="ocultar"> Ocultar agotadas</label>
+      <input type="search" id="q" placeholder="Buscar película, director, ciclo…" aria-label="Buscar">
+    </div>
+    <div class="row cines" id="cines" role="group" aria-label="Cines"></div>
+    <div class="summary" id="summary"></div>
+  </div>
+
+  <main id="list"></main>
+
+  <details class="src" id="srcBox" hidden>
+    <summary>Estado de cada fuente</summary>
+    <ul id="srcList"></ul>
+  </details>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const state = { view: 'hoy', cines: new Set(), precio: '', ocultar: false, q: '', rows: [], meta: null, loaded: false, failed: false };
+try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; (s.cines||[]).forEach(c=>state.cines.add(c)); } catch(e){}
+function savePrefs(){ try{ localStorage.setItem('cdb-prefs', JSON.stringify({precio:state.precio, ocultar:state.ocultar, cines:[...state.cines]})); }catch(e){} }
+
+const pad = n => String(n).padStart(2,'0');
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function rangeFor(view){
+  const a = new Date(); a.setHours(0,0,0,0);
+  const b = new Date(a); b.setDate(b.getDate() + (view==='hoy'?0:view==='semana'?6:30));
+  return [iso(a), iso(b)];
+}
+function dayLabel(f){
+  const [y,m,d] = f.split('-').map(Number); const dt = new Date(y,m-1,d);
+  const today = iso(new Date()); const tm = new Date(); tm.setDate(tm.getDate()+1);
+  const rel = f===today ? 'Hoy' : f===iso(tm) ? 'Mañana' : DIAS[dt.getDay()][0].toUpperCase()+DIAS[dt.getDay()].slice(1);
+  return [rel, `${d} ${MESES[m-1]}`];
+}
+const MUNI = 'Conde Duque y centros municipales';
+const ESTADO = { disponible:'Hay entradas', pocas:'Últimas', agotado:'Agotado', gratis:'Gratis', desconocido:'Sin dato' };
+function hue(s){ let h=0; for (const c of s) h=(h*31+c.charCodeAt(0))%360; return h; }
+function money(r){
+  if (r.precioTexto) return r.precioTexto;
+  if (r.precio === 0) return 'Gratis';
+  if (typeof r.precio === 'number') return r.precio.toFixed(2).replace('.',',').replace(',00','') + ' €';
+  return '—';
+}
+function ago(isoStr){
+  const m = Math.round((Date.now() - new Date(isoStr).getTime())/60000);
+  if (m < 1) return 'ahora mismo'; if (m < 60) return `hace ${m} min`;
+  const h = Math.round(m/60); if (h < 48) return `hace ${h} h`; return `hace ${Math.round(h/24)} días`;
+}
+
+function el(tag, attrs={}, ...kids){
+  const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) { if (v==null) continue; if (k==='class') e.className=v; else if (k==='text') e.textContent=v; else e.setAttribute(k,v); }
+  kids.flat().forEach(k => k!=null && e.append(k)); return e;
+}
+
+function filtered(){
+  const [a,b] = rangeFor(state.view);
+  const now = new Date(); const today = iso(now); const hhmm = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  const q = state.q.trim().toLowerCase();
+  return state.rows.filter(r => {
+    if (!r.fecha || r.fecha < a || r.fecha > b) return false;
+    if (r.fecha === today && r.hora && r.hora < hhmm) return false;
+    if (state.cines.size && !state.cines.has(r.municipal ? MUNI : r.cine)) return false;
+    if (state.ocultar && r.estado === 'agotado') return false;
+    if (state.precio !== '') { const p = typeof r.precio==='number' ? r.precio : null; if (p == null || p > Number(state.precio)) return false; }
+    if (q && !([r.titulo,r.director,r.ciclo,r.cine,r.sala].filter(Boolean).join(' ').toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((x,y) => (x.fecha+x.hora).localeCompare(y.fecha+y.hora) || x.cine.localeCompare(y.cine));
+}
+
+function ticket(r){
+  const sold = r.estado === 'agotado';
+  const est = ESTADO[r.estado] ? r.estado : 'desconocido';
+  const art = r.cartel
+    ? el('img',{class:'poster',src:r.cartel,alt:`Cartel de ${r.titulo}`,loading:'lazy'})
+    : el('div',{class:'fake',style:`background:linear-gradient(160deg,hsl(${hue(r.titulo)} 55% 42%),hsl(${(hue(r.titulo)+40)%360} 60% 24%))`,text:r.titulo});
+  if (r.cartel) art.addEventListener('error',()=>art.replaceWith(el('div',{class:'fake',style:`background:hsl(${hue(r.titulo)} 50% 35%)`,text:r.titulo})));
+  const bits = [r.director, r.anio, r.duracion && `${r.duracion} min`, r.version].filter(Boolean).join(' · ');
+  const info = el('div',{class:'info'},
+    el('h3',{text:r.titulo}),
+    el('div',{class:'meta'}, el('span',{class:'cine',text:r.cine}), r.sala ? ` · ${r.sala}` : ''),
+    bits ? el('div',{class:'meta',text:bits}) : null,
+    r.ciclo ? el('div',{class:'ciclo',text:r.ciclo}) : null
+  );
+  const stub = el('div',{class:'stub'},
+    el('div',{class:'hora',text:r.hora || '--:--'}),
+    el('div',{class:'precio',text:money(r)}),
+    el('span',{class:`pill s-${est}`,text:ESTADO[est]}),
+    r.enlace ? el('a',{class:'buy',href:r.enlace,target:'_blank',rel:'noopener',text: sold ? 'Ver ficha' : 'Entradas →'}) : null
+  );
+  return el('article',{class:'tk'+(sold?' sold':'')}, art, info, stub);
+}
+
+function renderCines(){
+  const box = $('#cines'); box.replaceChildren();
+  const names = [...new Set(state.rows.filter(r=>!r.municipal).map(r=>r.cine).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es'));
+  if (state.rows.some(r=>r.municipal)) names.push(MUNI);
+  if (!names.length) return;
+  const all = el('button',{class:'chip',id:'c-all','aria-pressed':String(state.cines.size===0),text:'Todos los cines'});
+  all.onclick = () => { state.cines.clear(); savePrefs(); render(); };
+  box.append(all);
+  names.forEach((n,i) => {
+    const b = el('button',{class:'chip',id:`c-${i}`,'aria-pressed':String(state.cines.has(n)),text:n});
+    b.onclick = () => { state.cines.has(n) ? state.cines.delete(n) : state.cines.add(n); savePrefs(); render(); };
+    box.append(b);
+  });
+}
+
+function renderFresh(){
+  const m = state.meta, dot = $('#dot'), t = $('#freshTxt');
+  if (state.failed) { dot.className='dot stale'; t.textContent='No se pudo cargar la cartelera. Recarga la página.'; return; }
+  if (!state.loaded) { dot.className='dot'; t.textContent='Conectando…'; return; }
+  if (!m || !m.ultimaActualizacion) { dot.className='dot'; t.textContent='Sin actualizaciones todavía'; return; }
+  const h = (Date.now()-new Date(m.ultimaActualizacion).getTime())/3600000;
+  dot.className = 'dot ' + (h < 8 ? 'live' : 'stale');
+  t.textContent = `Actualizado ${ago(m.ultimaActualizacion)}` + (m.proxima ? ` · próxima ${new Date(m.proxima).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'})}` : '');
+  const srcs = Array.isArray(m.fuentes) ? m.fuentes : [];
+  $('#srcBox').hidden = !srcs.length;
+  $('#srcList').replaceChildren(...srcs.map(s => el('li',{}, el('span',{class:s.ok?'okc':'badc',text:s.ok?'✓ ':'✕ '}), `${s.cine}: `, s.ok ? `${s.n ?? 0} sesiones` : (s.error || 'no se pudo leer'))));
+}
+
+function render(){
+  ['hoy','semana','mes'].forEach(v => $('#t-'+v).setAttribute('aria-pressed', String(state.view===v)));
+  $('#precio').value = state.precio; $('#ocultar').checked = state.ocultar;
+  renderCines(); renderFresh();
+  const list = $('#list'); list.replaceChildren();
+  if (!state.loaded) { list.append(el('div',{class:'empty'}, el('h2',{text:'Cargando la cartelera…'}), el('p',{text:'Leyendo las sesiones guardadas.'}))); $('#summary').textContent=''; return; }
+  if (!state.rows.length) {
+    list.append(el('div',{class:'empty'},
+      el('h2',{text:'Aún no hay sesiones'}),
+      el('p',{text:'La cartelera se rellena sola: un proceso automático lee varias veces al día las webs de los cines y centros culturales de Madrid (Cineteca, Cine Doré, Círculo de Bellas Artes, Reina Sofía, Sala Berlanga, Golem, Renoir, Verdi, Embajadores…) y guarda aquí cada sesión con su cartel, hora, precio y si quedan entradas.'}),
+      el('p',{text:'Cuando termine la primera lectura verás aquí las sesiones de hoy.'})));
+    $('#summary').textContent=''; return;
+  }
+  const rows = filtered();
+  const nCines = new Set(rows.map(r=>r.cine)).size;
+  const nFree = rows.filter(r=>r.precio===0).length;
+  $('#summary').textContent = `${rows.length} sesiones · ${nCines} cines` + (nFree ? ` · ${nFree} gratis` : '');
+  if (!rows.length) { list.append(el('div',{class:'empty'}, el('h2',{text:'Nada con estos filtros'}), el('p',{text:'Prueba con otro periodo, sube el precio máximo o selecciona más cines.'}))); return; }
+  const byDay = new Map(); rows.forEach(r => { if(!byDay.has(r.fecha)) byDay.set(r.fecha,[]); byDay.get(r.fecha).push(r); });
+  for (const [f, rs] of byDay) {
+    const [rel, d] = dayLabel(f);
+    list.append(el('section',{class:'day'}, el('h2',{}, rel, el('span',{text:`${d} · ${rs.length}`})), el('div',{class:'grid'}, rs.map(ticket))));
+  }
+}
+
+function setView(v){ state.view = v; if (location.hash !== '#'+v) history.replaceState(null,'','#'+v); render(); }
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => setView(b.dataset.v));
+window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (['hoy','semana','mes'].includes(h)) { state.view = h; render(); } });
+{ const h = location.hash.slice(1); if (['hoy','semana','mes'].includes(h)) state.view = h; }
+$('#precio').onchange = e => { state.precio = e.target.value; savePrefs(); render(); };
+$('#ocultar').onchange = e => { state.ocultar = e.target.checked; savePrefs(); render(); };
+let qt; $('#q').oninput = e => { clearTimeout(qt); qt = setTimeout(()=>{ state.q = e.target.value; render(); }, 150); };
+setInterval(() => { if (state.loaded) render(); }, 60000);
+render();
+
+async function load(){
+  try {
+    const r = await fetch('data/sesiones.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    state.rows = (d.sesiones || []).filter(x => x.titulo && x.cine);
+    state.meta = { ultimaActualizacion: d.actualizado, proxima: d.proxima, fuentes: d.fuentes };
+    state.loaded = true; state.failed = false;
+  } catch (e) { if (!state.loaded) state.failed = true; }
+  render();
+}
+load();
+setInterval(load, 10 * 60 * 1000);
+</script>
+</body>
+</html>

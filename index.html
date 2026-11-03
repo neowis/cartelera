@@ -87,6 +87,26 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   .row .hh{grid-column:4;grid-row:1}
 }
 
+.row .thumb,.row .mp{display:none}
+@media (max-width:640px){
+  .row{grid-template-columns:76px auto minmax(0,1fr) auto;grid-template-areas:"th meta meta heart" "th ttl ttl ttl" "th hh mp mp";grid-template-rows:auto auto 1fr;column-gap:14px;row-gap:3px;align-items:start;padding-top:12px;padding-bottom:12px;border-bottom:1px solid #e6e6e6}
+  .row .thumb{display:block;grid-area:th;width:76px;aspect-ratio:2/3;overflow:hidden;background:var(--soft)}
+  .row .thumb img{width:100%;height:100%;object-fit:cover}
+  .row .thumb .fake{padding:6px}
+  .row .thumb .fk-kind{font-size:7px;padding:2px 4px}
+  .row .thumb .fk-title{font-size:10px;-webkit-line-clamp:4}
+  .row .meta{grid-area:meta;font:12px/1.25 var(--serif);padding-top:2px}
+  .row .meta>span:nth-child(n+2){display:none}
+  .row .ttl{grid-area:ttl;font-size:22px;line-height:1.05;letter-spacing:-.035em}
+  .row .hh{grid-area:hh;font:700 20px/1 var(--sans);letter-spacing:-.02em;margin-top:6px;align-self:end}
+  .row .mp{display:block;grid-area:mp;align-self:end;margin-bottom:1px;font:13px var(--serif);color:var(--ink);padding-left:4px}
+  .row .heart{grid-area:heart;align-self:start;margin:-8px -8px 0 0}
+  .row.sold .thumb{filter:grayscale(1);opacity:.5}
+  .dayh{padding-top:14px;padding-bottom:6px}
+  .dayh h2{font-size:34px}
+  .list{border-top:1px solid #e6e6e6}
+}
+
 /* Columnas (solo escritorio) */
 .cols{display:grid;grid-template-columns:1fr 1fr}
 .cols .wall{grid-template-columns:repeat(4,minmax(0,1fr));align-content:start}
@@ -195,26 +215,30 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 @media (max-width:899px){#dateBtn{font-size:18px}}
 @media (max-width:379px){#dateBtn{font-size:16px}}
 .only-wide{display:none}
+#l-guardadas .ico{display:none}
 @media (min-width:900px){
   .pill button{font-size:clamp(15px,1.45vw,20px)}
   .only-wide{display:block}
   .top{padding-top:16px}
 }
 @media (max-width:899px){
-  :root{--bar:100px}
-  .pill button,.mark,.barR button{min-height:44px}
-  .pill button{padding-top:0;padding-bottom:0}
-  .bar{grid-template-columns:auto 1fr auto;grid-template-areas:"mark view filt" "period period period";align-content:center;row-gap:2px;column-gap:8px}
-  .pill button{font-size:18px}
-  #viewPill{grid-area:view}
+  :root{--bar:56px}
+  .bar{grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-areas:"mark period view filt";column-gap:6px}
   .mid{display:contents}
   .mark{grid-area:mark}
-  #periodPill{grid-area:period;justify-self:center}
-  body[data-layout="guardadas"] #periodPill{display:none}
+  #periodPill{grid-area:period;justify-self:center;min-width:0;max-width:100%}
+  #dateBtn{font-size:17px;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  body[data-layout="guardadas"] #periodPill{visibility:hidden}
+  #viewPill{grid-area:view}
+  #l-lista{display:none}
+  #l-guardadas .lbl{display:none}
+  #l-guardadas .ico{display:inline-flex}
+  #l-guardadas{font-size:22px!important;padding:0 8px!important;min-height:44px;display:inline-flex;align-items:center;gap:2px}
+  #l-guardadas .n{font:600 11px var(--sans);vertical-align:baseline;line-height:1}
   .barR{grid-area:filt}
-  .barR button{font-size:18px}
-  .pill button{padding:10px 12px}
+  .mark,.barR button{font-size:17px;min-height:44px}
 }
+@media (max-width:379px){#dateBtn{font-size:15px!important}.mark,.barR button{font-size:15px!important}}
 
 /* Hojas (ficha, filtros, info) */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;display:flex;align-items:flex-end;justify-content:center}
@@ -260,7 +284,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
       <button id="dateBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="datePop"><span id="dateLbl">Hoy</span> <span class="caret" aria-hidden="true">▾</span></button>
     </div>
     <div class="pill" id="viewPill" role="group" aria-label="Vista">
-      <button data-l="lista" id="l-lista">Lista</button><button data-l="columnas" id="l-columnas" class="only-wide">Columnas</button><button data-l="guardadas" id="l-guardadas">Guardadas<span class="n" id="favN"></span></button>
+      <button data-l="lista" id="l-lista">Lista</button><button data-l="columnas" id="l-columnas" class="only-wide">Columnas</button><button data-l="guardadas" id="l-guardadas" aria-label="Guardadas"><span class="lbl">Guardadas</span><span class="ico" aria-hidden="true"></span><span class="n" id="favN"></span></button>
     </div>
   </div>
   <div class="barR">
@@ -448,7 +472,8 @@ function row(r){
   const meta = el('span',{class:'meta'}, el('span',{text:r.cine}), el('span',{class:'arr',text:'↗'}),
     el('span',{text:[r.sala, money(r), st].filter(Boolean).join(' · ')}));
   return el('div',{class:'row'+(sold?' sold':''),'data-id':r.id,role:'button',tabindex:'0','aria-label':`${cleanTitle(r)}, ${r.hora||''}, ${r.cine}`},
-    meta, el('span',{class:'ttl',text:cleanTitle(r)}), heartBtn(r), el('span',{class:'hh',text:r.hora||'—'}));
+    el('span',{class:'thumb'}, art(r)), meta, el('span',{class:'ttl',text:cleanTitle(r)}), heartBtn(r), el('span',{class:'hh',text:r.hora||'—'}),
+    el('span',{class:'mp',text:[money(r), st].filter(Boolean).join(' · ')}));
 }
 
 /* Render */
@@ -739,7 +764,13 @@ function closeDatePop(){ $('#datePop').hidden = true; $('#dateBtn').setAttribute
 $('#dateBtn').onclick = e => { e.stopPropagation(); $('#datePop').hidden ? openDatePop() : closeDatePop(); };
 document.addEventListener('click', e => { if (!$('#datePop').hidden && !e.target.closest('#datePop') && !e.target.closest('#dateBtn')) closeDatePop(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#datePop').hidden) { closeDatePop(); $('#dateBtn').focus(); } });
-document.querySelectorAll('#viewPill button').forEach(b => b.onclick = () => { state.layout = b.dataset.l; savePrefs(); render(); });
+document.querySelectorAll('#viewPill button').forEach(b => b.onclick = () => {
+  const cur = document.body.dataset.layout;
+  if (b.dataset.l === 'guardadas' && cur === 'guardadas') state.layout = state.prevLayout || 'columnas';
+  else { if (cur !== 'guardadas') state.prevLayout = state.layout; state.layout = b.dataset.l; }
+  savePrefs(); render(); window.scrollTo({top:0});
+});
+$('#l-guardadas .ico').append(heartSvg());
 window.addEventListener('hashchange', () => { readHash(); render(); });
 readHash();
 let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(render, 200); });

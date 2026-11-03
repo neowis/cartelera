@@ -118,7 +118,9 @@ def cineteca_film(l):
                     except ValueError: continue
                     if hh: rows.append(dict(fecha=fx, hora=hh.group().zfill(5), precio=3.5, precioTexto="3,50 €", enlace=base + l))
         cart = poster(base + img if img and img.startswith("/") else img)
-        return [row(cine="Cineteca Madrid", titulo=title, ciclo=ciclo, duracion=int(dur.group(1)) if dur else None, cartel=cart, **r) for r in rows]
+        sin = meta_desc(h)
+        return [row(cine="Cineteca Madrid", titulo=title, ciclo=ciclo, duracion=int(dur.group(1)) if dur else None, cartel=cart,
+                    ficha=base + l, sinopsis=sin, **r) for r in rows]
 
 def _safe(fn, *a):
     try: return fn(*a)
@@ -151,7 +153,8 @@ def dore():
             out.append(row(cine="Cine Doré · Filmoteca", titulo=title, director=director, anio=int(anio.group(1)) if anio else None,
                            fecha=fm.group(1), hora=f"{int(hm.group(1)):02d}:{hm.group(2)}" if hm else "", sala=sm.group(1).title() if sm else None,
                            ciclo=(cat or (sm.group(2) if sm else "")).capitalize() or None, precio=3.0, precioTexto="3 € · 2 € red.",
-                           estado=est, enlace=link.group(1), cartel=poster(img) if img and "no_image" not in img else None))
+                           estado=est, enlace=link.group(1), cartel=poster(img) if img and "no_image" not in img else None,
+                           ficha=(re.search(r'href="\s*(https://[^"\s]+/productos/descripcion/[^"\s]+)\s*"', b) or [None, None])[1]))
         if not fresh: break
     return out
 
@@ -174,7 +177,7 @@ def circulo():
             out.append(dict(cine="Círculo de Bellas Artes", titulo=title, director=director or None, fecha=f, hora=txt(hora).zfill(5),
                             ciclo=" · ".join(x for x in [tipo, info] if x) or None, precio=precio,
                             precioTexto=("Desde 4 €" if red else ("8 € · 6 € joven" if precio == 8 else "5,50 €")),
-                            enlace=url or "https://www.circulobellasartes.com/cine-estudio/", _u=url))
+                            enlace=url or "https://www.circulobellasartes.com/cine-estudio/", ficha=url, _u=url))
     def og(u):
         try:
             p = get(u); m = re.search(r'<meta property="og:image" content="([^"]+)"', p); return u, poster(m.group(1)) if m else None
@@ -208,7 +211,8 @@ def golem():
                 out.append(row(cine="Golem Madrid", titulo=re.sub(r"\s*\(V\.O\.S\.E\.?\)", "", title), version="VOSE" if vose else None,
                                fecha=f, hora=hora.zfill(5), precio=6.3 if wd == 0 else (9.5 if wd >= 4 else 8.4),
                                precioTexto="6,30 € (lunes)" if wd == 0 else ("9,50 €" if wd >= 4 else "8,40 €"),
-                               enlace=base + html.unescape(buy), cartel=poster(base + img) if img else None))
+                               enlace=base + html.unescape(buy), cartel=poster(base + img) if img else None,
+                               ficha=base + html.unescape(link)))
     return out
 
 
@@ -248,14 +252,14 @@ def ecartelera(name, url):
         if m == 13: m, y = 1, y + 1
         f = date(y, m, d).isoformat()
         for blk in re.split(r'<div class="titem"', h)[1:]:
-            t = re.search(r'<p class="tit"><a[^>]*>(.*?)</a>', blk, re.S)
+            t = re.search(r'<p class="tit"><a href="([^"]+)"[^>]*>(.*?)</a>', blk, re.S)
             if not t: continue
             img = (re.search(r'<img[^>]*\ssrc="([^"]+)"', blk) or [None, None])[1]
             dr = txt((re.search(r'<p class="dir">Dir\.:(.*?)</p>', blk, re.S) or [None, ""])[1]) or None
             dur = re.search(r"<span>(\d+) min\.</span>", blk)
             for buy, hora, fmt in re.findall(r'<(?:a href="([^"]+)"|span)[^>]*data-session-time="(\d{1,2}:\d{2})" data-session-format="([^"]*)"', blk):
                 buy = buy or url
-                out.append(row(cine=name, titulo=txt(t.group(1)), director=dr, duracion=int(dur.group(1)) if dur else None,
+                out.append(row(cine=name, titulo=txt(t.group(2)), director=dr, ficha=t.group(1), duracion=int(dur.group(1)) if dur else None,
                                version=fmt or None, fecha=f, hora=hora.zfill(5), precio=precio,
                                precioTexto=(f"{ptxt[:40]}" if ptxt else None), enlace=buy, cartel=poster(img)))
     return out
@@ -358,7 +362,8 @@ def ayuntamiento():
         precio = 0.0 if free else (float(pr.group(1).replace(",", ".")) if pr else None)
         out.append(row(cine=loc.replace("CondeDuque", "Conde Duque"), titulo=txt(e.get("title")), ciclo=ciclo, fecha=f, hora=(e.get("time") or "").zfill(5) if e.get("time") else "",
                        precio=precio, precioTexto="Gratis" if free else (txt(e.get("price"))[:40] or None), estado="gratis" if free else "desconocido",
-                       enlace=(e.get("link") or "").replace("http://", "https://"), municipal=True))
+                       enlace=(e.get("link") or "").replace("http://", "https://"), municipal=True,
+                       sinopsis=(txt(e.get("description"))[:700] or None)))
     return out
 
 SOURCES = [("Cineteca Madrid", cineteca), ("Cine Doré · Filmoteca", dore), ("Círculo de Bellas Artes", circulo), ("Golem Madrid", golem),
@@ -442,7 +447,11 @@ def wiki_poster(title, alt, year):
     return None
 
 def tmdb_poster(title, alt, year):
-    """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita la variable de entorno TMDB_TOKEN."""
+    m = tmdb_find(title, alt, year, need_poster=True)
+    return "https://image.tmdb.org/t/p/w342" + m["poster_path"] if m and m.get("poster_path") else None
+
+def tmdb_find(title, alt, year, need_poster=False):
+    """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita TMDB_API_KEY o TMDB_TOKEN."""
     token = os.environ.get("TMDB_TOKEN", "").strip()
     key = os.environ.get("TMDB_API_KEY", "").strip()
     if not token and not key: return None
@@ -458,14 +467,14 @@ def tmdb_poster(title, alt, year):
                 with urllib.request.urlopen(req, timeout=20) as r: res = json.load(r).get("results", [])
             except Exception:
                 continue
-            same = [m for m in res if m.get("poster_path") and _norm(c) in (_norm(m.get("title", "")), _norm(m.get("original_title", "")))]
+            same = [m for m in res if (m.get("poster_path") or not need_poster) and _norm(c) in (_norm(m.get("title", "")), _norm(m.get("original_title", "")))]
             if year:
                 same = [m for m in same if (m.get("release_date") or "")[:4].isdigit() and abs(int(m["release_date"][:4]) - year) <= 1]
             if not year and len(same) > 1:
                 same.sort(key=lambda m: -(m.get("popularity") or 0))
                 if (same[1].get("popularity") or 0) * 3 > (same[0].get("popularity") or 0): same = []
             if same:
-                return "https://image.tmdb.org/t/p/w342" + same[0]["poster_path"]
+                return same[0]
             time.sleep(0.1)
     return None
 
@@ -516,6 +525,59 @@ def fill_missing_posters(rows):
         json.dump(cache, fh, ensure_ascii=False, indent=0)
     print(f"Portadas buscadas y encontradas: {found}", file=sys.stderr)
 
+
+# ---------------------------------------------------------------- Sinopsis
+SIN_CACHE_IN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "sinopsis_cache.json")
+NO_FICHA = re.compile(r"ecartelera\.com/cines/comprar|tienda\.madrid-destino|/entradas/|urlcheck\.php|madrid\.es/|/mapa$")
+
+def meta_desc(h):
+    for pat in (r'<meta property="og:description" content="([^"]*)"', r'<meta name="description" content="([^"]*)"',
+                r'<meta content="([^"]*)" (?:property|name)="(?:og:)?description"'):
+        m = re.search(pat, h or "")
+        if m:
+            t = txt(m.group(1))
+            t = re.sub(r"^(Sinopsis( de [^:]{1,80})?:\s*)", "", t, flags=re.I)
+            if len(t) >= 50: return t[:700]
+    return None
+
+def fill_synopsis(rows):
+    try: cache = json.load(open(SIN_CACHE_IN, encoding="utf8"))
+    except Exception: cache = {}
+    month_ago = (TODAY - timedelta(days=30)).isoformat()
+    for r in rows:
+        if not r.get("ficha") and r.get("enlace") and not NO_FICHA.search(r["enlace"]): r["ficha"] = r["enlace"]
+    todo = sorted({r["ficha"] for r in rows if not r.get("sinopsis") and r.get("ficha") and not NO_FICHA.search(r["ficha"])
+                   and (r["ficha"] not in cache or (not cache[r["ficha"]].get("t") and cache[r["ficha"]].get("d", "") < month_ago))})
+    def one(u):
+        try: return u, meta_desc(get(u, tries=1))
+        except Exception: return u, None
+    with ThreadPoolExecutor(4) as ex:
+        for u, t in ex.map(one, todo[:250]):
+            cache[u] = {"t": t or "", "d": TODAY.isoformat()}
+    # Textos genéricos de la web (iguales en muchas fichas) no valen como sinopsis
+    from collections import Counter
+    dup = {t for t, n in Counter(v["t"] for v in cache.values() if v.get("t")).items() if n >= 4}
+    has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip() or os.environ.get("TMDB_API_KEY", "").strip())
+    tm = {}
+    for r in rows:
+        if not r.get("sinopsis") and r.get("ficha") in cache:
+            t = cache[r["ficha"]].get("t")
+            if t and t not in dup: r["sinopsis"] = t
+        if not r.get("sinopsis") and has_tmdb:
+            ct = clean_title(r["titulo"])
+            if not ct: continue
+            k = "tmdb|" + _norm(ct[0]) + f"|{ct[2] or ''}"
+            if k not in cache or (not cache[k].get("t") and cache[k].get("d", "") < month_ago):
+                m = tmdb_find(*ct) if k not in tm else tm[k]
+                tm[k] = m
+                cache[k] = {"t": (m or {}).get("overview", "")[:700], "d": TODAY.isoformat(),
+                            "anio": ((m or {}).get("release_date") or "")[:4]}
+            if cache[k].get("t"): r["sinopsis"] = cache[k]["t"]
+            if not r.get("anio") and cache[k].get("anio", "").isdigit() and cache[k].get("t"): r["anio"] = int(cache[k]["anio"])
+    with open(f"{OUT}/data/sinopsis_cache.json", "w", encoding="utf8") as fh:
+        json.dump(cache, fh, ensure_ascii=False, indent=0)
+    print(f"Sinopsis: {sum(1 for r in rows if r.get('sinopsis'))} de {len(rows)} sesiones", file=sys.stderr)
+
 def main():
     all_rows, fuentes = [], []
     for name, fn in SOURCES:
@@ -528,10 +590,17 @@ def main():
         print(f"{name}: {fuentes[-1]} ({time.time()-t0:.0f}s)", file=sys.stderr)
     try: fill_missing_posters(all_rows)
     except Exception as e: print("Búsqueda de portadas falló:", e, file=sys.stderr)
-    uniq = {r["id"]: {k: v for k, v in r.items() if v not in (None, "")} for r in all_rows}
+    try: fill_synopsis(all_rows)
+    except Exception as e: print("Búsqueda de sinopsis falló:", e, file=sys.stderr)
+    sinmap = {}
+    for r in all_rows:
+        t = r.pop("sinopsis", None)
+        if t:
+            k = hashlib.sha1(t.encode()).hexdigest()[:10]; sinmap[k] = t; r["sk"] = k
+    uniq = {r["id"]: {k: v for k, v in r.items() if v not in (None, "") } for r in all_rows}
     now = datetime.now(timezone.utc)
     data = {"actualizado": now.isoformat(timespec="seconds"), "proxima": (now + timedelta(hours=3)).isoformat(timespec="seconds"),
-            "fuentes": fuentes, "sesiones": sorted(uniq.values(), key=lambda r: (r["fecha"], r.get("hora", ""), r["cine"]))}
+            "fuentes": fuentes, "sinopsis": sinmap, "sesiones": sorted(uniq.values(), key=lambda r: (r["fecha"], r.get("hora", ""), r["cine"]))}
     with open(f"{OUT}/data/sesiones.json", "w", encoding="utf8") as fh:
         json.dump(data, fh, ensure_ascii=False, separators=(",", ":"))
     used = {r.get("cartel") for r in uniq.values()}

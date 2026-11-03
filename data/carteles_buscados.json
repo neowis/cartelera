@@ -5,7 +5,7 @@
 "t": "2026-11-03",
 "titulo": "Cine chino del nuevo milenio",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "quedada de cine": {
 "url": "",
@@ -21,7 +21,7 @@
 "t": "2026-11-03",
 "titulo": "Sábados de cine de otoño",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "doce lunas": {
 "url": "https://image.tmdb.org/t/p/w780/8997sd107XxrOP2uxzJPwkQwBTQ.jpg",
@@ -36,7 +36,7 @@
 "t": "2026-11-03",
 "titulo": "Las mejores películas de la historia del cine",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "soledad no deseada": {
 "url": "",
@@ -44,7 +44,7 @@
 "t": "2026-11-03",
 "titulo": "Soledad No Deseada",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "requiem por un sueno": {
 "url": "https://www.ecartelera.com/carteles/4200/4219/001.jpg",
@@ -66,7 +66,7 @@
 "t": "2026-11-03",
 "titulo": "Prevención del duelo complicado",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "irlanda mas alla de los topicos": {
 "url": "",
@@ -74,7 +74,7 @@
 "t": "2026-11-03",
 "titulo": "Irlanda: más allá de los tópicos",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "carmen s pure love|1952": {
 "url": "https://image.tmdb.org/t/p/w780/agSTKAOO4A9KBAauXiho3ZH9iPa.jpg",
@@ -90,7 +90,7 @@
 "t": "2026-11-03",
 "titulo": "Andrzej Zulawski, El amor sin límites",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "melodia de arrabal|1933": {
 "url": "https://image.tmdb.org/t/p/w780/8XbL26huBSCTA4ON460MPVDZ7vO.jpg",
@@ -185,7 +185,7 @@
 "t": "2026-11-03",
 "titulo": "Casa y Cuartel - ETA contra la Benemérita",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "lorca popular y flamenco": {
 "url": "",
@@ -242,7 +242,7 @@
 "t": "2026-11-03",
 "titulo": "Shorts for Future",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "una batalla tras otra": {
 "url": "https://www.ecartelera.com/carteles/19100/19119/004.jpg",
@@ -303,7 +303,7 @@
 "t": "2026-11-03",
 "titulo": "La fuerza",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "teo va al espacio": {
 "url": "https://image.tmdb.org/t/p/w780/ut2Y23MyxfwFzoeQ3MMdHEtGrFv.jpg",
@@ -340,12 +340,12 @@
 "tmdb": true
 },
 "mburucuya cuadros de la naturaleza|1992": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/zeZBF2ED7BRtR7mG64E28zBhIcP.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "Mburucuyá, cuadros de la naturaleza",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "loca por la musica|1937": {
 "url": "https://image.tmdb.org/t/p/w780/bWCDQRYTq4rnD7sVh1p959mEASe.jpg",
@@ -446,7 +446,7 @@
 "t": "2026-11-03",
 "titulo": "75 Años en Madrid, siempre Vicálvaro",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "orquesta de guitarras de madrid": {
 "url": "",
@@ -457,20 +457,20 @@
 "v": 2
 },
 "amor solfeando|1930": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/n0MgrNjaNaOUhRvBoZ5P6M7zrl7.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "El amor solfeando",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "mujer y el pelele|1929": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/mUYi2rZ4F8WjvCLTccEIfM56Ql6.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "La mujer y el pelele",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "una pelicula de minecraft": {
 "url": "https://www.ecartelera.com/carteles/13000/13012/004.jpg",
@@ -492,7 +492,7 @@
 "t": "2026-11-03",
 "titulo": "Crazy Stop Motion",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "amor que permanece": {
 "url": "https://www.ecartelera.com/carteles/20300/20312/001.jpg",
@@ -562,12 +562,12 @@
 "tmdb": true
 },
 "no quiero volver a casa|2000": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/daiQx0T1YcldnXsTyoLCXyIp3oa.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "No quiero volver a casa",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "chansons d amour|2007": {
 "url": "https://image.tmdb.org/t/p/w780/7AyXJuPflcMmX06qdwUxPi9uREp.jpg",
@@ -703,12 +703,12 @@
 "tmdb": true
 },
 "orange flavor wedding|2026": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/zxXlaXcxhDRaKzHEtUIO9rku1j3.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "Orange Flavor Wedding",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "croods una nueva era": {
 "url": "https://www.ecartelera.com/carteles/13600/13686/003.jpg",
@@ -765,12 +765,12 @@
 "titulo": "La deuda"
 },
 "mujer fantasma|1947": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/cHYAcdqqQYPFfjMNnJ3YcOAPCG7.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "La mujer fantasma",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "pelicula duende y misterio del flamenco|1952": {
 "url": "",
@@ -805,7 +805,7 @@
 "t": "2026-11-03",
 "titulo": "Zulueta / Aguirre. Tentativa y obra",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "carne de fieras|1936": {
 "url": "https://image.tmdb.org/t/p/w780/7FgtE6KbBB2qpgCja3WFQangCgo.jpg",
@@ -815,12 +815,12 @@
 "tmdb": true
 },
 "no soy yo|2024": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/wQ3T6eEVqf3ReKm0DJT8eWj03XC.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "No soy yo",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "pusher un paseo por el abismo|1996": {
 "url": "https://image.tmdb.org/t/p/w780/xVW0sVJaZ11q7re2wi1kAheBFvC.jpg",
@@ -959,7 +959,7 @@
 "t": "2026-11-03",
 "titulo": "Lisandro Alonso. La libertad doble",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "ana apontes y sol munoz nocturno y maria aparicio a veces me entra tristeza otras veces rebelion": {
 "url": "",
@@ -967,7 +967,7 @@
 "t": "2026-11-03",
 "titulo": "Ana Apontes y Sol Muñoz. Nocturno y María Aparicio. A veces me entra tristeza, otras veces rebelión",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "paola buontempo las fuerzas y julian d angiolillo cuerpo de letra": {
 "url": "",
@@ -975,7 +975,7 @@
 "t": "2026-11-03",
 "titulo": "Paola Buontempo. Las fuerzas y Julián D'Angiolillo. Cuerpo de letra",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "ezequiel salinas y ramiro sonzini la noche esta marchandose ya": {
 "url": "",
@@ -983,7 +983,7 @@
 "t": "2026-11-03",
 "titulo": "Ezequiel Salinas y Ramiro Sonzini. La noche está marchándose ya",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "fernando restelli merodeo y colectivo antes muerto cine y tatiana mazu todo documento de civilizacion": {
 "url": "",
@@ -991,7 +991,7 @@
 "t": "2026-11-03",
 "titulo": "Fernando Restelli. Merodeo y Colectivo Antes Muerto Cine y Tatiana Mazú. Todo documento de civilización",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "pablo marin materia vibrante y mariano llinas popular tradicion de esta tierra": {
 "url": "",
@@ -999,7 +999,7 @@
 "t": "2026-11-03",
 "titulo": "Pablo Marín. Materia vibrante y Mariano Llinás. Popular tradición de esta tierra",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "raul perrone sean eternxs": {
 "url": "",
@@ -1007,7 +1007,7 @@
 "t": "2026-11-03",
 "titulo": "Raúl Perrone. Sean eternxs",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "amandine fredon y benjamin massoubre el pequeno nicolas": {
 "url": "",
@@ -1015,7 +1015,7 @@
 "t": "2026-11-03",
 "titulo": "Amandine Fredon y Benjamin Massoubre. El pequeño Nicolás",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "rodrigo moreno los delincuentes": {
 "url": "",
@@ -1023,7 +1023,7 @@
 "t": "2026-11-03",
 "titulo": "Rodrigo Moreno. Los delincuentes",
 "tmdb": true,
-"v": 2
+"v": 3
 },
 "adolescencia sexo y muerte en campamento miasma": {
 "url": "https://image.tmdb.org/t/p/w780/8UTCpwvHxWPllCJ7YnaCbffmYyD.jpg",
@@ -1039,5 +1039,237 @@
 "titulo": "Elles",
 "tmdb": true,
 "v": 2
+},
+"fin de jornada|1939": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Fin de jornada",
+"tmdb": true,
+"v": 3
+},
+"raices aromas y color": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Raíces, aromas y color",
+"tmdb": true,
+"v": 3
+},
+"historia de souleymane": {
+"url": "https://image.tmdb.org/t/p/w780/p5b8aNWopnUxORdHcmHP7WttEQO.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "La historia de Souleymane",
+"tmdb": true,
+"v": 3
+},
+"animales con mucho cuento": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Animales con mucho cuento",
+"tmdb": true,
+"v": 3
+},
+"aventuras en pijama": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Aventuras en pijama",
+"tmdb": true,
+"v": 3
+},
+"bambi una vida en el bosque|2024": {
+"url": "https://image.tmdb.org/t/p/w780/fvtIXQH4JcifptPe0J9GfLDIOAQ.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Bambi, una vida en el bosque",
+"tmdb": true,
+"v": 3
+},
+"chinas": {
+"url": "https://image.tmdb.org/t/p/w780/xjW4jbnqPq3sNH6SLzHgwi778CV.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Chinas",
+"tmdb": true,
+"v": 3
+},
+"your name": {
+"url": "https://image.tmdb.org/t/p/w780/iaiy3tg9QVkDpObm1IGqmbC9A5C.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Your name",
+"tmdb": true,
+"v": 3
+},
+"ultimo vikingo|2025": {
+"url": "https://image.tmdb.org/t/p/w780/xpxirvtkQBFHAGWkTamKjDWp9rG.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "El último vikingo",
+"tmdb": true,
+"v": 3
+},
+"medias hermanas|2025": {
+"url": "https://image.tmdb.org/t/p/w780/gTaZU3E6fHtWPvw60sF16TwVm6E.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Medias hermanas",
+"tmdb": true,
+"v": 3
+},
+"furia": {
+"url": "https://image.tmdb.org/t/p/w780/oURIkXKGTBJ2R3rw61SIEWYmhq3.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "La furia",
+"tmdb": true,
+"v": 3
+},
+"tarta del presidente|2025": {
+"url": "https://image.tmdb.org/t/p/w780/9zfQ8eanWwkFA6S3YhZWle7jp75.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "La tarta del presidente",
+"tmdb": true,
+"v": 3
+},
+"cosas sencillas|2023": {
+"url": "https://image.tmdb.org/t/p/w780/njMF6LA48YxnwLR0iUXN2NtevxF.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Las cosas sencillas",
+"tmdb": true,
+"v": 3
+},
+"domingos": {
+"url": "https://image.tmdb.org/t/p/w780/kwpDm6qtON8pLCSY0C8MltMofEE.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Los domingos",
+"tmdb": true,
+"v": 3
+},
+"madrid residencia de talento": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Madrid Residencia de Talento",
+"tmdb": true,
+"v": 3
+},
+"talento km 0": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Talento km 0",
+"tmdb": true,
+"v": 3
+},
+"domingos|2025": {
+"url": "https://image.tmdb.org/t/p/w780/kwpDm6qtON8pLCSY0C8MltMofEE.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Los Domingos",
+"tmdb": true,
+"v": 3
+},
+"furia|2025": {
+"url": "https://image.tmdb.org/t/p/w780/qnqvxOgcEYaePEFkIqRPovpsBl.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "La Furia",
+"tmdb": true,
+"v": 3
+},
+"romeria|2025": {
+"url": "https://image.tmdb.org/t/p/w780/9mkLV32jOUXhC8uQaw7zV9ymm8Y.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Romería",
+"tmdb": true,
+"v": 3
+},
+"domingo de carnaval": {
+"url": "https://image.tmdb.org/t/p/w780/dR7FLvHCCDoSxT93kcan5B4HH17.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Domingo de carnaval",
+"tmdb": true,
+"v": 3
+},
+"duende y misterio del flamenco|1952": {
+"url": "https://image.tmdb.org/t/p/w780/zp0hGrqZ4549NDtotu3scMIQZJl.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Duende y misterio del flamenco",
+"tmdb": true,
+"v": 3
+},
+"cameraman|1928": {
+"url": "https://image.tmdb.org/t/p/w780/q67uxNfJ2nIDW48eOgF8s99Wy0m.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "El cameraman",
+"tmdb": true,
+"v": 3
+},
+"crimen de la calle bordadores|1946": {
+"url": "https://upload.wikimedia.org/wikipedia/en/9/95/The_Crime_of_Bordadores_Street.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+"fuente": "Wikipedia",
+"t": "2026-11-03",
+"titulo": "El crimen de la calle Bordadores",
+"tmdb": true,
+"v": 3
+},
+"forzudo|1926": {
+"url": "https://image.tmdb.org/t/p/w780/64J8XyG7mNMQlMDeW1xYoBY7xnw.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "El forzudo",
+"tmdb": true,
+"v": 3
+},
+"nada|1947": {
+"url": "https://image.tmdb.org/t/p/w780/n0HheYaI1Rr668Pq0CpUnpX1Tt5.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Nada",
+"tmdb": true,
+"v": 3
+},
+"vagabundo vagabundo vagabundo|1926": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Vagabundo, vagabundo, vagabundo",
+"tmdb": true,
+"v": 3
+},
+"romeria": {
+"url": "https://image.tmdb.org/t/p/w780/9mkLV32jOUXhC8uQaw7zV9ymm8Y.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Romería",
+"tmdb": true,
+"v": 3
+},
+"tres amigas|2024": {
+"url": "https://image.tmdb.org/t/p/w780/bpK4nHk52cUL4TajeGsIjG8YDLd.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Tres amigas",
+"tmdb": true,
+"v": 3
+},
+"grease": {
+"url": "https://image.tmdb.org/t/p/w780/flSy0dexE82TiS6Si2FtulSHk8o.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Grease",
+"tmdb": true,
+"v": 3
 }
 }

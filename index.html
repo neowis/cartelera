@@ -183,7 +183,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 .empty small{display:block;margin-top:12px;font:14px var(--serif);letter-spacing:0}
 </style>
 </head>
-<body data-layout="carteles">
+<body data-layout="lista">
 
 <h1 class="sr-only">Cartelera de Bolsillo</h1>
 <main id="stage" aria-live="polite"></main>
@@ -195,7 +195,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
       <button data-v="hoy" id="p-hoy">Hoy</button><button data-v="semana" id="p-semana">Semana</button><button data-v="mes" id="p-mes">Mes</button>
     </div>
     <div class="pill" id="viewPill" role="group" aria-label="Vista">
-      <button data-l="carteles" id="l-carteles">Carteles</button><button data-l="lista" id="l-lista">Lista</button><button data-l="columnas" id="l-columnas" class="only-wide">Columnas</button><button data-l="guardadas" id="l-guardadas">Guardadas<span class="n" id="favN"></span></button>
+      <button data-l="lista" id="l-lista">Lista</button><button data-l="columnas" id="l-columnas" class="only-wide">Columnas</button><button data-l="guardadas" id="l-guardadas">Guardadas<span class="n" id="favN"></span></button>
     </div>
   </div>
   <div class="barR">
@@ -207,8 +207,8 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 
 <script>
 const $ = s => document.querySelector(s);
-const state = { calMonth:null, sin:{}, view:'hoy', layout:'carteles', cines:new Set(), precio:'', ocultar:false, q:'', rows:[], meta:null, loaded:false, failed:false };
-try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; (s.cines||[]).forEach(c=>state.cines.add(c)); if (s.layout) state.layout = s.layout; } catch(e){}
+const state = { calMonth:null, sin:{}, view:'hoy', layout:'columnas', cines:new Set(), precio:'', ocultar:false, q:'', rows:[], meta:null, loaded:false, failed:false };
+try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; (s.cines||[]).forEach(c=>state.cines.add(c)); if (s.layout && s.layout !== 'carteles') state.layout = s.layout; } catch(e){}
 function savePrefs(){ try{ localStorage.setItem('cdb-prefs', JSON.stringify({precio:state.precio, ocultar:state.ocultar, cines:[...state.cines], layout:state.layout})); }catch(e){} }
 
 const pad = n => String(n).padStart(2,'0');
@@ -363,9 +363,9 @@ function row(r){
 function render(){
   for (const v of ['hoy','semana','mes']) $('#p-'+v).setAttribute('aria-pressed', String(state.view===v));
   const wide = matchMedia('(min-width:900px)').matches;
-  const layout = (state.layout === 'columnas' && !wide) ? 'carteles' : state.layout;
+  const layout = (state.layout === 'columnas' && !wide) ? 'lista' : state.layout;
   document.body.dataset.layout = layout;
-  for (const l of ['carteles','lista','columnas','guardadas']) $('#l-'+l).setAttribute('aria-pressed', String(layout===l));
+  for (const l of ['lista','columnas','guardadas']) $('#l-'+l).setAttribute('aria-pressed', String(layout===l));
   const nfav = Object.keys(favs).length; $('#favN').textContent = nfav ? String(nfav) : '';
   scribble($('#periodPill'), $('#p-'+state.view));
   scribble($('#viewPill'), $('#l-'+layout));

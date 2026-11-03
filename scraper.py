@@ -334,6 +334,7 @@ def berlanga():
         ciclo = None
         k = seg.find(title, 20)
         if k > 0: ciclo = seg[k + len(title):].strip().split("  ")[0][:80] or None
+        if re.match(r"^\s*teatro\b", title, re.I): return rs
         for d, mes, hh in re.findall(r"(\d{1,2}) de (\w+)\s*-\s*(\d{1,2}:\d{2})h", seg):
             m = MESES_L.get(mes.lower())
             if not m: continue
@@ -347,6 +348,14 @@ def berlanga():
     return out
 
 # ---------------------------------------------------------------- Ayuntamiento de Madrid: Conde Duque, centros culturales y bibliotecas (datos abiertos)
+NO_CINE_TIT = re.compile(r"^\W*(m[uú]sica|teatro|cocina|ruta|talleres?|curso|concierto|danza|conferencia|charla|exposici[oó]n|recital)\b|semana de la ciencia|podcast|orquesta|espect[aá]culo de baile", re.I)
+SI_CINE = re.compile(r"pel[ií]cula|\bcine|proyecci[oó]n|cortometraj|\bcortos?\b|documental|\bfilm|dirigida por|director|\bdir\.", re.I)
+def es_cine(titulo, desc=""):
+    """Descarta actividades que el Ayuntamiento etiqueta como cine pero no lo son (música, teatro, cocina…)."""
+    if re.match(r"^\W*(pel[ií]cula|cine|cinef[oó]rum|cineclub|cine-club|documental)\b", titulo, re.I): return True
+    if NO_CINE_TIT.search(titulo): return False
+    return bool(SI_CINE.search(titulo + " " + (desc or "")))
+
 def ayuntamiento():
     d = json.loads(get("https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json"))
     out = []
@@ -354,6 +363,7 @@ def ayuntamiento():
         if "CineActividadesAudiovisuales" not in e.get("@type", ""): continue
         loc = (e.get("event-location") or "").strip()
         if not loc or "Cineteca" in loc: continue
+        if not es_cine(txt(e.get("title")), txt(e.get("description"))): continue
         if (e.get("address", {}).get("area", {}) or {}).get("locality", "MADRID").upper() != "MADRID": continue
         s, en = (e.get("dtstart") or "")[:10], (e.get("dtend") or "")[:10]
         if not s: continue
@@ -380,7 +390,9 @@ SOURCES = [("Cineteca Madrid", cineteca), ("Cine Doré · Filmoteca", dore), ("C
 # ---------------------------------------------------------------- Portadas que faltan: búsqueda en Wikipedia
 WIKI_UA = "SieteEstrellas/1.0 (https://neowis.github.io/cartelera/)"
 CACHE_IN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "carteles_buscados.json")
-NO_FILM = re.compile(r"\b(teatro|danza|curso|taller|cocina|cata|conferencia|charla|coloquio sobre|club de lectura|ficción sonora|creación audiovisual|jornada|concurso|cortos?\b|cortometrajes|festival|muestra|ciclo \d|semana)\b", re.I)
+NO_FILM = re.compile(r"\b(teatro|danza|curso|taller|cocina|cata|conferencia|charla|coloquio sobre|club de lectura|ficción sonora|creación audiovisual|concurso)\b", re.I)
+# Programas y nombres genéricos: solo descartan si no se ha podido extraer un título concreto
+GENERICO = re.compile(r"\b(cortos?|cortometrajes|festival|muestra|ciclo|semana|programa|distrito en corto|quedada de cine|cine-?club|cinef[oó]rum|sesi[oó]n)\b|^(cine|cineclub|cine club)$", re.I)
 
 def _norm(t):
     import unicodedata
@@ -398,16 +410,29 @@ def clean_title(t):
     if m:
         year = int(m.group(2)); alt = m.group(1).strip(" ,;") or None
         raw = raw[:m.start()].strip()
+    if NO_FILM.search(raw) and not re.match(r"^\W*pel[ií]cula\b", raw, re.I): return None
+    raw = re.sub(r"^\W*(pel[ií]cula|documental)\s*[:.]\s*", "", raw, flags=re.I)
     q = re.search(r"[‘'`´\"“]([^'’`´\"”]{2,80})[’'`´\"”]", raw)
-    if q and (":" in raw or re.search(r"cine|biblioteca|quedada|matinal", raw, re.I)):
+    if q:
         inner = q.group(1).strip()
         y2 = re.search(r"\(((?:18|19|20)\d{2})\b[^)]*\)", raw)
         if y2 and not year: year = int(y2.group(1))
-        raw = inner
-    elif re.search(r"^(cine|cinefórum|cineclub|cine-club|cine club|documental)\b", raw, re.I):
-        raw = re.sub(r"^[^:]*:\s*", "", raw) if ":" in raw else ""
-    raw = re.sub(r"\s*\(V\.?O\.?S\.?E?\.?\)|\s*\(VOSE\)", "", raw, flags=re.I).strip(" .'\"")
-    if not raw or len(raw) < 2 or NO_FILM.search(t): return None
+        after = raw[q.end():].strip()
+        if GENERICO.search(inner) and ":" in after:          # 'Quedada de cine' Biblioteca X: Grease
+            raw = after.split(":", 1)[1]
+        elif GENERICO.search(inner) and not (":" in raw[:q.start()] or GENERICO.search(raw[:q.start()])):
+            raw = inner
+        else:
+            raw = inner
+    elif ":" in raw and GENERICO.search(raw.split(":", 1)[0]) or re.match(r"^\W*(cine|cinefórum|cineclub|cine-club|cine club)\b", raw, re.I):
+        raw = raw.split(":", 1)[1] if ":" in raw else (raw.split(". ")[-1] if ". " in raw else "")
+    # "Nosotras Contamos. La Furia", "Romería. Ciclo Nosotras Contamos", "Ciclo 2/3 de cine X. Chinas"
+    parts = [p.strip() for p in re.split(r"\.\s+", raw) if p.strip()]
+    if len(parts) > 1:
+        no_gen = [p for p in parts if not GENERICO.search(p) and not re.search(r"contamos|matinal|infantil", p, re.I)]
+        if len(no_gen) == 1: raw = no_gen[0]
+    raw = re.sub(r"\s*\(V\.?O\.?S\.?E?\.?\)|\s*\(VOSE\)", "", raw, flags=re.I).strip(" .'\"`´")
+    if not raw or len(raw) < 2 or GENERICO.search(raw) or re.match(r"^programa (infantil )?del\b", raw, re.I): return None
     return raw, alt, year
 
 def _wiki_get(lang, params):
@@ -537,6 +562,37 @@ def ecartelera_poster(title, alt, year):
         time.sleep(0.4)
     return None
 
+def enrich_from_text(rows):
+    """Saca director y año de la descripción cuando la sala no los da por separado."""
+    for r in rows:
+        d = r.get("sinopsis") or ""
+        if not d: continue
+        if not r.get("director"):
+            m = (re.search(r"[Dd]irigida por ([A-ZÁÉÍÓÚÑ][\w\.\-'’ ]{2,40}?)(?:[\.,;]| y )", d) or
+                 re.search(r"Director(?:a)?:\s*([A-ZÁÉÍÓÚÑ][\w\.\-'’ ]{2,40}?)\s+(?:Año|País|Duraci)", d) or
+                 re.search(r"[`´'‘’][^`´'‘’]{2,60}[`´'‘’],? de ([A-ZÁÉÍÓÚÑ][\w\.\-'’ ]{2,40}?)[\.,]", d) or
+                 re.search(r"\(([A-ZÁÉÍÓÚÑ][\w\.\-'’ ]{2,40}?)\),? dentro del ciclo", d) or
+                 re.search(r"[´'’]\.?\s+De ([A-ZÁÉÍÓÚÑ][\w\.\-'’ ]{2,40}?)\.", d))
+            if m: r["director"] = m.group(1).strip()
+        if not r.get("anio"):
+            m = (re.search(r"Año:\s*((?:18|19|20)\d{2})", d) or re.search(r"^\(((?:19|20)\d{2})\)", d) or
+                 re.search(r"/\s*((?:19|20)\d{2})\s*/", d) or re.search(r"\b((?:19|20)\d{2}),?\s+\d{2,3}\s*min", d))
+            if m: r["anio"] = int(m.group(1))
+
+MANUAL_IN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "carteles_manual.json")
+def manual_posters(rows):
+    """Portadas asignadas a mano en data/carteles_manual.json: {"texto que aparece en el título": "url de la imagen"}."""
+    try: man = json.load(open(MANUAL_IN, encoding="utf8"))
+    except Exception: return
+    man = {k.lower(): v for k, v in man.items() if not k.startswith("_") and isinstance(v, str) and v.startswith("http")}
+    for r in rows:
+        t = r["titulo"].lower()
+        for k, url in man.items():
+            if k in t:
+                p = poster(url)
+                if p: r["cartel"] = p; r["cartelFuente"] = "manual"; POSTER_W[p] = 999
+                break
+
 def fill_missing_posters(rows):
     try: cache = json.load(open(CACHE_IN, encoding="utf8"))
     except Exception: cache = {}
@@ -546,6 +602,7 @@ def fill_missing_posters(rows):
         if r.get("cartel") and POSTER_W.get(r["cartel"], 999) >= 400: continue
         ct = clean_title(r["titulo"])
         if not ct: continue
+        if not ct[2] and r.get("anio"): ct = (ct[0], ct[1], int(r["anio"]))
         key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
         hit = cache.get(key)
         has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip() or os.environ.get("TMDB_API_KEY", "").strip())
@@ -627,6 +684,8 @@ def main():
         except Exception as e:
             fuentes.append({"cine": name, "ok": False, "error": f"{type(e).__name__}: {str(e)[:120]}"})
         print(f"{name}: {fuentes[-1]} ({time.time()-t0:.0f}s)", file=sys.stderr)
+    try: enrich_from_text(all_rows); manual_posters(all_rows)
+    except Exception as e: print("Datos del texto / portadas a mano fallaron:", e, file=sys.stderr)
     try: fill_missing_posters(all_rows)
     except Exception as e: print("Búsqueda de portadas falló:", e, file=sys.stderr)
     try: fill_synopsis(all_rows)

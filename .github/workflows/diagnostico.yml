@@ -1,0 +1,20 @@
+name: Diagnóstico TMDB
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - name: Probar búsquedas en TMDB
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
+        run: python3 -I tools/diag_tmdb.py

@@ -2278,6 +2278,18 @@
 "delincuentes|rodrigo moreno": {
 "url": "https://image.tmdb.org/t/p/w780/3AWh0IKlyjIdG8IX5N8a9eE7Yey.jpg",
 "t": "2026-11-03"
+},
+"ruega por nosotras|": {
+"url": "https://image.tmdb.org/t/p/w780/vgAae3dWzJoFuGQbRaKvSCmogDq.jpg",
+"t": "2026-11-03"
+},
+"ruega por nosotras ocap|": {
+"url": "",
+"t": "2026-11-03"
+},
+"sacamantecas|": {
+"url": "https://image.tmdb.org/t/p/w780/7338FnwdzX9oNpODZIJH1OliUGV.jpg",
+"t": "2026-11-03"
 }
 },
 "sonidos opticos": {
@@ -2397,6 +2409,14 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Materia vibrante / Popular tradición de esta tierra",
+"tmdb": true,
+"v": 3
+},
+"ruega por nosotras ocap": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Ruega por nosotras (OCAP)",
 "tmdb": true,
 "v": 3
 }

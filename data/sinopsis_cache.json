@@ -1585,5 +1585,35 @@
 "d": "2026-11-03",
 "anio": "2023",
 "v": 3
+},
+"https://www.golem.es/golem/pelicula/Ruega-por-nosotras": {
+"t": "",
+"d": "2026-11-03"
+},
+"https://www.golem.es/golem/pelicula/Ruega-por-nosotras-(OCAP)": {
+"t": "",
+"d": "2026-11-03"
+},
+"https://www.golem.es/golem/pelicula/Sacamantecas-(V.O.S.E.)": {
+"t": "",
+"d": "2026-11-03"
+},
+"tmdb|ruega por nosotras|": {
+"t": "En 1974, Ana, una chica barcelonesa de 19 años, es puesta en manos del Patronato de Protección a la Mujer y trasladada a un reformatorio regentado por monjas en Madrid. Allí, es sometida a un brutal régimen disciplinario, y tratará de sobrevivir buscando consuelo y apoyo en la amistad de otras chicas en su misma situación.",
+"d": "2026-11-03",
+"anio": "2026",
+"v": 3
+},
+"tmdb|ruega por nosotras ocap|": {
+"t": "",
+"d": "2026-11-03",
+"anio": "",
+"v": 3
+},
+"tmdb|sacamantecas|": {
+"t": "Álava, finales del siglo XIX. Mientras la III Guerra Carlista agoniza, varias mujeres aparecen estranguladas en las afueras de Vitoria. Ángela Berrosteguieta, hermana de una de las víctimas, llega en busca de justicia, decidida a demostrar que Juan Díaz de Garayo, un campesino analfabeto, es el responsable de los crímenes. Sin embargo, Pío Pinedo, jefe de los alguaciles, se enfrenta a la falta de recursos en tiempos de guerra y a la presión de las autoridades, que prefieren ocultar la creciente ola de asesinatos.",
+"d": "2026-11-03",
+"anio": "2026",
+"v": 3
 }
 }

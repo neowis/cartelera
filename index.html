@@ -65,7 +65,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 /* Lista */
 .list{display:flex;flex-direction:column}
-.row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:14px;width:100%;text-align:left;padding:7px max(16px,env(safe-area-inset-right,0px)) 7px max(16px,env(safe-area-inset-left,0px))}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:end;column-gap:12px;width:100%;text-align:left;cursor:pointer;padding:7px max(16px,env(safe-area-inset-right,0px)) 7px max(16px,env(safe-area-inset-left,0px))}
 .row .meta{grid-column:1 / -1;font:13px/1.3 var(--serif);display:flex;flex-wrap:wrap;gap:0 7px;align-items:baseline}
 .row .meta .arr{font:11px var(--sans)}
 .row .ttl{font:400 clamp(28px,6.2vw,46px)/1 var(--sans);letter-spacing:-.045em;overflow-wrap:anywhere;min-width:0}
@@ -78,10 +78,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   .list .row:hover .ttl,.list.dim .row.on .ttl,.list .row:hover .hh,.list.dim .row.on .hh{font-weight:700;letter-spacing:-.05em}
 }
 @media (min-width:900px){
-  .row{grid-template-columns:minmax(0,max-content) minmax(10em,1fr) auto;align-items:start}
+  .row{grid-template-columns:minmax(0,max-content) minmax(10em,1fr) auto auto;align-items:start}
   .row .ttl{grid-column:1;grid-row:1}
   .row .meta{grid-column:2;grid-row:1;padding-top:.45em;font-size:12px}
-  .row .hh{grid-column:3;grid-row:1}
+  .row .heart{grid-column:3;grid-row:1;align-self:center}
+  .row .hh{grid-column:4;grid-row:1}
 }
 
 /* Columnas (solo escritorio) */
@@ -92,7 +93,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 /* Favoritos */
 .tile .fav{position:absolute;right:6px;top:6px;background:var(--bg);color:var(--ink);font:13px/1 var(--sans);padding:4px 6px;border-radius:999px}
-.row .meta .fv{font:12px var(--sans)}
+.heart{font:400 clamp(24px,4.6vw,34px)/1 var(--sans);padding:4px 6px;margin-bottom:.06em;color:inherit;border-radius:999px;align-self:end}
+.heart[aria-pressed="true"]{color:var(--ink)!important}
+@media (hover:hover){.heart:hover{transform:scale(1.15)}}
 .favbtn{display:inline-flex;align-items:center;gap:8px;margin:18px 10px 0 0;border:1px solid var(--line);border-radius:999px;padding:12px 20px;font:13px var(--sans);text-transform:uppercase;letter-spacing:.03em;background:var(--bg);color:var(--ink)}
 .favbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .sin{font:15px/1.45 var(--serif);margin:14px 0 0;max-width:62ch}
@@ -359,12 +362,26 @@ function tile(r){
       el('span',{}, el('span',{class:'k',text:'Precio'}), el('span',{class:'v',text:money(r) || 'Ver web'}))));
   return b;
 }
+function heartBtn(r){
+  const on = isFav(r.id);
+  return el('button',{class:'heart','data-fav':r.id,'aria-pressed':String(on),'aria-label': on ? `Quitar ${cleanTitle(r)} de guardadas` : `Guardar ${cleanTitle(r)}`,text: on ? '♥' : '♡'});
+}
+function syncFav(id){
+  const on = isFav(id);
+  document.querySelectorAll(`.heart[data-fav="${CSS.escape(id)}"]`).forEach(h => { h.setAttribute('aria-pressed', String(on)); h.textContent = on ? '♥' : '♡'; });
+  document.querySelectorAll(`.tile[data-id="${CSS.escape(id)}"]`).forEach(t => {
+    const m = t.querySelector('.fav'); if (on && !m) t.append(el('span',{class:'fav','aria-label':'Guardada',text:'♥'})); if (!on && m) m.remove();
+  });
+  const n = Object.keys(favs).length; $('#favN').textContent = n ? String(n) : '';
+  if (document.body.dataset.layout === 'guardadas') render();
+}
 function row(r){
   const sold = r.estado === 'agotado';
   const st = sold ? 'Agotado' : r.estado === 'pocas' ? 'Últimas entradas' : '';
-  const meta = el('span',{class:'meta'}, isFav(r.id) ? el('span',{class:'fv','aria-label':'Guardada',text:'♥'}) : null, el('span',{text:r.cine}), el('span',{class:'arr',text:'↗'}),
+  const meta = el('span',{class:'meta'}, el('span',{text:r.cine}), el('span',{class:'arr',text:'↗'}),
     el('span',{text:[r.sala, money(r), st].filter(Boolean).join(' · ')}));
-  return el('button',{class:'row'+(sold?' sold':''),'data-id':r.id}, meta, el('span',{class:'ttl',text:cleanTitle(r)}), el('span',{class:'hh',text:r.hora||'—'}));
+  return el('div',{class:'row'+(sold?' sold':''),'data-id':r.id,role:'button',tabindex:'0','aria-label':`${cleanTitle(r)}, ${r.hora||''}, ${r.cine}`},
+    meta, el('span',{class:'ttl',text:cleanTitle(r)}), heartBtn(r), el('span',{class:'hh',text:r.hora||'—'}));
 }
 
 /* Render */
@@ -548,13 +565,20 @@ $('#stage').addEventListener('pointermove', e => {
 $('#stage').addEventListener('pointerleave', hidePeek);
 window.addEventListener('scroll', () => { if (peekId) hidePeek(); }, {passive:true});
 
-$('#stage').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b && rowsById.has(b.dataset.id)) ficha(rowsById.get(b.dataset.id)); });
+$('#stage').addEventListener('keydown', e => {
+  const rw = e.target.closest('.row'); if (!rw || e.target !== rw || !(e.key === 'Enter' || e.key === ' ')) return;
+  e.preventDefault(); const r = rowsById.get(rw.dataset.id); if (r) ficha(r);
+});
+$('#stage').addEventListener('click', e => {
+  const h = e.target.closest('.heart');
+  if (h) { const r = rowsById.get(h.dataset.fav) || favs[h.dataset.fav]; if (r) { toggleFav(r); syncFav(r.id); } return; }
+  const b = e.target.closest('[data-id]'); if (b && rowsById.has(b.dataset.id)) ficha(rowsById.get(b.dataset.id)); });
 
 function favButton(r){
   const b = el('button',{class:'favbtn','aria-pressed':String(isFav(r.id))});
   const paint = () => { const on = isFav(r.id); b.setAttribute('aria-pressed', String(on)); b.textContent = on ? '♥ Guardada' : '♡ Guardar'; };
   paint();
-  b.onclick = () => { toggleFav(r); paint(); render(); };
+  b.onclick = () => { toggleFav(r); paint(); syncFav(r.id); };
   return b;
 }
 function filtros(){

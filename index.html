@@ -46,11 +46,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .tile .hr{position:absolute;left:6px;bottom:6px;background:var(--bg);color:var(--ink);font:12px/1 var(--sans);padding:4px 6px;border-radius:999px;letter-spacing:-.01em}
 .tile.sold img,.tile.sold .fake{filter:grayscale(1);opacity:.45}
 .tile.sold .hr{text-decoration:line-through}
-@media (hover:hover){.tile .over{position:absolute;inset:0;background:rgba(0,0,0,.72);color:#fff;padding:10px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;opacity:0;transition:opacity .15s}
-  .tile:hover .over,.tile:focus-visible .over{opacity:1}
-  .over b{font:400 19px/1.02 var(--sans);letter-spacing:-.03em}
-  .over i{font:12px var(--serif);font-style:normal}}
-@media (hover:none){.tile .over{display:none}}
+.tile .card{position:absolute;inset:0;background:var(--bg);color:var(--ink);padding:10px 10px 12px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;visibility:hidden;overflow:hidden}
+.card .k{display:block;font:9px/1 var(--sans);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.card .v{display:block;font:400 clamp(13px,1.35vw,19px)/1.08 var(--sans);letter-spacing:-.025em;overflow-wrap:anywhere}
+.card .v.t{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+@media (hover:hover){.tile:hover .card,.tile.hl .card,.tile:focus-visible .card{visibility:visible}
+  .wall:hover .tile.hl:not(:hover) .card{visibility:hidden}}
+@media (hover:none){.tile .card{display:none}}
 
 /* Portada generada */
 .tile .fake{padding-bottom:36px}
@@ -68,7 +70,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .row .hh{font:400 clamp(28px,6.2vw,46px)/1 var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .row.sold,.row.sold .meta{color:var(--gray)}
 .row.sold .hh{text-decoration:line-through}
-@media (hover:hover){.list:hover .row{color:var(--gray)}.list:hover .row:hover{color:var(--ink)}}
+@media (hover:hover){
+  .list:hover .row,.list.dim .row,.list:hover .row .meta,.list.dim .row .meta{color:var(--gray)}
+  .list .row:hover,.list.dim .row.on,.list .row:hover .meta,.list.dim .row.on .meta{color:var(--ink)}
+  .list .row:hover .ttl,.list.dim .row.on .ttl,.list .row:hover .hh,.list.dim .row.on .hh{font-weight:700;letter-spacing:-.05em}
+}
+@media (min-width:900px){
+  .row{grid-template-columns:minmax(0,max-content) minmax(10em,1fr) auto;align-items:start}
+  .row .ttl{grid-column:1;grid-row:1}
+  .row .meta{grid-column:2;grid-row:1;padding-top:.45em;font-size:12px}
+  .row .hh{grid-column:3;grid-row:1}
+}
 
 /* Columnas (solo escritorio) */
 .cols{display:grid;grid-template-columns:1fr 1fr}
@@ -331,7 +343,11 @@ function tile(r){
     art(r),
     el('span',{class:'hr',text:r.hora||'—'}),
     isFav(r.id) ? el('span',{class:'fav','aria-label':'Guardada',text:'♥'}) : null,
-    el('span',{class:'over'}, el('i',{text:place(r)}), el('b',{text:cleanTitle(r)}), el('i',{text:[r.hora, money(r)].filter(Boolean).join(' · ')})));
+    el('span',{class:'card','aria-hidden':'true'},
+      el('span',{}, el('span',{class:'k',text:'Título'}), el('span',{class:'v t',text:cleanTitle(r)})),
+      el('span',{}, el('span',{class:'k',text:'Dónde'}), el('span',{class:'v',text:place(r)})),
+      el('span',{}, el('span',{class:'k',text:'Cuándo'}), el('span',{class:'v',text:[r.hora, dayLabel(r.fecha)[1]].filter(Boolean).join(' · ')})),
+      el('span',{}, el('span',{class:'k',text:'Precio'}), el('span',{class:'v',text:money(r) || 'Ver web'}))));
   return b;
 }
 function row(r){
@@ -483,6 +499,15 @@ function ficha(r){
     el('p',{class:'sin',text: synopsis(r) || 'Esta sala no publica sinopsis. Mira la ficha de la sala para más información.'})
   ]);
 }
+function link(e, on){
+  const t = e.target.closest('[data-id]'); if (!t) return;
+  const sec = t.closest('.cols, .day, .cal') || document;
+  const id = t.dataset.id;
+  sec.querySelectorAll(`[data-id="${CSS.escape(id)}"]`).forEach(n => { n.classList.toggle(n.classList.contains('row') ? 'on' : 'hl', on); });
+  sec.querySelectorAll('.list').forEach(l => l.classList.toggle('dim', on));
+}
+$('#stage').addEventListener('pointerover', e => { if (e.pointerType === 'mouse') link(e, true); });
+$('#stage').addEventListener('pointerout', e => { if (e.pointerType === 'mouse') link(e, false); });
 $('#stage').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b && rowsById.has(b.dataset.id)) ficha(rowsById.get(b.dataset.id)); });
 
 function favButton(r){

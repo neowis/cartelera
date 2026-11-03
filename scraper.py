@@ -367,18 +367,33 @@ def ayuntamiento():
         if (e.get("address", {}).get("area", {}) or {}).get("locality", "MADRID").upper() != "MADRID": continue
         s, en = (e.get("dtstart") or "")[:10], (e.get("dtend") or "")[:10]
         if not s: continue
-        f = s
-        ciclo = None
-        if en and en != s:
-            ciclo = f"Del {s[8:10]}/{s[5:7]} al {en[8:10]}/{en[5:7]}"
-            if s < TODAY.isoformat() <= en: f = TODAY.isoformat()
+        titulo = txt(e.get("title"))
         free = str(e.get("free")) == "1"
         pr = re.search(r"(\d+(?:[.,]\d+)?)", e.get("price") or "")
         precio = 0.0 if free else (float(pr.group(1).replace(",", ".")) if pr else None)
-        out.append(row(cine=loc.replace("CondeDuque", "Conde Duque"), titulo=txt(e.get("title")), ciclo=ciclo, fecha=f, hora=(e.get("time") or "").zfill(5) if e.get("time") else "",
-                       precio=precio, precioTexto="Gratis" if free else (txt(e.get("price"))[:40] or None), estado="gratis" if free else "desconocido",
-                       enlace=(e.get("link") or "").replace("http://", "https://"), municipal=True,
-                       sinopsis=(txt(e.get("description"))[:700] or None)))
+        base = dict(cine=loc.replace("CondeDuque", "Conde Duque"), titulo=titulo, hora=(e.get("time") or "").zfill(5) if e.get("time") else "",
+                    precio=precio, precioTexto="Gratis" if free else (txt(e.get("price"))[:40] or None), estado="gratis" if free else "desconocido",
+                    enlace=(e.get("link") or "").replace("http://", "https://"), municipal=True,
+                    sinopsis=(txt(e.get("description"))[:700] or None), generico=(clean_title(titulo) is None) or None)
+        if not en or en == s:
+            out.append(row(fecha=s, **base)); continue
+        # Actividad de varios días: solo los días de la semana que indica el Ayuntamiento (no todos los días)
+        ini, fin = date.fromisoformat(s), date.fromisoformat(en)
+        rec = e.get("recurrence") or {}
+        dias = {"MO": 0, "TU": 1, "WE": 2, "TH": 3, "FR": 4, "SA": 5, "SU": 6}
+        wd = {dias[x] for x in re.findall(r"MO|TU|WE|TH|FR|SA|SU", rec.get("days") or "")}
+        cada = max(int(rec.get("interval") or 1), 1)
+        excl = set(re.findall(r"\d{4}-\d{2}-\d{2}", e.get("excluded-days") or ""))
+        nombres = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábados", "domingos"]
+        cuando = (", ".join(nombres[i] for i in sorted(wd)).capitalize() + " · " if wd else "") + f"del {s[8:10]}/{s[5:7]} al {en[8:10]}/{en[5:7]}"
+        base["ciclo"] = cuando
+        base["generico"] = True if not wd or (fin - ini).days > 21 else base["generico"]
+        dd = max(ini, TODAY)
+        while dd <= min(fin, HORIZON):
+            ok = (not wd or dd.weekday() in wd) and ((dd - ini).days // 7) % cada == 0 and dd.isoformat() not in excl
+            if ok and (wd or dd == max(ini, TODAY)):   # sin días de la semana: una sola entrada (exposición/festival continuo)
+                out.append(row(fecha=dd.isoformat(), **base))
+            dd += timedelta(days=1)
     return out
 
 SOURCES = [("Cineteca Madrid", cineteca), ("Cine Doré · Filmoteca", dore), ("Círculo de Bellas Artes", circulo), ("Golem Madrid", golem),

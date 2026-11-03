@@ -128,6 +128,18 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .mmore{align-self:flex-start;margin-top:4px;font:12px var(--serif);text-decoration:underline;text-underline-offset:2px;padding:6px 0}
 .mcard.sold .mposter{filter:grayscale(1);opacity:.5}
 
+.extra{border-top:1px solid #e6e6e6;padding:16px max(16px,env(safe-area-inset-right,0px)) 22px max(16px,env(safe-area-inset-left,0px))}
+.exh{margin:0;font:700 13px var(--sans);text-transform:uppercase;letter-spacing:.04em}
+.exn{margin:4px 0 10px;font:13px/1.35 var(--sans);color:#666;max-width:60ch}
+.exl{list-style:none;margin:0;padding:0}
+.exl li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border-top:1px solid #efefef}
+.exr{display:grid;grid-template-columns:58px minmax(0,1fr);gap:10px;align-items:baseline;text-align:left;padding:10px 0;min-width:0}
+.exr .h{font:700 16px var(--sans);font-variant-numeric:tabular-nums}
+.exr .tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.exr .t{font:400 18px/1.15 var(--sans);letter-spacing:-.02em}
+.exr .c{font:12px/1.3 var(--sans);color:#666}
+@media (min-width:900px){.exr .t{font-size:22px}.exl{columns:2;column-gap:40px}.exl li{break-inside:avoid}}
+
 /* Columnas (solo escritorio) */
 .cols{display:grid;grid-template-columns:1fr 1fr}
 .cols .wall{grid-template-columns:repeat(4,minmax(0,1fr));align-content:start}
@@ -332,8 +344,8 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 <script>
 const $ = s => document.querySelector(s);
 const state = { date:null, from:'', pickMonth:null, calMonth:null, sin:{}, view:'hoy', layout:'columnas', cines:new Set(), precio:'', ocultar:false, q:'', rows:[], meta:null, loaded:false, failed:false };
-try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; (s.cines||[]).forEach(c=>state.cines.add(c)); if (s.layout && s.layout !== 'carteles') state.layout = s.layout; } catch(e){}
-function savePrefs(){ try{ localStorage.setItem('cdb-prefs', JSON.stringify({precio:state.precio, ocultar:state.ocultar, cines:[...state.cines], layout:state.layout})); }catch(e){} }
+try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; state.solo = !!s.solo; (s.cines||[]).forEach(c=>state.cines.add(c)); if (s.layout && s.layout !== 'carteles') state.layout = s.layout; } catch(e){}
+function savePrefs(){ try{ localStorage.setItem('cdb-prefs', JSON.stringify({solo:!!state.solo, precio:state.precio, ocultar:state.ocultar, cines:[...state.cines], layout:state.layout})); }catch(e){} }
 
 const pad = n => String(n).padStart(2,'0');
 
@@ -403,6 +415,7 @@ function filtered(){
     if (state.from && r.hora && r.hora < state.from) return false;
     if (state.cines.size && !state.cines.has(r.municipal ? MUNI : r.cine)) return false;
     if (state.ocultar && r.estado === 'agotado') return false;
+    if (state.solo && r.generico) return false;
     if (state.precio !== '') { const p = typeof r.precio==='number' ? r.precio : null; if (p == null || p > Number(state.precio)) return false; }
     if (q && !([r.titulo,r.director,r.ciclo,r.cine,r.sala].filter(Boolean).join(' ').toLowerCase().includes(q))) return false;
     return true;
@@ -526,6 +539,17 @@ function mgrid(rs){
     return card;
   }));
 }
+/* Ciclos, cineclubs y programas de cortos sin película concreta: bloque aparte al final del día */
+function extraBlock(list){
+  return el('div',{class:'extra'},
+    el('h3',{class:'exh',text:'Ciclos, cineclubs y cortos'}),
+    el('p',{class:'exn',text:'Actividades en bibliotecas y centros culturales. La película de cada día se anuncia en su ficha.'}),
+    el('ul',{class:'exl'}, list.map(r => el('li',{},
+      el('button',{class:'exr','data-id':r.id},
+        el('span',{class:'h',text:r.hora || '—'}),
+        el('span',{class:'tx'}, el('span',{class:'t',text:r.titulo}), el('span',{class:'c',text:[r.cine, r.ciclo, money(r)].filter(Boolean).join(' · ')}))),
+      heartBtn(r)))));
+}
 function row(r){
   const sold = r.estado === 'agotado';
   const st = sold ? 'Agotado' : r.estado === 'pocas' ? 'Últimas entradas' : '';
@@ -544,7 +568,7 @@ function render(){
   document.body.dataset.layout = layout;
   for (const l of ['lista','columnas','guardadas']) $('#l-'+l).setAttribute('aria-pressed', String(layout===l));
   const nfav = Object.keys(favs).length; $('#favN').textContent = nfav ? String(nfav) : '';
-  const nf = state.cines.size + (state.precio!=='' ? 1 : 0) + (state.ocultar ? 1 : 0) + (state.q.trim() ? 1 : 0);
+  const nf = state.cines.size + (state.precio!=='' ? 1 : 0) + (state.ocultar ? 1 : 0) + (state.solo ? 1 : 0) + (state.q.trim() ? 1 : 0);
   $('#filtN').textContent = nf ? String(nf) : '';
   renderFresh();
 
@@ -554,13 +578,18 @@ function render(){
   const rows = filtered(); rows.forEach(r => rowsById.set(r.id, r));
   if (!rows.length) { st.append(el('div',{class:'empty'}, 'Nada con estos filtros.', el('small',{text:'Prueba con otro periodo, sube el precio o quita algún cine en Filtros.'}))); return; }
   const byDay = new Map(); rows.forEach(r => { if(!byDay.has(r.fecha)) byDay.set(r.fecha,[]); byDay.get(r.fecha).push(r); });
-  for (const [f, rs] of byDay) {
+  for (const [f, all] of byDay) {
     const [rel, d] = dayLabel(f);
-    const sec = el('section',{class:'day'}, el('div',{class:'dayh'}, el('h2',{text:rel}), el('small',{text:`${d} · ${rs.length} ${rs.length===1?'sesión':'sesiones'}`})));
-    if (layout === 'carteles') sec.append(el('div',{class:'wall'}, rs.map(tile)));
-    else if (layout === 'lista' && matchMedia('(max-width:640px)').matches) sec.append(mgrid(rs));
-    else if (layout === 'lista') sec.append(el('div',{class:'list'}, rs.map(row)));
-    else sec.append(el('div',{class:'cols'}, el('div',{class:'wall'}, rs.map(tile)), el('div',{class:'list'}, rs.map(row))));
+    const rs = all.filter(r => !r.generico), extra = all.filter(r => r.generico);
+    const sec = el('section',{class:'day'}, el('div',{class:'dayh'}, el('h2',{text:rel}),
+      el('small',{text:`${d} · ${rs.length} ${rs.length===1?'sesión':'sesiones'}${extra.length ? ` · ${extra.length} ${extra.length===1?'ciclo':'ciclos'}` : ''}`})));
+    if (rs.length) {
+      if (layout === 'carteles') sec.append(el('div',{class:'wall'}, rs.map(tile)));
+      else if (layout === 'lista' && matchMedia('(max-width:640px)').matches) sec.append(mgrid(rs));
+      else if (layout === 'lista') sec.append(el('div',{class:'list'}, rs.map(row)));
+      else sec.append(el('div',{class:'cols'}, el('div',{class:'wall'}, rs.map(tile)), el('div',{class:'list'}, rs.map(row))));
+    }
+    if (extra.length) sec.append(extraBlock(extra));
     st.append(sec);
   }
 }
@@ -675,9 +704,9 @@ function ficha(r){
         r.ciclo ? el('div',{class:'lab',text:'Ciclo'}) : null, r.ciclo ? el('div',{class:'ser',text:r.ciclo}) : null,
         )),
     el('div',{class:'lab',text:'Sinopsis'}),
-    el('p',{class:'sin',text: synopsis(r) || 'Esta sala no publica sinopsis. Mira la ficha de la sala para más información.'}),
+    el('p',{class:'sin',text: synopsis(r) || (r.generico ? 'El organizador no publica en abierto qué película se proyecta cada día. Consulta la programación en su ficha.' : 'Esta sala no publica sinopsis. Mira la ficha de la sala para más información.')}),
     el('div',{class:'flinks'},
-      r.enlace ? el('a',{href:r.enlace,target:'_blank',rel:'noopener',text: r.estado==='agotado' ? 'Ver ficha ↗︎' : (r.precio === 0 ? 'Más info ↗︎' : 'Comprar entradas ↗︎')}) : null,
+      r.enlace ? el('a',{href:r.enlace,target:'_blank',rel:'noopener',text: r.estado==='agotado' ? 'Ver ficha ↗︎' : (r.generico ? 'Ver programación ' : r.precio === 0 ? 'Más info ↗︎' : 'Comprar entradas ↗︎')}) : null,
       r.ficha && r.ficha !== r.enlace ? el('a',{href:r.ficha,target:'_blank',rel:'noopener',text:'Ficha de la película ↗︎'}) : null)
   ]);
 }
@@ -751,7 +780,8 @@ function filtros(){
     const ag = el('button',{class:'chip','aria-pressed':String(state.ocultar),text:'Ocultar agotadas'}); ag.onclick = () => { state.ocultar = !state.ocultar; savePrefs(); render(); filtros(); };
     const all = el('button',{class:'chip','aria-pressed':String(state.cines.size===0),text:'Todos'}); all.onclick = () => { state.cines.clear(); savePrefs(); render(); filtros(); };
     const cc = el('div',{class:'chips'}, all, names.map(n => { const b = el('button',{class:'chip','aria-pressed':String(state.cines.has(n)),text:n}); b.onclick = () => { state.cines.has(n) ? state.cines.delete(n) : state.cines.add(n); savePrefs(); render(); filtros(); }; return b; }));
-    return [el('h3',{id:'sheetT',text:'Filtros'}), q, el('div',{class:'lab',text:'Precio'}), pc, el('div',{class:'lab',text:'Entradas'}), el('div',{class:'chips'}, ag), el('div',{class:'lab',text:'Cines'}), cc];
+    const so = el('button',{class:'chip','aria-pressed':String(!!state.solo),text:'Solo películas'}); so.onclick = () => { state.solo = !state.solo; savePrefs(); render(); filtros(); };
+    return [el('h3',{id:'sheetT',text:'Filtros'}), q, el('div',{class:'lab',text:'Precio'}), pc, el('div',{class:'lab',text:'Mostrar'}), el('div',{class:'chips'}, so, ag), el('div',{class:'lab',text:'Cines'}), cc];
   });
 }
 function info(){

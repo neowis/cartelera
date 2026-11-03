@@ -4,21 +4,24 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Cine chino del nuevo milenio",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "quedada de cine": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Quedada de cine",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "sabados de cine de otono": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Sábados de cine de otoño",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "doce lunas": {
 "url": "https://image.tmdb.org/t/p/w780/8997sd107XxrOP2uxzJPwkQwBTQ.jpg",
@@ -32,14 +35,16 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Las mejores películas de la historia del cine",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "soledad no deseada": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Soledad No Deseada",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "requiem por un sueno": {
 "url": "https://www.ecartelera.com/carteles/4200/4219/001.jpg",
@@ -52,35 +57,40 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "XII Ciclo de Cine y Bioética",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "prevencion del duelo complicado": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Prevención del duelo complicado",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "irlanda mas alla de los topicos": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Irlanda: más allá de los tópicos",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "carmen s pure love|1952": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/agSTKAOO4A9KBAauXiho3ZH9iPa.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "Carmen's Pure Love",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "andrzej zulawski el amor sin limites": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Andrzej Zulawski, El amor sin límites",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "melodia de arrabal|1933": {
 "url": "https://image.tmdb.org/t/p/w780/8XbL26huBSCTA4ON460MPVDZ7vO.jpg",
@@ -94,7 +104,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Aprender a ver el cine",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "marlene|1984": {
 "url": "https://upload.wikimedia.org/wikipedia/en/2/21/Marlene_%281984_film_-_poster%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -113,7 +124,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Película: Domingo de carnaval",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "un amor inmortal|1961": {
 "url": "https://image.tmdb.org/t/p/w780/xlwXRAHl5BYxkZ7PEfWqFcqSSfu.jpg",
@@ -123,11 +135,12 @@
 "tmdb": true
 },
 "santanotte|1922": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/lEKw80a6En86USEQilFfRgansce.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "A Santanotte",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "nobleza baturra|1935": {
 "url": "https://image.tmdb.org/t/p/w780/t1P9CtJsXHFjdSmHD42T8WeW3qa.jpg",
@@ -141,14 +154,16 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Película: El cameraman",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "nosotras contamos los domingos": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Nosotras Contamos. Los Domingos",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "marius|1931": {
 "url": "https://image.tmdb.org/t/p/w780/tXzmV2LCH8zSNlFmcAQTGKzqv6y.jpg",
@@ -169,21 +184,24 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Casa y Cuartel - ETA contra la Benemérita",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "lorca popular y flamenco": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Lorca, popular y flamenco",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "nosferatu": {
-"url": "",
-"fuente": "",
+"url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Wismar_Markt_Nosferatu_01_%28cropped%29.jpg/500px-Wismar_Markt_Nosferatu_01_%28cropped%29.jpg?utm_source=es.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+"fuente": "Wikipedia",
 "t": "2026-11-03",
 "titulo": "Nosferatu",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "duque|2020": {
 "url": "https://www.ecartelera.com/carteles/17200/17225/004.jpg",
@@ -209,7 +227,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Pasodobles, música española y marchas",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "bambi una vida en el bosque": {
 "url": "https://www.ecartelera.com/carteles/18800/18880/001.jpg",
@@ -222,7 +241,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Shorts for Future",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "una batalla tras otra": {
 "url": "https://www.ecartelera.com/carteles/19100/19119/004.jpg",
@@ -282,7 +302,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "La fuerza",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "teo va al espacio": {
 "url": "https://image.tmdb.org/t/p/w780/ut2Y23MyxfwFzoeQ3MMdHEtGrFv.jpg",
@@ -323,7 +344,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Mburucuyá, cuadros de la naturaleza",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "loca por la musica|1937": {
 "url": "https://image.tmdb.org/t/p/w780/bWCDQRYTq4rnD7sVh1p959mEASe.jpg",
@@ -337,7 +359,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Película: El crimen de la calle Bordadores",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "madrastra|1974": {
 "url": "https://image.tmdb.org/t/p/w780/hj6NgZS6RIsrGzBIiT7s9yoYA5Z.jpg",
@@ -364,14 +387,16 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Programa del jueves 12 de noviembre",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "pelicula el forzudo": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Película: El forzudo",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "tres amigas": {
 "url": "https://www.ecartelera.com/carteles/19300/19326/001.jpg",
@@ -384,7 +409,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Nosotras Contamos. Romería",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "polvo seran|2024": {
 "url": "https://www.ecartelera.com/carteles/18600/18625/001.jpg",
@@ -403,42 +429,48 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Programa del viernes 13 de noviembre",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "tributo a la musica mejicana": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Tributo a la música mejicana",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "75 anos en madrid siempre vicalvaro": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "75 Años en Madrid, siempre Vicálvaro",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "orquesta de guitarras de madrid": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Orquesta de guitarras de Madrid",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "amor solfeando|1930": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "El amor solfeando",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "mujer y el pelele|1929": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "La mujer y el pelele",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "una pelicula de minecraft": {
 "url": "https://www.ecartelera.com/carteles/13000/13012/004.jpg",
@@ -451,14 +483,16 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Ruta teatralizada: Mujeres en la ciencia",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "crazy stop motion": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Crazy Stop Motion",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "amor que permanece": {
 "url": "https://www.ecartelera.com/carteles/20300/20312/001.jpg",
@@ -471,7 +505,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Programa del sábado 14 de noviembre",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "nouvelle vague|1990": {
 "url": "https://image.tmdb.org/t/p/w780/pFofqGMcfiIoDISZBjctw2qggla.jpg",
@@ -491,7 +526,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Programa infantil del domingo 15 de noviembre",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "canta": {
 "url": "https://www.ecartelera.com/carteles/10400/10473/003.jpg",
@@ -530,7 +566,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "No quiero volver a casa",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "chansons d amour|2007": {
 "url": "https://image.tmdb.org/t/p/w780/7AyXJuPflcMmX06qdwUxPi9uREp.jpg",
@@ -557,7 +594,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Película: Nada",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "vivir deprisa amar despacio|2018": {
 "url": "https://www.ecartelera.com/carteles/14400/14457/002.jpg",
@@ -584,7 +622,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Película: Vagabundo, vagabundo, vagabundo",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "ultimo vikingo": {
 "url": "https://www.ecartelera.com/carteles/19700/19772/003.jpg",
@@ -597,7 +636,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Nosotras Contamos. La Furia",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "marcello mio|2024": {
 "url": "https://www.ecartelera.com/carteles/18600/18669/001.jpg",
@@ -610,14 +650,16 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Los domingos. Ciclo Nosotras Contamos",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "peticion de mano": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Petición de mano",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "ultimo|1924": {
 "url": "https://www.ecartelera.com/carteles/8200/8205/001.jpg",
@@ -636,14 +678,16 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Cómo se hace",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "furia ciclo nosotras contamos": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "La furia. Ciclo Nosotras Contamos",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "resurreccion": {
 "url": "https://www.ecartelera.com/carteles/13600/13690/001.jpg",
@@ -663,7 +707,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Orange Flavor Wedding",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "croods una nueva era": {
 "url": "https://www.ecartelera.com/carteles/13600/13686/003.jpg",
@@ -683,7 +728,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Romería. Ciclo Nosotras Contamos",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "esto si es bailar": {
 "url": "https://image.tmdb.org/t/p/w780/mAQZhdP6HIXq6JKYZtgEo2rU2bZ.jpg",
@@ -723,14 +769,16 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "La mujer fantasma",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "pelicula duende y misterio del flamenco|1952": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Película: Duende y misterio del flamenco",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "belle mariniere|1932": {
 "url": "https://image.tmdb.org/t/p/w780/nMwG19eai9dDf4XsIHsTb6QitD1.jpg",
@@ -756,7 +804,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Zulueta / Aguirre. Tentativa y obra",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "carne de fieras|1936": {
 "url": "https://image.tmdb.org/t/p/w780/7FgtE6KbBB2qpgCja3WFQangCgo.jpg",
@@ -770,7 +819,8 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "No soy yo",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "pusher un paseo por el abismo|1996": {
 "url": "https://image.tmdb.org/t/p/w780/xVW0sVJaZ11q7re2wi1kAheBFvC.jpg",
@@ -798,11 +848,12 @@
 "titulo": "Las estaciones"
 },
 "pusher ii con las manos ensangrentadas|2004": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/sDThpbDZXby3SS529Sm7DoDmVdU.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "Pusher II: Con las manos ensangrentadas",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "flow un mundo que salvar": {
 "url": "https://www.ecartelera.com/carteles/18800/18896/001.jpg",
@@ -817,11 +868,12 @@
 "titulo": "Libertarias"
 },
 "pusher iii soy el angel de la muerte|2005": {
-"url": "",
-"fuente": "",
+"url": "https://image.tmdb.org/t/p/w780/pHQ1PB8jGvdolfPHcn1F0W8Vsyd.jpg",
+"fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "Pusher III: Soy el ángel de la muerte",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "mundo es ansi": {
 "url": "https://www.ecartelera.com/carteles/20400/20498/001.jpg",
@@ -898,70 +950,80 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "XXVII Ciclo de cine foro: La historia de Souleymane",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "lisandro alonso la libertad doble": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Lisandro Alonso. La libertad doble",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "ana apontes y sol munoz nocturno y maria aparicio a veces me entra tristeza otras veces rebelion": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Ana Apontes y Sol Muñoz. Nocturno y María Aparicio. A veces me entra tristeza, otras veces rebelión",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "paola buontempo las fuerzas y julian d angiolillo cuerpo de letra": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Paola Buontempo. Las fuerzas y Julián D'Angiolillo. Cuerpo de letra",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "ezequiel salinas y ramiro sonzini la noche esta marchandose ya": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Ezequiel Salinas y Ramiro Sonzini. La noche está marchándose ya",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "fernando restelli merodeo y colectivo antes muerto cine y tatiana mazu todo documento de civilizacion": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Fernando Restelli. Merodeo y Colectivo Antes Muerto Cine y Tatiana Mazú. Todo documento de civilización",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "pablo marin materia vibrante y mariano llinas popular tradicion de esta tierra": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Pablo Marín. Materia vibrante y Mariano Llinás. Popular tradición de esta tierra",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "raul perrone sean eternxs": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Raúl Perrone. Sean eternxs",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "amandine fredon y benjamin massoubre el pequeno nicolas": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Amandine Fredon y Benjamin Massoubre. El pequeño Nicolás",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "rodrigo moreno los delincuentes": {
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Rodrigo Moreno. Los delincuentes",
-"tmdb": true
+"tmdb": true,
+"v": 2
 },
 "adolescencia sexo y muerte en campamento miasma": {
 "url": "https://image.tmdb.org/t/p/w780/8UTCpwvHxWPllCJ7YnaCbffmYyD.jpg",
@@ -969,5 +1031,13 @@
 "t": "2026-11-03",
 "titulo": "Adolescencia, sexo y muerte en Campamento Miasma",
 "tmdb": true
+},
+"elles": {
+"url": "https://image.tmdb.org/t/p/w780/uTgVDey4yjwFXIih26zUJjPaUVG.jpg",
+"fuente": "TMDB",
+"t": "2026-11-03",
+"titulo": "Elles",
+"tmdb": true,
+"v": 2
 }
 }

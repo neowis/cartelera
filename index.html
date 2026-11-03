@@ -13,7 +13,7 @@
 :root{
   --bg:#ffffff; --ink:#000000; --gray:#bdbdbd; --soft:#f2f2f2; --line:#000000; --accent:#000000; --yellow:#ffff00;
   --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  --serif:"Times New Roman",Times,"Liberation Serif",serif;
+  --serif:var(--sans);
   --bar:64px;
   color-scheme:light;
   padding-top:env(safe-area-inset-top,0px);
@@ -243,7 +243,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
   .top{padding-top:16px}
 }
 @media (max-width:899px){
-  :root{--bar:56px;--serif:var(--sans)}
+  :root{--bar:56px}
   .bar{grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-areas:"mark period view filt";column-gap:6px}
   .mid{display:contents}
   .mark{grid-area:mark}

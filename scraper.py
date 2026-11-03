@@ -36,6 +36,7 @@ def year_for(month):
 
 POSTERS = {}
 POSTER_W = {}   # ruta publicada -> ancho original de la imagen
+POSTER_R = {}   # ruta publicada -> ancho/alto (un cartel es vertical, ~0.67)
 def poster(url):
     """Descarga, reduce a 600×900 como máximo y guarda como JPEG de buena calidad; devuelve la ruta publicada."""
     if not url: return None
@@ -47,10 +48,12 @@ def poster(url):
         if not os.path.exists(path):
             im = Image.open(io.BytesIO(get(url, binary=True, tries=1))).convert("RGB")
             POSTER_W[f"posters/{name}"] = im.size[0]
+            POSTER_R[f"posters/{name}"] = im.size[0] / max(im.size[1], 1)
             im.thumbnail((600, 900), Image.LANCZOS)
             im.save(path, "JPEG", quality=84, optimize=True, progressive=True)
         else:
-            POSTER_W.setdefault(f"posters/{name}", Image.open(path).size[0])
+            w0, h0 = Image.open(path).size
+            POSTER_W.setdefault(f"posters/{name}", w0); POSTER_R.setdefault(f"posters/{name}", w0 / max(h0, 1))
         POSTERS[url] = f"posters/{name}"
     except Exception:
         POSTERS[url] = None
@@ -311,7 +314,7 @@ def academia():
         try:
             d = txt(get(link))
             if not hora:
-                i = d.find(title); hora = re.search(r"(\d{1,2}:\d{2})\s*h", d[i:]) or re.search(r"\b(1\d|2[0-3]):[0-5]\d\b", d[i:])
+                i = d.find(title); hora = re.search(r"(\d{1,2}:\d{2})\s*h", d[i:]) or re.search(r"\b((?:1\d|2[0-3]):[0-5]\d)\b", d[i:])
             libre = "Entrada libre" in d or "gratuita" in d.lower()
         except Exception: pass
         out.append(row(cine="Academia de Cine", titulo=title, ciclo=sub, fecha=f, hora=hora.group(1).zfill(5) if hora else "",
@@ -649,7 +652,7 @@ def fill_missing_posters(rows):
     week_ago = (TODAY - timedelta(days=7)).isoformat()
     found = 0
     for r in rows:
-        if r.get("cartel") and POSTER_W.get(r["cartel"], 999) >= 400: continue
+        if r.get("cartel") and POSTER_W.get(r["cartel"], 999) >= 400 and POSTER_R.get(r["cartel"], 0.67) <= 0.8: continue
         ct = clean_title(r["titulo"])
         if not ct: continue
         if not ct[2] and r.get("anio"): ct = (ct[0], ct[1], int(r["anio"]))
@@ -665,7 +668,10 @@ def fill_missing_posters(rows):
             hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0], "tmdb": has_tmdb, "v": 3}
         if hit.get("url"):
             nuevo = poster(hit["url"])
-            if nuevo and (not r.get("cartel") or POSTER_W.get(nuevo, 0) > POSTER_W.get(r["cartel"], 0)):
+            viejo = r.get("cartel")
+            mejor = nuevo and (not viejo or (POSTER_R.get(viejo, .67) > .8 and POSTER_R.get(nuevo, 1) <= .8) or
+                               (POSTER_R.get(nuevo, 1) <= .8 and POSTER_W.get(nuevo, 0) > POSTER_W.get(viejo, 0)))
+            if mejor:
                 r["cartel"] = nuevo; r["cartelFuente"] = hit.get("fuente") or "web"; found += 1
     with open(f"{OUT}/data/carteles_buscados.json", "w", encoding="utf8") as fh:
         json.dump(cache, fh, ensure_ascii=False, indent=0)

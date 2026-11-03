@@ -263,13 +263,25 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 
 /* Hojas (ficha, filtros, info) */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;display:flex;align-items:flex-end;justify-content:center}
-.sheet{background:var(--bg);width:100%;max-width:760px;max-height:88vh;overflow:auto;border-top:1px solid var(--line);padding:18px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet{background:var(--bg);width:100%;max-width:760px;max-height:88vh;overflow:auto;overscroll-behavior:contain;border-top:1px solid var(--line);padding:18px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 @media (min-width:760px){.scrim{align-items:center}.sheet{border:1px solid var(--line);max-height:84vh}}
-.sheet .close{float:right;font:400 20px var(--sans);letter-spacing:-.02em;margin-left:12px}
+.shbar{position:sticky;top:-18px;z-index:2;display:flex;justify-content:flex-end;margin:-18px calc(-1 * max(16px,env(safe-area-inset-right,0px))) 8px calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));background:var(--bg)}
+.sheet .close{font:400 20px var(--sans);letter-spacing:-.02em;min-height:44px;padding:0 2px}
+.fhead{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:10px}
+.fhead h3{margin-bottom:12px}
+.fhead .heart{font-size:28px;color:var(--ink);padding:8px;margin:-2px -8px 0 0;align-self:start}
+.flinks{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin:26px 0 6px}
+.flinks a{font:700 18px var(--sans);letter-spacing:-.01em;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;color:var(--ink)}
 .sheet h3{font:400 clamp(32px,6vw,48px)/.98 var(--sans);letter-spacing:-.045em;margin:0 0 14px}
 .sheet .lab{font:11px var(--sans);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 6px}
 .sheet .val{font:400 22px/1.15 var(--sans);letter-spacing:-.025em}
 .fic{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:640px){
+  .scrim{align-items:stretch;background:var(--bg)}
+  .sheet{max-height:none;height:100%;max-width:none;border-top:0;padding-top:calc(18px + env(safe-area-inset-top,0px))}
+  .shbar{top:calc(-18px - env(safe-area-inset-top,0px));margin-top:calc(-18px - env(safe-area-inset-top,0px));padding-top:calc(10px + env(safe-area-inset-top,0px));border-bottom:1px solid #ececec;justify-content:space-between}
+  .shbar::before{content:"";}
+}
 @media (max-width:560px){
   .fic{grid-template-columns:1fr;gap:14px}
   .fic .ph{width:min(62%,260px)}
@@ -517,7 +529,7 @@ function mgrid(rs){
 function row(r){
   const sold = r.estado === 'agotado';
   const st = sold ? 'Agotado' : r.estado === 'pocas' ? 'Últimas entradas' : '';
-  const meta = el('span',{class:'meta'}, el('span',{text:r.cine}), el('span',{class:'arr',text:'↗'}),
+  const meta = el('span',{class:'meta'}, el('span',{text:r.cine}), el('span',{class:'arr',text:'↗︎'}),
     el('span',{text:[r.sala, money(r), st].filter(Boolean).join(' · ')}));
   return el('div',{class:'row'+(sold?' sold':''),'data-id':r.id,role:'button',tabindex:'0','aria-label':`${cleanTitle(r)}, ${r.hora||''}, ${r.cine}`},
     el('span',{class:'thumb'}, art(r)), meta, el('span',{class:'ttl',text:cleanTitle(r)}), heartBtn(r), el('span',{class:'hh',text:r.hora||'—'}),
@@ -637,9 +649,10 @@ let lastFocus = null;
 function openSheet(build){
   hidePeek();
   lastFocus = document.activeElement;
-  const sh = $('#sheet'); sh.replaceChildren(el('button',{class:'close',id:'closeSheet',text:'Cerrar'}), ...build());
+  const sh = $('#sheet'); sh.replaceChildren(el('div',{class:'shbar'}, el('button',{class:'close',id:'closeSheet',text:'Cerrar'})), ...build());
+  sh.scrollTop = 0;
   $('#scrim').hidden = false; document.body.style.overflow = 'hidden';
-  $('#closeSheet').onclick = closeSheet; $('#closeSheet').focus();
+  $('#closeSheet').onclick = closeSheet; $('#closeSheet').focus({preventScroll:true});
 }
 function closeSheet(){ $('#scrim').hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
 $('#scrim').addEventListener('click', e => { if (e.target === $('#scrim')) closeSheet(); });
@@ -654,17 +667,18 @@ function ficha(r){
     el('div',{class:'fic'},
       el('div',{class:'ph'}, art(r)),
       el('div',{},
-        el('h3',{id:'sheetT',text:cleanTitle(r)}),
+        el('div',{class:'fhead'}, el('h3',{id:'sheetT',text:cleanTitle(r)}), heartBtn(r)),
         bits ? el('div',{class:'ser',text:bits}) : null,
         el('div',{class:'lab',text:'Cuándo'}), el('div',{class:'val',text:`${rel}, ${d}${r.hora ? ' · ' + r.hora : ''}`}),
         el('div',{class:'lab',text:'Dónde'}), el('div',{class:'val',text:place(r)}),
         el('div',{class:'lab',text:'Precio'}), el('div',{class:'val',text:[money(r) || 'Ver web', est && est !== 'Gratis' ? est : ''].filter(Boolean).join(' · ')}),
         r.ciclo ? el('div',{class:'lab',text:'Ciclo'}) : null, r.ciclo ? el('div',{class:'ser',text:r.ciclo}) : null,
-        favButton(r),
-        r.enlace ? el('a',{class:'buy',href:r.enlace,target:'_blank',rel:'noopener',text: r.estado==='agotado' ? 'Ver ficha ↗' : (r.precio === 0 ? 'Más info ↗' : 'Comprar entradas ↗')}) : null,
-        r.ficha && r.ficha !== r.enlace ? el('a',{class:'buy',href:r.ficha,target:'_blank',rel:'noopener',text:'Ficha de la película ↗'}) : null)),
+        )),
     el('div',{class:'lab',text:'Sinopsis'}),
-    el('p',{class:'sin',text: synopsis(r) || 'Esta sala no publica sinopsis. Mira la ficha de la sala para más información.'})
+    el('p',{class:'sin',text: synopsis(r) || 'Esta sala no publica sinopsis. Mira la ficha de la sala para más información.'}),
+    el('div',{class:'flinks'},
+      r.enlace ? el('a',{href:r.enlace,target:'_blank',rel:'noopener',text: r.estado==='agotado' ? 'Ver ficha ↗︎' : (r.precio === 0 ? 'Más info ↗︎' : 'Comprar entradas ↗︎')}) : null,
+      r.ficha && r.ficha !== r.enlace ? el('a',{href:r.ficha,target:'_blank',rel:'noopener',text:'Ficha de la película ↗︎'}) : null)
   ]);
 }
 function link(e, on){
@@ -705,6 +719,11 @@ $('#stage').addEventListener('pointermove', e => {
 $('#stage').addEventListener('pointerleave', hidePeek);
 window.addEventListener('scroll', () => { if (peekId) hidePeek(); }, {passive:true});
 
+$('#sheet').addEventListener('click', e => {
+  const h = e.target.closest('.heart'); if (!h) return;
+  const r = rowsById.get(h.dataset.fav) || favs[h.dataset.fav] || state.rows.find(x => x.id === h.dataset.fav);
+  if (r) { toggleFav(r); syncFav(r.id); }
+});
 $('#stage').addEventListener('keydown', e => {
   const rw = e.target.closest('.row'); if (!rw || e.target !== rw || !(e.key === 'Enter' || e.key === ' ')) return;
   e.preventDefault(); const r = rowsById.get(rw.dataset.id); if (r) ficha(r);

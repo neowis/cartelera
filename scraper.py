@@ -471,7 +471,8 @@ def tmdb_find(title, alt, year, need_poster=False, director=None):
     if not token and not key: return None
     cands = {}
     for c in [title] + ([alt] if alt else []):
-        for lang in ("es-ES", "en-US"):
+        for lang in ("es-ES", "en-US", "fr-FR", "it-IT", "ja-JP"):
+            if lang not in ("es-ES", "en-US") and cands: break
             q = {"query": c, "language": lang, "include_adult": "false"}
             if year: q["year"] = year
             if not token: q["api_key"] = key
@@ -494,6 +495,17 @@ def tmdb_find(title, alt, year, need_poster=False, director=None):
             if same:
                 return same[0]
             time.sleep(0.1)
+    # Sin título exacto: mismo año y el título coincide con alguno de sus títulos en otros idiomas
+    if year and cands:
+        wanted = {_norm(t) for t in [title, alt] if t}
+        for m in list(cands.values())[:6]:
+            try:
+                alts = _tmdb_get(f"movie/{m['id']}/alternative_titles", {}).get("titles", [])
+                trs = _tmdb_get(f"movie/{m['id']}/translations", {}).get("translations", [])
+            except Exception: continue
+            names = {m.get("title", ""), m.get("original_title", "")} | {a.get("title", "") for a in alts} | {(t.get("data") or {}).get("title", "") for t in trs}
+            if wanted & {_norm(n) for n in names if n}:
+                return m
     # Sin título exacto: mismo año y mismo director
     if year and director and cands:
         dn = _norm(director)

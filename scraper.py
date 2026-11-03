@@ -441,6 +441,31 @@ def wiki_poster(title, alt, year):
         time.sleep(0.2)
     return None
 
+def tmdb_poster(title, alt, year):
+    """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita la variable de entorno TMDB_TOKEN."""
+    token = os.environ.get("TMDB_TOKEN", "").strip()
+    if not token: return None
+    for c in [title] + ([alt] if alt else []):
+        for lang in ("es-ES", "en-US"):
+            q = {"query": c, "language": lang, "include_adult": "false"}
+            if year: q["year"] = year
+            req = urllib.request.Request("https://api.themoviedb.org/3/search/movie?" + urllib.parse.urlencode(q),
+                                         headers={"Authorization": "Bearer " + token, "Accept": "application/json"})
+            try:
+                with urllib.request.urlopen(req, timeout=20) as r: res = json.load(r).get("results", [])
+            except Exception:
+                continue
+            same = [m for m in res if m.get("poster_path") and _norm(c) in (_norm(m.get("title", "")), _norm(m.get("original_title", "")))]
+            if year:
+                same = [m for m in same if (m.get("release_date") or "")[:4].isdigit() and abs(int(m["release_date"][:4]) - year) <= 1]
+            if not year and len(same) > 1:
+                same.sort(key=lambda m: -(m.get("popularity") or 0))
+                if (same[1].get("popularity") or 0) * 3 > (same[0].get("popularity") or 0): same = []
+            if same:
+                return "https://image.tmdb.org/t/p/w342" + same[0]["poster_path"]
+            time.sleep(0.1)
+    return None
+
 def ecartelera_poster(title, alt, year):
     """Busca en eCartelera y acepta solo una película con el mismo título (y año, si se conoce)."""
     for c in [title] + ([alt] if alt else []):
@@ -473,12 +498,14 @@ def fill_missing_posters(rows):
         if not ct: continue
         key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
         hit = cache.get(key)
-        if hit is None or (not hit.get("url") and hit.get("t", "") < week_ago):
-            url, src = ecartelera_poster(*ct), "eCartelera"
+        has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip())
+        if hit is None or (not hit.get("url") and (hit.get("t", "") < week_ago or (has_tmdb and not hit.get("tmdb")))):
+            url, src = tmdb_poster(*ct), "TMDB"
+            if not url: url, src = ecartelera_poster(*ct), "eCartelera"
             if not url:
                 try: url, src = wiki_poster(*ct), "Wikipedia"
                 except Exception: url = None
-            hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0]}
+            hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0], "tmdb": has_tmdb}
         if hit.get("url"):
             r["cartel"] = poster(hit["url"])
             if r["cartel"]: r["cartelFuente"] = hit.get("fuente") or "web"; found += 1

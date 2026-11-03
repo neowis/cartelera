@@ -651,17 +651,32 @@ def fill_missing_posters(rows):
     except Exception: cache = {}
     week_ago = (TODAY - timedelta(days=7)).isoformat()
     found = 0
+    has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip() or os.environ.get("TMDB_API_KEY", "").strip())
+    tm_cache = cache.setdefault("_tmdb", {})
     for r in rows:
-        if r.get("cartel") and POSTER_W.get(r["cartel"], 999) >= 400 and POSTER_R.get(r["cartel"], 0.67) <= 0.8: continue
+        if r.get("cartelFuente") == "manual": continue
         ct = clean_title(r["titulo"])
         if not ct: continue
         if not ct[2] and r.get("anio"): ct = (ct[0], ct[1], int(r["anio"]))
         key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
+        # 1. TMDB primero para todas las películas
+        if has_tmdb:
+            tk = key + f"|{_norm(r.get('director') or '')}"
+            tm = tm_cache.get(tk)
+            if tm is None or (not tm.get("url") and tm.get("t", "") < week_ago):
+                try: u = tmdb_poster(*ct, director=r.get("director"))
+                except Exception: u = None
+                tm = tm_cache[tk] = {"url": u or "", "t": TODAY.isoformat()}
+            if tm.get("url"):
+                p = poster(tm["url"])
+                if p:
+                    r["cartel"] = p; r["cartelFuente"] = "TMDB"; found += 1
+                    continue
+        # 2. Si TMDB no la tiene: imagen de la sala si es un cartel decente, o eCartelera / Wikipedia
+        if r.get("cartel") and POSTER_W.get(r["cartel"], 999) >= 400 and POSTER_R.get(r["cartel"], 0.67) <= 0.8: continue
         hit = cache.get(key)
-        has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip() or os.environ.get("TMDB_API_KEY", "").strip())
         if hit is None or (not hit.get("url") and (hit.get("t", "") < week_ago or (has_tmdb and not hit.get("tmdb")) or (has_tmdb and hit.get("v", 1) < 3))):
-            url, src = tmdb_poster(*ct, director=r.get("director")), "TMDB"
-            if not url: url, src = ecartelera_poster(*ct), "eCartelera"
+            url, src = ecartelera_poster(*ct), "eCartelera"
             if not url:
                 try: url, src = wiki_poster(*ct), "Wikipedia"
                 except Exception: url = None

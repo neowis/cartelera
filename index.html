@@ -4,169 +4,165 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Cartelera diaria del cine barato y alternativo de Madrid: Cineteca, Doré, Reina Sofía, Berlanga, Círculo, centros culturales y más.">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="theme-color" content="#ffffff">
 <title>Cartelera de Bolsillo</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-/* Layout: una tira de días; cada sesión es una "entrada de cine" con troquel, cartel a la izquierda y matriz con hora/precio a la derecha */
+/* Layout: muro de carteles a sangre + lista de títulos enormes; barra fija abajo con selector en píldora y círculo a mano en la opción activa */
 :root{
-  --bg:#eef0f3; --paper:#ffffff; --ink:#18202b; --muted:#5b6676; --line:#d5dae2;
-  --accent:#2340c9; --accent-ink:#ffffff; --stub:#f5f6fa;
-  --ok:#17803d; --warn:#a85f00; --bad:#c0262d; --free:#7a3fc0;
-  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --f-body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --bg:#ffffff; --ink:#000000; --gray:#bdbdbd; --soft:#f2f2f2; --line:#000000; --accent:#000000;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --serif:"Times New Roman",Times,"Liberation Serif",serif;
+  --bar:64px;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#10141b; --paper:#19202a; --ink:#e8ecf2; --muted:#9aa5b5; --line:#2c3542;
-  --accent:#8fa4ff; --accent-ink:#0e1430; --stub:#141a23;
-  --ok:#5fd18a; --warn:#f0b357; --bad:#ff7b7f; --free:#c39bff; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#10141b; --paper:#19202a; --ink:#e8ecf2; --muted:#9aa5b5; --line:#2c3542;
-  --accent:#8fa4ff; --accent-ink:#0e1430; --stub:#141a23;
-  --ok:#5fd18a; --warn:#f0b357; --bad:#ff7b7f; --free:#c39bff; color-scheme:dark}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
-header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px}
-h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1;margin:0;letter-spacing:-.02em;text-wrap:balance}
-h1 small{display:block;font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.fresh{font-family:var(--f-mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
-.dot.live{background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 25%,transparent)}
-.dot.stale{background:var(--warn)}
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 10px;margin-top:16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.tabs{display:inline-flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
-.tabs button{font:700 14px var(--f-body);background:transparent;color:var(--ink);border:0;padding:8px 18px;cursor:pointer}
-.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.chip{font:400 13px var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}
-.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-select,input[type=search]{font:400 14px var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
-input[type=search]{flex:1 1 180px;min-width:0}
-label.tog{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
-button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.cines{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;scrollbar-width:thin}
-.summary{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
-.day{margin-top:28px}
-.day h2{font-family:var(--f-display);font-weight:800;font-size:22px;margin:0 0 12px;display:flex;align-items:baseline;gap:10px}
-.day h2 span{font-family:var(--f-mono);font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:12px}
-.tk{display:grid;grid-template-columns:92px 1fr auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
-.tk.sold{opacity:.62}
-.poster{width:92px;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--stub);max-width:100%}
-.fake{width:92px;aspect-ratio:2/3;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:8px;box-sizing:border-box;color:#fff;overflow:hidden;max-width:100%}
-.fk-kind{font:700 9px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.28);padding:3px 5px;border-radius:3px}
-.fk-ico{width:42%;height:auto;align-self:center;fill:none;stroke:rgba(255,255,255,.7);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
-.fk-title{font:800 12px/1.08 var(--f-display);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;hyphens:auto;width:100%}
-.info{padding:10px 12px;min-width:0;display:flex;flex-direction:column;gap:4px}
-.info h3{margin:0;font-family:var(--f-display);font-weight:800;font-size:17px;line-height:1.15;text-wrap:balance}
-.meta{font-size:13px;color:var(--muted)}
-.cine{font-weight:700;color:var(--ink)}
-.ciclo{font-size:12px;color:var(--muted);font-style:italic}
-.stub{border-left:2px dashed var(--line);background:var(--stub);padding:10px 12px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:6px;min-width:96px;position:relative}
-.stub::before,.stub::after{content:"";position:absolute;left:-8px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
-.stub::before{top:-8px}.stub::after{bottom:-8px}
-.hora{font:700 22px var(--f-mono);font-variant-numeric:tabular-nums;line-height:1}
-.precio{font:500 13px var(--f-mono);font-variant-numeric:tabular-nums}
-.pill{font:700 11px var(--f-body);letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
-.s-disponible{color:var(--ok)}.s-pocas{color:var(--warn)}.s-agotado{color:var(--bad)}.s-gratis{color:var(--free)}.s-desconocido{color:var(--muted)}
-.buy{font:700 12px var(--f-body);color:var(--accent);text-decoration:none}
-.buy:hover{text-decoration:underline}
-.empty{margin-top:40px;background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:28px;max-width:640px}
-.empty h2{font-family:var(--f-display);margin:0 0 8px;font-size:22px}
-.empty p{margin:6px 0;color:var(--muted)}
-.credit{margin-top:36px;font-size:12px;color:var(--muted);max-width:60ch}
-.credit a{color:var(--muted)}
-details.src{margin-top:12px;font-size:13px;color:var(--muted)}
-details.src summary{cursor:pointer;font-weight:700;color:var(--ink)}
-details.src ul{padding-left:18px;columns:2 260px}
-.okc{color:var(--ok)}.badc{color:var(--bad)}
-.pill.s-desconocido{display:none}
-.precio{max-width:9em;text-align:right;overflow-wrap:anywhere}
-@media (max-width:640px){
-  body{font-size:16px}
-  .wrap{padding-block:12px 40px}
-  h1{font-size:30px}
-  h1 small{font-size:11px;margin-bottom:6px}
-  .fresh{font-size:12px}
-  .bar{position:static;margin-top:12px;padding-block:10px 12px;gap:10px}
-  .tabs{display:flex;width:100%}
-  .tabs button{flex:1;padding:12px 0;font-size:16px}
-  .row{gap:8px}
-  select{flex:1 1 0;min-width:0;font-size:16px;padding:10px}
-  label.tog{font-size:15px;padding:8px 0}
-  label.tog input{width:20px;height:20px}
-  input[type=search]{flex:1 1 100%;font-size:16px;padding:11px 12px}
-  .cines{margin-inline:calc(-1 * max(16px, env(safe-area-inset-left,0px)));padding-inline:max(16px, env(safe-area-inset-left,0px));scrollbar-width:none}
-  .cines::-webkit-scrollbar{display:none}
-  .chip{font-size:15px;padding:9px 14px}
-  .day{margin-top:22px}
-  .day h2{position:sticky;top:env(safe-area-inset-top,0px);z-index:4;background:var(--bg);padding-block:8px;margin:0 0 8px;font-size:22px}
-  .grid{gap:12px}
-  .tk{grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto}
-  .poster,.fake{width:96px;grid-row:1}
-  .fk-title{font-size:13px}
-  .info{padding:12px 14px;gap:6px}
-  .info h3{font-size:19px;line-height:1.2}
-  .meta{font-size:15px}
-  .ciclo{font-size:14px}
-  .stub{grid-column:1 / -1;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:8px 14px;border-left:0;border-top:2px dashed var(--line);min-width:0;padding:12px 14px}
-  .stub::before,.stub::after{top:-8px;bottom:auto}
-  .stub::before{left:-8px}.stub::after{left:auto;right:-8px}
-  .hora{font-size:24px}
-  .precio{font-size:15px;max-width:none;text-align:left}
-  .pill{font-size:12px;padding:4px 10px}
-  .buy{margin-left:auto;font-size:15px;padding:8px 14px;border:1.5px solid var(--accent);border-radius:999px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:16px/1.25 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* Línea superior */
+.top{padding-block:14px 12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:13px/1.3 var(--serif);display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.top b{font:400 13px var(--serif)}
+.top .arr{font-family:var(--sans);font-size:11px}
+
+/* Día */
+.day{border-top:1px solid var(--line)}
+.dayh{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
+.dayh h2{margin:0;font:400 clamp(34px,7vw,64px)/.95 var(--sans);letter-spacing:-.045em}
+.dayh small{font:13px var(--serif);white-space:nowrap}
+
+/* Muro de carteles */
+.wall{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+@media (min-width:600px){.wall{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1000px){body[data-layout="carteles"] .wall{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.tile{position:relative;display:block;aspect-ratio:2/3;overflow:hidden;background:var(--soft);min-width:0;width:100%;text-align:left}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile .hr{position:absolute;left:6px;bottom:6px;background:var(--bg);color:var(--ink);font:12px/1 var(--sans);padding:4px 6px;border-radius:999px;letter-spacing:-.01em}
+.tile.sold img,.tile.sold .fake{filter:grayscale(1);opacity:.45}
+.tile.sold .hr{text-decoration:line-through}
+@media (hover:hover){.tile .over{position:absolute;inset:0;background:rgba(0,0,0,.72);color:#fff;padding:10px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;opacity:0;transition:opacity .15s}
+  .tile:hover .over,.tile:focus-visible .over{opacity:1}
+  .over b{font:400 19px/1.02 var(--sans);letter-spacing:-.03em}
+  .over i{font:12px var(--serif);font-style:normal}}
+@media (hover:none){.tile .over{display:none}}
+
+/* Portada generada */
+.tile .fake{padding-bottom:36px}
+.fake{width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:9px;color:#fff;overflow:hidden}
+.fk-kind{font:10px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.8);padding:3px 6px;border-radius:999px}
+.fk-ico{width:38%;height:auto;align-self:center;fill:none;stroke:rgba(255,255,255,.85);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.fk-title{font:400 clamp(13px,3.4vw,18px)/1.02 var(--sans);letter-spacing:-.03em;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;width:100%}
+
+/* Lista */
+.list{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:14px;width:100%;text-align:left;padding:7px max(16px,env(safe-area-inset-right,0px)) 7px max(16px,env(safe-area-inset-left,0px))}
+.row .meta{grid-column:1 / -1;font:13px/1.3 var(--serif);display:flex;flex-wrap:wrap;gap:0 7px;align-items:baseline}
+.row .meta .arr{font:11px var(--sans)}
+.row .ttl{font:400 clamp(28px,6.2vw,46px)/1 var(--sans);letter-spacing:-.045em;overflow-wrap:anywhere;min-width:0}
+.row .hh{font:400 clamp(28px,6.2vw,46px)/1 var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.row.sold,.row.sold .meta{color:var(--gray)}
+.row.sold .hh{text-decoration:line-through}
+@media (hover:hover){.list:hover .row{color:var(--gray)}.list:hover .row:hover{color:var(--ink)}}
+
+/* Columnas (solo escritorio) */
+.cols{display:grid;grid-template-columns:1fr 1fr}
+.cols .wall{grid-template-columns:repeat(4,minmax(0,1fr));align-content:start}
+.cols .list{border-left:1px solid var(--line)}
+.cols .row .ttl,.cols .row .hh{font-size:clamp(26px,3.1vw,44px)}
+
+/* Barra inferior */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--bg);border-top:1px solid var(--line);height:calc(var(--bar) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
+.mark{width:34px;height:34px;display:grid;place-items:center}
+.mark svg{width:34px;height:34px}
+.barR{display:flex;gap:16px;align-items:baseline;justify-self:end}
+.barR button{font:400 20px var(--sans);letter-spacing:-.03em;white-space:nowrap}
+.barR .n{font:11px var(--sans);vertical-align:super;margin-left:2px}
+.mid{display:flex;justify-content:center;gap:10px;min-width:0}
+
+/* Píldora */
+.pill{position:relative;display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.pill button{position:relative;font:11px/1 var(--sans);letter-spacing:.02em;text-transform:uppercase;padding:9px 14px;white-space:nowrap}
+.pill button+button{border-left:1px solid var(--line)}
+.scrib{position:absolute;left:-14%;top:-38%;width:128%;height:176%;pointer-events:none;overflow:visible}
+.scrib path{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+@media (prefers-reduced-motion:no-preference){.scrib path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw .45s ease-out forwards}}
+@keyframes draw{to{stroke-dashoffset:0}}
+#viewPill{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:50%;transform:translateX(-50%);z-index:35}
+#viewPill button{font-size:12px;padding:11px 18px}
+.only-wide{display:none}
+@media (min-width:900px){
+  #viewPill{position:static;transform:none}
+  #viewPill button{font-size:11px;padding:9px 14px}
+  .only-wide{display:block}
+  .top{padding-top:16px}
 }
-@media (prefers-reduced-motion:no-preference){.tk{transition:transform .15s}.tk:hover{transform:translateY(-1px)}}
+@media (max-width:899px){
+  body{padding-top:64px}
+  .bar{grid-template-columns:auto 1fr auto}
+  .barR button{font-size:18px}
+  .pill button{padding:10px 12px}
+  #infoBtn{display:none}
+}
+
+/* Hojas (ficha, filtros, info) */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:760px;max-height:88vh;overflow:auto;border-top:1px solid var(--line);padding:18px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+@media (min-width:760px){.scrim{align-items:center}.sheet{border:1px solid var(--line);max-height:84vh}}
+.sheet .close{float:right;font:400 20px var(--sans);letter-spacing:-.02em;margin-left:12px}
+.sheet h3{font:400 clamp(32px,6vw,48px)/.98 var(--sans);letter-spacing:-.045em;margin:0 0 14px}
+.sheet .lab{font:11px var(--sans);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 6px}
+.sheet .val{font:400 22px/1.15 var(--sans);letter-spacing:-.025em}
+.fic{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr);gap:18px;align-items:start}
+.fic .ph{aspect-ratio:2/3;overflow:hidden;background:var(--soft)}
+.fic .ph img{width:100%;height:100%;object-fit:cover}
+.buy{display:inline-block;margin-top:20px;border:1px solid var(--line);border-radius:999px;padding:12px 20px;font:13px var(--sans);text-transform:uppercase;letter-spacing:.03em;text-decoration:none}
+.buy:hover{background:var(--ink);color:var(--bg)}
+.ser{font:14px/1.4 var(--serif)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:9px 14px;font:13px var(--sans)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.search{width:100%;border:0;border-bottom:1px solid var(--line);font:400 26px var(--sans);letter-spacing:-.03em;padding:8px 0;background:transparent;color:var(--ink);border-radius:0}
+.search::placeholder{color:var(--gray)}
+.empty{padding:28px max(16px,env(safe-area-inset-left,0px));font:400 clamp(28px,6vw,46px)/1 var(--sans);letter-spacing:-.045em;border-top:1px solid var(--line)}
+.empty small{display:block;margin-top:12px;font:14px var(--serif);letter-spacing:0}
 </style>
 </head>
-<body>
+<body data-layout="carteles">
 
-<div class="wrap">
-  <header class="top">
-    <h1><small>Madrid · cine barato y distinto</small>Cartelera de Bolsillo</h1>
-    <div class="fresh" id="fresh"><span class="dot" id="dot"></span><span id="freshTxt">Conectando…</span></div>
-  </header>
+<div class="top" id="top"><b>Cartelera de Bolsillo</b><span class="arr">↗</span><span>Madrid, cine barato y distinto</span><span id="fresh">Cargando…</span></div>
+<main id="stage" aria-live="polite"></main>
 
-  <div class="bar">
-    <div class="row">
-      <div class="tabs" role="group" aria-label="Periodo">
-        <button id="t-hoy" data-v="hoy" aria-pressed="true">Hoy</button>
-        <button id="t-semana" data-v="semana" aria-pressed="false">Semana</button>
-        <button id="t-mes" data-v="mes" aria-pressed="false">Mes</button>
-      </div>
-      <select id="precio" aria-label="Precio máximo">
-        <option value="">Cualquier precio</option>
-        <option value="0">Solo gratis</option>
-        <option value="4">Hasta 4 €</option>
-        <option value="6">Hasta 6 €</option>
-        <option value="9">Hasta 9 €</option>
-      </select>
-      <label class="tog"><input type="checkbox" id="ocultar"> Ocultar agotadas</label>
-      <input type="search" id="q" placeholder="Buscar película, director, ciclo…" aria-label="Buscar">
+<nav class="bar" aria-label="Controles">
+  <button class="mark" id="markBtn" aria-label="Acerca de esta cartelera">
+    <svg viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="20" cy="20" r="18"/><circle cx="20" cy="11.5" r="3.6"/><circle cx="20" cy="28.5" r="3.6"/><circle cx="11.5" cy="20" r="3.6"/><circle cx="28.5" cy="20" r="3.6"/><circle cx="20" cy="20" r="1.2" fill="currentColor"/></svg>
+  </button>
+  <div class="mid">
+    <div class="pill" id="periodPill" role="group" aria-label="Periodo">
+      <button data-v="hoy" id="p-hoy">Hoy</button><button data-v="semana" id="p-semana">Semana</button><button data-v="mes" id="p-mes">Mes</button>
     </div>
-    <div class="row cines" id="cines" role="group" aria-label="Cines"></div>
-    <div class="summary" id="summary"></div>
+    <div class="pill" id="viewPill" role="group" aria-label="Vista">
+      <button data-l="carteles" id="l-carteles">Carteles</button><button data-l="lista" id="l-lista">Lista</button><button data-l="columnas" id="l-columnas" class="only-wide">Columnas</button>
+    </div>
   </div>
+  <div class="barR">
+    <button id="filtBtn">Filtros<span class="n" id="filtN"></span></button>
+    <button id="infoBtn">Info</button>
+  </div>
+</nav>
 
-  <main id="list"></main>
-
-  <p class="credit">Carteles: webs de cada sala, eCartelera, Wikipedia y <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>. Este producto usa la API de TMDB, pero no está respaldado ni certificado por TMDB.</p>
-  <details class="src" id="srcBox" hidden>
-    <summary>Estado de cada fuente</summary>
-    <ul id="srcList"></ul>
-  </details>
-</div>
+<div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT"></div></div>
 
 <script>
 const $ = s => document.querySelector(s);
-const state = { view: 'hoy', cines: new Set(), precio: '', ocultar: false, q: '', rows: [], meta: null, loaded: false, failed: false };
-try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; (s.cines||[]).forEach(c=>state.cines.add(c)); } catch(e){}
-function savePrefs(){ try{ localStorage.setItem('cdb-prefs', JSON.stringify({precio:state.precio, ocultar:state.ocultar, cines:[...state.cines]})); }catch(e){} }
+const state = { view:'hoy', layout:'carteles', cines:new Set(), precio:'', ocultar:false, q:'', rows:[], meta:null, loaded:false, failed:false };
+try { const s = JSON.parse(localStorage.getItem('cdb-prefs') || '{}'); if (s.precio != null) state.precio = s.precio; state.ocultar = !!s.ocultar; (s.cines||[]).forEach(c=>state.cines.add(c)); if (s.layout) state.layout = s.layout; } catch(e){}
+function savePrefs(){ try{ localStorage.setItem('cdb-prefs', JSON.stringify({precio:state.precio, ocultar:state.ocultar, cines:[...state.cines], layout:state.layout})); }catch(e){} }
 
 const pad = n => String(n).padStart(2,'0');
 const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -184,7 +180,7 @@ function dayLabel(f){
   return [rel, `${d} ${MESES[m-1]}`];
 }
 const MUNI = 'Conde Duque y centros municipales';
-const ESTADO = { disponible:'Hay entradas', pocas:'Últimas', agotado:'Agotado', gratis:'Gratis', desconocido:'Sin dato' };
+const ESTADO = { disponible:'Hay entradas', pocas:'Últimas entradas', agotado:'Agotado', gratis:'Gratis', desconocido:'' };
 function hue(s){ let h=0; for (const c of s) h=(h*31+c.charCodeAt(0))%360; return h; }
 function money(r){
   const num = typeof r.precio === 'number' ? r.precio.toFixed(2).replace('.',',').replace(',00','') + ' €' : null;
@@ -192,14 +188,13 @@ function money(r){
   const t = (r.precioTexto || '').replace(/\s*euros?/gi,' €').replace(/\s+/g,' ').trim();
   if (t && t.length <= 16) return t;
   if (num) return (/\ba\b|desde|\|/i.test(t) ? 'Desde ' : '') + num;
-  return t ? t.slice(0,16) + '…' : '—';
+  return t ? t.slice(0,16) + '…' : '';
 }
 function ago(isoStr){
   const m = Math.round((Date.now() - new Date(isoStr).getTime())/60000);
   if (m < 1) return 'ahora mismo'; if (m < 60) return `hace ${m} min`;
   const h = Math.round(m/60); if (h < 48) return `hace ${h} h`; return `hace ${Math.round(h/24)} días`;
 }
-
 function el(tag, attrs={}, ...kids){
   const e = document.createElement(tag);
   for (const [k,v] of Object.entries(attrs)) { if (v==null) continue; if (k==='class') e.className=v; else if (k==='text') e.textContent=v; else e.setAttribute(k,v); }
@@ -218,9 +213,10 @@ function filtered(){
     if (state.precio !== '') { const p = typeof r.precio==='number' ? r.precio : null; if (p == null || p > Number(state.precio)) return false; }
     if (q && !([r.titulo,r.director,r.ciclo,r.cine,r.sala].filter(Boolean).join(' ').toLowerCase().includes(q))) return false;
     return true;
-  }).sort((x,y) => (x.fecha+x.hora).localeCompare(y.fecha+y.hora) || x.cine.localeCompare(y.cine));
+  }).sort((x,y) => (x.fecha+(x.hora||'99')).localeCompare(y.fecha+(y.hora||'99')) || x.cine.localeCompare(y.cine));
 }
 
+/* Portadas generadas para lo que no tiene cartel */
 const KINDS = [
   [/cine\s*-?\s*club|cineclub/i, 'Cineclub', 'reel'],
   [/cinef[oó]rum|coloquio|debate/i, 'Cinefórum', 'talk'],
@@ -253,11 +249,12 @@ function posterText(r){
   else if (kind && t.includes(':')) t = t.split(':').slice(1).join(':').trim() || t;
   return { t: t.replace(/^[\s'"`´]+|[\s'"`´.]+$/g,''), year, kind };
 }
+function cleanTitle(r){ return posterText(r).t || r.titulo; }
 function fakePoster(r){
   const {t, year, kind} = posterText(r);
   const h = hue(r.titulo), icon = kind ? kind.icon : 'film';
   const box = el('div',{class:'fake',role:'img','aria-label':`Portada de ${r.titulo}`,
-    style:`background:linear-gradient(165deg,hsl(${h} 48% 38%),hsl(${(h+35)%360} 55% 18%))`});
+    style:`background:linear-gradient(165deg,hsl(${h} 70% 46%),hsl(${(h+40)%360} 75% 30%))`});
   box.append(el('span',{class:'fk-kind',text: kind ? kind.label : (year ? String(year) : 'Película')}));
   const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.setAttribute('viewBox','0 0 48 48'); svg.setAttribute('class','fk-ico'); svg.setAttribute('aria-hidden','true');
@@ -265,92 +262,148 @@ function fakePoster(r){
   box.append(el('span',{class:'fk-title',text:t}));
   return box;
 }
+function art(r){
+  if (!r.cartel) return fakePoster(r);
+  const i = el('img',{src:r.cartel,alt:`Cartel de ${cleanTitle(r)}`,loading:'lazy',decoding:'async'});
+  i.addEventListener('error',()=>i.replaceWith(fakePoster(r)));
+  return i;
+}
+function place(r){ return r.cine + (r.sala ? ` · ${r.sala}` : ''); }
 
-function ticket(r){
+/* Piezas */
+const rowsById = new Map();
+function tile(r){
+  const b = el('button',{class:'tile'+(r.estado==='agotado'?' sold':''),'data-id':r.id,'aria-label':`${cleanTitle(r)}, ${r.hora||'sin hora'}, ${r.cine}`},
+    art(r),
+    el('span',{class:'hr',text:r.hora||'—'}),
+    el('span',{class:'over'}, el('i',{text:place(r)}), el('b',{text:cleanTitle(r)}), el('i',{text:[r.hora, money(r)].filter(Boolean).join(' · ')})));
+  return b;
+}
+function row(r){
   const sold = r.estado === 'agotado';
-  const est = ESTADO[r.estado] ? r.estado : 'desconocido';
-  const art = r.cartel
-    ? el('img',{class:'poster',src:r.cartel,alt:`Cartel de ${r.titulo}`,loading:'lazy'})
-    : fakePoster(r);
-  if (r.cartel) art.addEventListener('error',()=>art.replaceWith(fakePoster(r)));
-  const bits = [r.director, r.anio, r.duracion && `${r.duracion} min`, r.version].filter(Boolean).join(' · ');
-  const info = el('div',{class:'info'},
-    el('h3',{text:r.titulo}),
-    el('div',{class:'meta'}, el('span',{class:'cine',text:r.cine}), r.sala ? ` · ${r.sala}` : ''),
-    bits ? el('div',{class:'meta',text:bits}) : null,
-    r.ciclo ? el('div',{class:'ciclo',text:r.ciclo}) : null
-  );
-  const stub = el('div',{class:'stub'},
-    el('div',{class:'hora',text:r.hora || '--:--'}),
-    est === 'gratis' ? null : el('div',{class:'precio',text:money(r)}),
-    el('span',{class:`pill s-${est}`,text: est === 'gratis' && r.precioTexto && /reserva|aforo/i.test(r.precioTexto) ? (/reserva/i.test(r.precioTexto) ? 'Gratis · reserva' : 'Gratis · aforo') : ESTADO[est]}),
-    r.enlace ? el('a',{class:'buy',href:r.enlace,target:'_blank',rel:'noopener',text: sold ? 'Ver ficha' : (r.precio === 0 ? 'Más info →' : 'Entradas →')}) : null
-  );
-  return el('article',{class:'tk'+(sold?' sold':'')}, art, info, stub);
+  const st = sold ? 'Agotado' : r.estado === 'pocas' ? 'Últimas entradas' : '';
+  const meta = el('span',{class:'meta'}, el('span',{text:r.cine}), el('span',{class:'arr',text:'↗'}),
+    el('span',{text:[r.sala, money(r), st].filter(Boolean).join(' · ')}));
+  return el('button',{class:'row'+(sold?' sold':''),'data-id':r.id}, meta, el('span',{class:'ttl',text:cleanTitle(r)}), el('span',{class:'hh',text:r.hora||'—'}));
 }
 
-function renderCines(){
-  const box = $('#cines'); box.replaceChildren();
-  const names = [...new Set(state.rows.filter(r=>!r.municipal).map(r=>r.cine).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es'));
-  if (state.rows.some(r=>r.municipal)) names.push(MUNI);
-  if (!names.length) return;
-  const all = el('button',{class:'chip',id:'c-all','aria-pressed':String(state.cines.size===0),text:'Todos los cines'});
-  all.onclick = () => { state.cines.clear(); savePrefs(); render(); };
-  box.append(all);
-  names.forEach((n,i) => {
-    const b = el('button',{class:'chip',id:`c-${i}`,'aria-pressed':String(state.cines.has(n)),text:n});
-    b.onclick = () => { state.cines.has(n) ? state.cines.delete(n) : state.cines.add(n); savePrefs(); render(); };
-    box.append(b);
-  });
-}
-
-function renderFresh(){
-  const m = state.meta, dot = $('#dot'), t = $('#freshTxt');
-  if (state.failed) { dot.className='dot stale'; t.textContent='No se pudo cargar la cartelera. Recarga la página.'; return; }
-  if (!state.loaded) { dot.className='dot'; t.textContent='Conectando…'; return; }
-  if (!m || !m.ultimaActualizacion) { dot.className='dot'; t.textContent='Sin actualizaciones todavía'; return; }
-  const h = (Date.now()-new Date(m.ultimaActualizacion).getTime())/3600000;
-  dot.className = 'dot ' + (h < 8 ? 'live' : 'stale');
-  t.textContent = `Actualizado ${ago(m.ultimaActualizacion)}` + (m.proxima ? ` · próxima ${new Date(m.proxima).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'})}` : '');
-  const srcs = Array.isArray(m.fuentes) ? m.fuentes : [];
-  $('#srcBox').hidden = !srcs.length;
-  $('#srcList').replaceChildren(...srcs.map(s => el('li',{}, el('span',{class:s.ok?'okc':'badc',text:s.ok?'✓ ':'✕ '}), `${s.cine}: `, s.ok ? `${s.n ?? 0} sesiones` : (s.error || 'no se pudo leer'))));
-}
-
+/* Render */
 function render(){
-  ['hoy','semana','mes'].forEach(v => $('#t-'+v).setAttribute('aria-pressed', String(state.view===v)));
-  $('#precio').value = state.precio; $('#ocultar').checked = state.ocultar;
-  renderCines(); renderFresh();
-  const list = $('#list'); list.replaceChildren();
-  if (!state.loaded) { list.append(el('div',{class:'empty'}, el('h2',{text:'Cargando la cartelera…'}), el('p',{text:'Leyendo las sesiones guardadas.'}))); $('#summary').textContent=''; return; }
-  if (!state.rows.length) {
-    list.append(el('div',{class:'empty'},
-      el('h2',{text:'Aún no hay sesiones'}),
-      el('p',{text:'La cartelera se rellena sola: un proceso automático lee varias veces al día las webs de los cines y centros culturales de Madrid (Cineteca, Cine Doré, Círculo de Bellas Artes, Reina Sofía, Sala Berlanga, Golem, Renoir, Verdi, Embajadores…) y guarda aquí cada sesión con su cartel, hora, precio y si quedan entradas.'}),
-      el('p',{text:'Cuando termine la primera lectura verás aquí las sesiones de hoy.'})));
-    $('#summary').textContent=''; return;
-  }
-  const rows = filtered();
-  const nCines = new Set(rows.map(r=>r.cine)).size;
-  const nFree = rows.filter(r=>r.precio===0).length;
-  $('#summary').textContent = `${rows.length} sesiones · ${nCines} cines` + (nFree ? ` · ${nFree} gratis` : '');
-  if (!rows.length) { list.append(el('div',{class:'empty'}, el('h2',{text:'Nada con estos filtros'}), el('p',{text:'Prueba con otro periodo, sube el precio máximo o selecciona más cines.'}))); return; }
+  for (const v of ['hoy','semana','mes']) $('#p-'+v).setAttribute('aria-pressed', String(state.view===v));
+  const wide = matchMedia('(min-width:900px)').matches;
+  const layout = (state.layout === 'columnas' && !wide) ? 'carteles' : state.layout;
+  document.body.dataset.layout = layout;
+  for (const l of ['carteles','lista','columnas']) $('#l-'+l).setAttribute('aria-pressed', String(layout===l));
+  scribble($('#periodPill'), $('#p-'+state.view));
+  scribble($('#viewPill'), $('#l-'+layout));
+  const nf = state.cines.size + (state.precio!=='' ? 1 : 0) + (state.ocultar ? 1 : 0) + (state.q.trim() ? 1 : 0);
+  $('#filtN').textContent = nf ? String(nf) : '';
+  renderFresh();
+
+  const st = $('#stage'); st.replaceChildren(); rowsById.clear();
+  if (!state.loaded) { st.append(el('div',{class:'empty'}, state.failed ? 'No se pudo cargar la cartelera.' : 'Cargando la cartelera…', el('small',{text: state.failed ? 'Recarga la página en un momento.' : 'Un segundo.'}))); return; }
+  const rows = filtered(); rows.forEach(r => rowsById.set(r.id, r));
+  if (!rows.length) { st.append(el('div',{class:'empty'}, 'Nada con estos filtros.', el('small',{text:'Prueba con otro periodo, sube el precio o quita algún cine en Filtros.'}))); return; }
   const byDay = new Map(); rows.forEach(r => { if(!byDay.has(r.fecha)) byDay.set(r.fecha,[]); byDay.get(r.fecha).push(r); });
   for (const [f, rs] of byDay) {
     const [rel, d] = dayLabel(f);
-    list.append(el('section',{class:'day'}, el('h2',{}, rel, el('span',{text:`${d} · ${rs.length}`})), el('div',{class:'grid'}, rs.map(ticket))));
+    const sec = el('section',{class:'day'}, el('div',{class:'dayh'}, el('h2',{text:rel}), el('small',{text:`${d} · ${rs.length} ${rs.length===1?'sesión':'sesiones'}`})));
+    if (layout === 'carteles') sec.append(el('div',{class:'wall'}, rs.map(tile)));
+    else if (layout === 'lista') sec.append(el('div',{class:'list'}, rs.map(row)));
+    else sec.append(el('div',{class:'cols'}, el('div',{class:'wall'}, rs.map(tile)), el('div',{class:'list'}, rs.map(row))));
+    st.append(sec);
   }
 }
+function renderFresh(){
+  const m = state.meta;
+  const n = state.loaded ? filtered().length : 0;
+  $('#fresh').textContent = !state.loaded ? (state.failed ? 'Sin conexión' : 'Cargando…')
+    : `${n} sesiones` + (m && m.ultimaActualizacion ? ` · actualizado ${ago(m.ultimaActualizacion)}` : '');
+}
 
-function setView(v){ state.view = v; if (location.hash !== '#'+v) history.replaceState(null,'','#'+v); render(); }
-document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => setView(b.dataset.v));
+/* Círculo dibujado a mano alrededor de la opción activa */
+function scribble(pill, btn){
+  pill.querySelectorAll('.scrib').forEach(s => s.remove());
+  if (!btn || btn.offsetParent === null) return;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('class','scrib'); svg.setAttribute('viewBox','0 0 100 40'); svg.setAttribute('preserveAspectRatio','none'); svg.setAttribute('aria-hidden','true');
+  const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+  const j = (btn.dataset.v || btn.dataset.l || '').length % 3;
+  p.setAttribute('d', ['M10 23 C 9 8, 84 3, 92 16 C 99 29, 40 39, 15 31 C 2 26, 14 9, 46 6',
+                       'M14 26 C 4 14, 46 2, 86 9 C 101 13, 95 33, 52 35 C 20 37, 3 27, 24 9',
+                       'M8 19 C 14 4, 91 4, 93 21 C 94 35, 22 39, 9 27 C 2 19, 30 6, 58 7'][j]);
+  p.style.setProperty('--len','300'); p.setAttribute('pathLength','300');
+  svg.append(p); btn.append(svg);
+}
+
+/* Hojas */
+let lastFocus = null;
+function openSheet(build){
+  lastFocus = document.activeElement;
+  const sh = $('#sheet'); sh.replaceChildren(el('button',{class:'close',id:'closeSheet',text:'Cerrar'}), ...build());
+  $('#scrim').hidden = false; document.body.style.overflow = 'hidden';
+  $('#closeSheet').onclick = closeSheet; $('#closeSheet').focus();
+}
+function closeSheet(){ $('#scrim').hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+$('#scrim').addEventListener('click', e => { if (e.target === $('#scrim')) closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#scrim').hidden) closeSheet(); });
+
+function ficha(r){
+  const [rel, d] = dayLabel(r.fecha);
+  const est = ESTADO[r.estado] || '';
+  const bits = [r.director, r.anio, r.duracion && `${r.duracion} min`, r.version].filter(Boolean).join(' · ');
+  openSheet(() => [
+    el('div',{class:'fic'},
+      el('div',{class:'ph'}, art(r)),
+      el('div',{},
+        el('h3',{id:'sheetT',text:cleanTitle(r)}),
+        bits ? el('div',{class:'ser',text:bits}) : null,
+        el('div',{class:'lab',text:'Cuándo'}), el('div',{class:'val',text:`${rel}, ${d}${r.hora ? ' · ' + r.hora : ''}`}),
+        el('div',{class:'lab',text:'Dónde'}), el('div',{class:'val',text:place(r)}),
+        el('div',{class:'lab',text:'Precio'}), el('div',{class:'val',text:[money(r) || 'Ver web', est && est !== 'Gratis' ? est : ''].filter(Boolean).join(' · ')}),
+        r.ciclo ? el('div',{class:'lab',text:'Ciclo'}) : null, r.ciclo ? el('div',{class:'ser',text:r.ciclo}) : null,
+        r.enlace ? el('a',{class:'buy',href:r.enlace,target:'_blank',rel:'noopener',text: r.estado==='agotado' ? 'Ver ficha ↗' : (r.precio === 0 ? 'Más info ↗' : 'Comprar entradas ↗')}) : null))
+  ]);
+}
+$('#stage').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b && rowsById.has(b.dataset.id)) ficha(rowsById.get(b.dataset.id)); });
+
+function filtros(){
+  const names = [...new Set(state.rows.filter(r=>!r.municipal).map(r=>r.cine))].sort((a,b)=>a.localeCompare(b,'es'));
+  if (state.rows.some(r=>r.municipal)) names.push(MUNI);
+  const precios = [['','Cualquier precio'],['0','Solo gratis'],['4','Hasta 4 €'],['6','Hasta 6 €'],['9','Hasta 9 €']];
+  openSheet(() => {
+    const q = el('input',{class:'search',id:'q',type:'search',placeholder:'Buscar película, director, ciclo…','aria-label':'Buscar'}); q.value = state.q;
+    let t; q.oninput = () => { clearTimeout(t); t = setTimeout(() => { state.q = q.value; render(); }, 180); };
+    const pc = el('div',{class:'chips'}, precios.map(([v,l]) => { const b = el('button',{class:'chip','aria-pressed':String(state.precio===v),text:l}); b.onclick = () => { state.precio = v; savePrefs(); render(); filtros(); }; return b; }));
+    const ag = el('button',{class:'chip','aria-pressed':String(state.ocultar),text:'Ocultar agotadas'}); ag.onclick = () => { state.ocultar = !state.ocultar; savePrefs(); render(); filtros(); };
+    const all = el('button',{class:'chip','aria-pressed':String(state.cines.size===0),text:'Todos'}); all.onclick = () => { state.cines.clear(); savePrefs(); render(); filtros(); };
+    const cc = el('div',{class:'chips'}, all, names.map(n => { const b = el('button',{class:'chip','aria-pressed':String(state.cines.has(n)),text:n}); b.onclick = () => { state.cines.has(n) ? state.cines.delete(n) : state.cines.add(n); savePrefs(); render(); filtros(); }; return b; }));
+    return [el('h3',{id:'sheetT',text:'Filtros'}), q, el('div',{class:'lab',text:'Precio'}), pc, el('div',{class:'lab',text:'Entradas'}), el('div',{class:'chips'}, ag), el('div',{class:'lab',text:'Cines'}), cc];
+  });
+}
+function info(){
+  const m = state.meta || {};
+  const fu = Array.isArray(m.fuentes) ? m.fuentes : [];
+  openSheet(() => [
+    el('h3',{id:'sheetT',text:'Cartelera de Bolsillo'}),
+    el('p',{class:'ser',text:'Cine barato y alternativo de Madrid capital en un solo sitio. Se actualiza sola varias veces al día leyendo la web de cada sala.'}),
+    m.ultimaActualizacion ? el('p',{class:'ser',text:`Última actualización: ${ago(m.ultimaActualizacion)}.`}) : null,
+    el('div',{class:'lab',text:'Fuentes'}),
+    el('div',{class:'ser'}, fu.map(f => el('div',{text:`${f.ok ? '✓' : '✕'} ${f.cine}${f.ok ? ` · ${f.n ?? 0}` : ` · ${f.error || 'sin datos'}`}`}))),
+    el('div',{class:'lab',text:'Carteles'}),
+    el('p',{class:'ser'}, 'Webs de cada sala, eCartelera, Wikipedia y ', el('a',{href:'https://www.themoviedb.org/',target:'_blank',rel:'noopener',text:'TMDB'}), '. Este producto usa la API de TMDB, pero no está respaldado ni certificado por TMDB.'),
+  ]);
+}
+$('#filtBtn').onclick = filtros; $('#infoBtn').onclick = info; $('#markBtn').onclick = info;
+
+/* Controles */
+function setView(v){ state.view = v; if (location.hash !== '#'+v) history.replaceState(null,'','#'+v); render(); window.scrollTo({top:0}); }
+document.querySelectorAll('#periodPill button').forEach(b => b.onclick = () => setView(b.dataset.v));
+document.querySelectorAll('#viewPill button').forEach(b => b.onclick = () => { state.layout = b.dataset.l; savePrefs(); render(); });
 window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (['hoy','semana','mes'].includes(h)) { state.view = h; render(); } });
 { const h = location.hash.slice(1); if (['hoy','semana','mes'].includes(h)) state.view = h; }
-$('#precio').onchange = e => { state.precio = e.target.value; savePrefs(); render(); };
-$('#ocultar').onchange = e => { state.ocultar = e.target.checked; savePrefs(); render(); };
-let qt; $('#q').oninput = e => { clearTimeout(qt); qt = setTimeout(()=>{ state.q = e.target.value; render(); }, 150); };
-setInterval(() => { if (state.loaded) render(); }, 60000);
-render();
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(render, 200); });
+setInterval(() => { if (state.loaded) renderFresh(); }, 60000);
 
 async function load(){
   try {
@@ -358,13 +411,12 @@ async function load(){
     if (!r.ok) throw new Error(r.status);
     const d = await r.json();
     state.rows = (d.sesiones || []).filter(x => x.titulo && x.cine);
-    state.meta = { ultimaActualizacion: d.actualizado, proxima: d.proxima, fuentes: d.fuentes };
+    state.meta = { ultimaActualizacion: d.actualizado, fuentes: d.fuentes };
     state.loaded = true; state.failed = false;
   } catch (e) { if (!state.loaded) state.failed = true; }
   render();
 }
-load();
-setInterval(load, 10 * 60 * 1000);
+render(); load(); setInterval(load, 10 * 60 * 1000);
 </script>
 </body>
 </html>

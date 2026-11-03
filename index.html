@@ -92,10 +92,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .cols .row .ttl,.cols .row .hh{font-size:clamp(26px,3.1vw,44px)}
 
 /* Favoritos */
-.tile .fav{position:absolute;right:6px;top:6px;background:var(--bg);color:var(--ink);font:13px/1 var(--sans);padding:4px 6px;border-radius:999px}
-.heart{font:400 clamp(24px,4.6vw,34px)/1 var(--sans);padding:4px 6px;margin-bottom:.06em;color:inherit;border-radius:999px;align-self:end}
+.tile .fav{position:absolute;right:6px;top:6px;background:var(--bg);color:var(--ink);font-size:14px;padding:5px;border-radius:999px;line-height:0}
+.hsvg{display:block;width:1em;height:1em;overflow:visible}
+.hsvg path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.heart{font-size:clamp(26px,4.4vw,34px);line-height:1;padding:6px;color:inherit;border-radius:999px;align-self:center;margin-top:.15em}
+.heart .hsvg path{stroke-width:1.6}
 .heart[aria-pressed="true"]{color:var(--ink)!important}
-@media (hover:hover){.heart:hover{transform:scale(1.15)}}
+.heart[aria-pressed="true"] .hsvg path,.fav .hsvg path,.favbtn[aria-pressed="true"] .hsvg path{fill:currentColor}
+@media (hover:hover){.heart{transition:transform .12s}.heart:hover{transform:scale(1.12)}}
+@media (prefers-reduced-motion:no-preference){.heart[aria-pressed="true"] .hsvg{animation:pop .25s ease-out}}
+@keyframes pop{50%{transform:scale(1.25)}}
+.favbtn .hsvg{width:16px;height:16px}
 .favbtn{display:inline-flex;align-items:center;gap:8px;margin:18px 10px 0 0;border:1px solid var(--line);border-radius:999px;padding:12px 20px;font:13px var(--sans);text-transform:uppercase;letter-spacing:.03em;background:var(--bg);color:var(--ink)}
 .favbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .sin{font:15px/1.45 var(--serif);margin:14px 0 0;max-width:62ch}
@@ -358,7 +365,7 @@ function tile(r){
   const b = el('button',{class:'tile'+(r.estado==='agotado'?' sold':''),'data-id':r.id,'aria-label':`${cleanTitle(r)}, ${r.hora||'sin hora'}, ${r.cine}`},
     art(r),
     el('span',{class:'hr',text:r.hora||'—'}),
-    isFav(r.id) ? el('span',{class:'fav','aria-label':'Guardada',text:'♥'}) : null,
+    isFav(r.id) ? favMark() : null,
     el('span',{class:'card','aria-hidden':'true'},
       el('span',{}, el('span',{class:'k',text:'Título'}), el('span',{class:'v t',text:cleanTitle(r)})),
       el('span',{}, el('span',{class:'k',text:'Dónde'}), el('span',{class:'v',text:place(r)})),
@@ -366,15 +373,24 @@ function tile(r){
       el('span',{}, el('span',{class:'k',text:'Precio'}), el('span',{class:'v',text:money(r) || 'Ver web'}))));
   return b;
 }
+const HEART_D = 'M12 20.4c-.3 0-.6-.1-.8-.3C7.9 17.5 2.6 13.4 2.6 8.9 2.6 6 4.8 3.8 7.6 3.8c1.8 0 3.4.9 4.4 2.4 1-1.5 2.6-2.4 4.4-2.4 2.8 0 5 2.2 5 5.1 0 4.5-5.3 8.6-8.6 11.2-.2.2-.5.3-.8.3z';
+function heartSvg(){
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox','0 0 24 24'); svg.setAttribute('aria-hidden','true'); svg.setAttribute('class','hsvg');
+  const p = document.createElementNS('http://www.w3.org/2000/svg','path'); p.setAttribute('d', HEART_D); svg.append(p);
+  return svg;
+}
 function heartBtn(r){
   const on = isFav(r.id);
-  return el('button',{class:'heart','data-fav':r.id,'aria-pressed':String(on),'aria-label': on ? `Quitar ${cleanTitle(r)} de guardadas` : `Guardar ${cleanTitle(r)}`,text: on ? '♥' : '♡'});
+  const b = el('button',{class:'heart','data-fav':r.id,'aria-pressed':String(on),'aria-label': on ? `Quitar ${cleanTitle(r)} de guardadas` : `Guardar ${cleanTitle(r)}`});
+  b.append(heartSvg()); return b;
 }
+function favMark(){ const m = el('span',{class:'fav','aria-label':'Guardada'}); m.append(heartSvg()); return m; }
 function syncFav(id){
   const on = isFav(id);
-  document.querySelectorAll(`.heart[data-fav="${CSS.escape(id)}"]`).forEach(h => { h.setAttribute('aria-pressed', String(on)); h.textContent = on ? '♥' : '♡'; });
+  document.querySelectorAll(`.heart[data-fav="${CSS.escape(id)}"]`).forEach(h => { h.setAttribute('aria-pressed', String(on)); });
   document.querySelectorAll(`.tile[data-id="${CSS.escape(id)}"]`).forEach(t => {
-    const m = t.querySelector('.fav'); if (on && !m) t.append(el('span',{class:'fav','aria-label':'Guardada',text:'♥'})); if (!on && m) m.remove();
+    const m = t.querySelector('.fav'); if (on && !m) t.append(favMark()); if (!on && m) m.remove();
   });
   const n = Object.keys(favs).length; $('#favN').textContent = n ? String(n) : '';
   if (document.body.dataset.layout === 'guardadas') render();
@@ -578,7 +594,7 @@ $('#stage').addEventListener('click', e => {
 
 function favButton(r){
   const b = el('button',{class:'favbtn','aria-pressed':String(isFav(r.id))});
-  const paint = () => { const on = isFav(r.id); b.setAttribute('aria-pressed', String(on)); b.textContent = on ? '♥ Guardada' : '♡ Guardar'; };
+  const paint = () => { const on = isFav(r.id); b.setAttribute('aria-pressed', String(on)); b.replaceChildren(heartSvg(), document.createTextNode(on ? 'Guardada' : 'Guardar')); };
   paint();
   b.onclick = () => { toggleFav(r); paint(); syncFav(r.id); };
   return b;

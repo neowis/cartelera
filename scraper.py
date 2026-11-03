@@ -451,15 +451,25 @@ def wiki_poster(title, alt, year):
         time.sleep(0.2)
     return None
 
-def tmdb_poster(title, alt, year):
-    m = tmdb_find(title, alt, year, need_poster=True)
+def tmdb_poster(title, alt, year, director=None):
+    m = tmdb_find(title, alt, year, need_poster=True, director=director)
     return "https://image.tmdb.org/t/p/w780" + m["poster_path"] if m and m.get("poster_path") else None
 
-def tmdb_find(title, alt, year, need_poster=False):
-    """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita TMDB_API_KEY o TMDB_TOKEN."""
+def _tmdb_get(path, params):
+    token = os.environ.get("TMDB_TOKEN", "").strip(); key = os.environ.get("TMDB_API_KEY", "").strip()
+    if not token: params = dict(params, api_key=key)
+    hdr = {"Accept": "application/json"}
+    if token: hdr["Authorization"] = "Bearer " + token
+    req = urllib.request.Request(f"https://api.themoviedb.org/3/{path}?" + urllib.parse.urlencode(params), headers=hdr)
+    with urllib.request.urlopen(req, timeout=20) as r: return json.load(r)
+
+def tmdb_find(title, alt, year, need_poster=False, director=None):
+    """TMDB (themoviedb.org): películas y cortos, incluidos clásicos. Necesita TMDB_API_KEY o TMDB_TOKEN.
+    Acepta el título exacto (y año ±1); si no coincide pero se conocen año y director, comprueba el director en TMDB."""
     token = os.environ.get("TMDB_TOKEN", "").strip()
     key = os.environ.get("TMDB_API_KEY", "").strip()
     if not token and not key: return None
+    cands = {}
     for c in [title] + ([alt] if alt else []):
         for lang in ("es-ES", "en-US"):
             q = {"query": c, "language": lang, "include_adult": "false"}
@@ -472,6 +482,9 @@ def tmdb_find(title, alt, year, need_poster=False):
                 with urllib.request.urlopen(req, timeout=20) as r: res = json.load(r).get("results", [])
             except Exception:
                 continue
+            for m in res:
+                if year and (m.get("release_date") or "")[:4].isdigit() and abs(int(m["release_date"][:4]) - year) <= 1 and (m.get("poster_path") or not need_poster):
+                    cands.setdefault(m["id"], m)
             same = [m for m in res if (m.get("poster_path") or not need_poster) and _norm(c) in (_norm(m.get("title", "")), _norm(m.get("original_title", "")))]
             if year:
                 same = [m for m in same if (m.get("release_date") or "")[:4].isdigit() and abs(int(m["release_date"][:4]) - year) <= 1]
@@ -481,6 +494,14 @@ def tmdb_find(title, alt, year, need_poster=False):
             if same:
                 return same[0]
             time.sleep(0.1)
+    # Sin título exacto: mismo año y mismo director
+    if year and director and cands:
+        dn = _norm(director)
+        for m in list(cands.values())[:6]:
+            try: crew = _tmdb_get(f"movie/{m['id']}/credits", {}).get("crew", [])
+            except Exception: continue
+            if any(p.get("job") == "Director" and (_norm(p.get("name", "")) == dn or _norm(p.get("original_name", "")) == dn) for p in crew):
+                return m
     return None
 
 def ecartelera_poster(title, alt, year):
@@ -516,13 +537,13 @@ def fill_missing_posters(rows):
         key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
         hit = cache.get(key)
         has_tmdb = bool(os.environ.get("TMDB_TOKEN", "").strip() or os.environ.get("TMDB_API_KEY", "").strip())
-        if hit is None or (not hit.get("url") and (hit.get("t", "") < week_ago or (has_tmdb and not hit.get("tmdb")))):
-            url, src = tmdb_poster(*ct), "TMDB"
+        if hit is None or (not hit.get("url") and (hit.get("t", "") < week_ago or (has_tmdb and not hit.get("tmdb")) or (has_tmdb and hit.get("v", 1) < 2))):
+            url, src = tmdb_poster(*ct, director=r.get("director")), "TMDB"
             if not url: url, src = ecartelera_poster(*ct), "eCartelera"
             if not url:
                 try: url, src = wiki_poster(*ct), "Wikipedia"
                 except Exception: url = None
-            hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0], "tmdb": has_tmdb}
+            hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0], "tmdb": has_tmdb, "v": 2}
         if hit.get("url"):
             nuevo = poster(hit["url"])
             if nuevo and (not r.get("cartel") or POSTER_W.get(nuevo, 0) > POSTER_W.get(r["cartel"], 0)):
@@ -573,11 +594,11 @@ def fill_synopsis(rows):
             ct = clean_title(r["titulo"])
             if not ct: continue
             k = "tmdb|" + _norm(ct[0]) + f"|{ct[2] or ''}"
-            if k not in cache or (not cache[k].get("t") and cache[k].get("d", "") < month_ago):
-                m = tmdb_find(*ct) if k not in tm else tm[k]
+            if k not in cache or (not cache[k].get("t") and (cache[k].get("d", "") < month_ago or cache[k].get("v", 1) < 2)):
+                m = tmdb_find(*ct, director=r.get("director")) if k not in tm else tm[k]
                 tm[k] = m
                 cache[k] = {"t": (m or {}).get("overview", "")[:700], "d": TODAY.isoformat(),
-                            "anio": ((m or {}).get("release_date") or "")[:4]}
+                            "anio": ((m or {}).get("release_date") or "")[:4], "v": 2}
             if cache[k].get("t"): r["sinopsis"] = cache[k]["t"]
             if not r.get("anio") and cache[k].get("anio", "").isdigit() and cache[k].get("t"): r["anio"] = int(cache[k]["anio"])
     with open(f"{OUT}/data/sinopsis_cache.json", "w", encoding="utf8") as fh:

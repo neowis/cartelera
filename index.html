@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Cartelera diaria del cine barato y alternativo de Madrid: Cineteca, Doré, Reina Sofía, Berlanga, Círculo, centros culturales y más.">
 <meta name="theme-color" content="#ffffff">
-<title>Cartelera de Bolsillo</title>
+<title>Siete Estrellas</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23ffff00%27/%3E%3Cpath d=%27M32 10l6.6 14.2 15.4 1.6-11.6 10.4 3.4 15.2L32 43.6l-13.8 7.8 3.4-15.2L10 25.8l15.4-1.6z%27 fill=%27%23000%27/%3E%3C/svg%3E">
+<meta name="apple-mobile-web-app-title" content="Siete Estrellas">
 <style>
 /* Layout: muro de carteles a sangre + lista de títulos enormes; barra fija abajo con selector en píldora y círculo a mano en la opción activa */
 :root{
@@ -248,7 +250,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 </head>
 <body data-layout="lista">
 
-<h1 class="sr-only">Cartelera de Bolsillo</h1>
+<h1 class="sr-only">Siete Estrellas</h1>
 <main id="stage" aria-live="polite"></main>
 
 <nav class="bar" aria-label="Controles">
@@ -663,7 +665,7 @@ function info(){
   const m = state.meta || {};
   const fu = Array.isArray(m.fuentes) ? m.fuentes : [];
   openSheet(() => [
-    el('h3',{id:'sheetT',text:'Cartelera de Bolsillo'}),
+    el('h3',{id:'sheetT',text:'Siete Estrellas'}),
     el('p',{class:'ser',text:'Cine barato y alternativo de Madrid capital en un solo sitio. Se actualiza sola varias veces al día leyendo la web de cada sala.'}),
     m.ultimaActualizacion ? el('p',{class:'ser',text:`Última actualización: ${ago(m.ultimaActualizacion)}.`}) : null,
     el('div',{class:'lab',text:'Fuentes'}),

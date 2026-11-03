@@ -378,7 +378,7 @@ SOURCES = [("Cineteca Madrid", cineteca), ("Cine Doré · Filmoteca", dore), ("C
 
 
 # ---------------------------------------------------------------- Portadas que faltan: búsqueda en Wikipedia
-WIKI_UA = "CarteleraDeBolsillo/1.0 (https://neowis.github.io/cartelera/)"
+WIKI_UA = "SieteEstrellas/1.0 (https://neowis.github.io/cartelera/)"
 CACHE_IN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "carteles_buscados.json")
 NO_FILM = re.compile(r"\b(teatro|danza|curso|taller|cocina|cata|conferencia|charla|coloquio sobre|club de lectura|ficción sonora|creación audiovisual|jornada|concurso|cortos?\b|cortometrajes|festival|muestra|ciclo \d|semana)\b", re.I)
 

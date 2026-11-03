@@ -1,4 +1,4 @@
-# Cartelera de Bolsillo
+# Siete Estrellas
 
 Cartelera diaria del cine barato y alternativo de Madrid capital: Cineteca, Cine Doré, Museo Reina Sofía, Sala Berlanga, Academia de Cine, Círculo de Bellas Artes, Conde Duque y centros culturales municipales, Golem, Renoir, Verdi, Embajadores y Paz.
 

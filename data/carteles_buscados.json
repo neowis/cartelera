@@ -2246,6 +2246,38 @@
 "tiempos de ilusion|olivier nakache eric toledano": {
 "url": "https://image.tmdb.org/t/p/w780/ku7zVdj7yUZn71cG6YvCoC3Rxjm.jpg",
 "t": "2026-11-03"
+},
+"libertad doble|lisandro alonso": {
+"url": "https://image.tmdb.org/t/p/w780/eJwrCjeHCu3hLYveVHM9Do5HLBF.jpg",
+"t": "2026-11-03"
+},
+"nocturno a veces me entra tristeza otras veces rebelion|": {
+"url": "",
+"t": "2026-11-03"
+},
+"fuerzas cuerpo de letra|": {
+"url": "",
+"t": "2026-11-03"
+},
+"merodeo todo documento de civilizacion|": {
+"url": "",
+"t": "2026-11-03"
+},
+"materia vibrante popular tradicion de esta tierra|": {
+"url": "",
+"t": "2026-11-03"
+},
+"sean eternxs|raul perrone": {
+"url": "https://image.tmdb.org/t/p/w780/6cihBRVG2P8e44knHmx7BafCG4a.jpg",
+"t": "2026-11-03"
+},
+"pequeno nicolas|amandine fredon y benjamin massoubre": {
+"url": "https://image.tmdb.org/t/p/w780/13p8DkddbY4ASqHlrwfWDHpvqmi.jpg",
+"t": "2026-11-03"
+},
+"delincuentes|rodrigo moreno": {
+"url": "https://image.tmdb.org/t/p/w780/3AWh0IKlyjIdG8IX5N8a9eE7Yey.jpg",
+"t": "2026-11-03"
 }
 },
 "sonidos opticos": {
@@ -2333,6 +2365,38 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Matar un oso",
+"tmdb": true,
+"v": 3
+},
+"nocturno a veces me entra tristeza otras veces rebelion": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Nocturno / A veces me entra tristeza, otras veces rebelión",
+"tmdb": true,
+"v": 3
+},
+"fuerzas cuerpo de letra": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Las fuerzas / Cuerpo de letra",
+"tmdb": true,
+"v": 3
+},
+"merodeo todo documento de civilizacion": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Merodeo / Todo documento de civilización",
+"tmdb": true,
+"v": 3
+},
+"materia vibrante popular tradicion de esta tierra": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Materia vibrante / Popular tradición de esta tierra",
 "tmdb": true,
 "v": 3
 }

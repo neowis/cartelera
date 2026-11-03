@@ -122,6 +122,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @media (min-width:900px){.cday{min-height:150px}.cday .thumbs>*{width:calc(33.3% - 2px)}}
 .calempty{padding:20px max(16px,env(safe-area-inset-left,0px));font:15px/1.4 var(--serif)}
 
+/* Cartel flotante que sigue al ratón en la lista */
+#peek{position:fixed;left:0;top:0;width:clamp(200px,19vw,300px);aspect-ratio:2/3;pointer-events:none;z-index:25;opacity:0;transition:opacity .12s;will-change:transform;background:var(--soft)}
+#peek.on{opacity:1}
+#peek img{width:100%;height:100%;object-fit:cover}
+#peek .fake{padding-bottom:9px}
+@media (hover:none){#peek{display:none}}
+
 /* Barra inferior */
 .bar{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:30;background:var(--yellow);border-bottom:1px solid var(--line);height:var(--bar);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
 .mark{font:400 20px var(--sans);letter-spacing:-.03em;white-space:nowrap}
@@ -203,6 +210,7 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
   </div>
 </nav>
 
+<div id="peek" aria-hidden="true"></div>
 <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT"></div></div>
 
 <script>
@@ -470,6 +478,7 @@ function scribble(pill, btn){
 /* Hojas */
 let lastFocus = null;
 function openSheet(build){
+  hidePeek();
   lastFocus = document.activeElement;
   const sh = $('#sheet'); sh.replaceChildren(el('button',{class:'close',id:'closeSheet',text:'Cerrar'}), ...build());
   $('#scrim').hidden = false; document.body.style.overflow = 'hidden';
@@ -510,6 +519,35 @@ function link(e, on){
 }
 $('#stage').addEventListener('pointerover', e => { if (e.pointerType === 'mouse') link(e, true); });
 $('#stage').addEventListener('pointerout', e => { if (e.pointerType === 'mouse') link(e, false); });
+/* Cartel flotante */
+const peek = $('#peek');
+let peekId = null, tx = 0, ty = 0, px = 0, py = 0, peekRaf = 0;
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function peekLoop(){
+  const k = calm ? 1 : 0.22;
+  px += (tx - px) * k; py += (ty - py) * k;
+  const w = peek.offsetWidth, h = peek.offsetHeight;
+  const x = Math.min(Math.max(px - w * 0.35, 8), innerWidth - w - 8);
+  const y = Math.min(Math.max(py - h * 0.5, 72), innerHeight - h - 8);
+  peek.style.transform = `translate(${x}px, ${y}px)`;
+  peekRaf = (Math.abs(tx - px) > 0.5 || Math.abs(ty - py) > 0.5) ? requestAnimationFrame(peekLoop) : 0;
+}
+function hidePeek(){ peekId = null; peek.classList.remove('on'); }
+$('#stage').addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse' || !['lista','guardadas'].includes(document.body.dataset.layout)) return;
+  const rowEl = e.target.closest('.row');
+  if (!rowEl) { hidePeek(); return; }
+  const r = rowsById.get(rowEl.dataset.id); if (!r) return;
+  tx = e.clientX; ty = e.clientY;
+  if (peekId !== r.id) {
+    if (!peek.classList.contains('on')) { px = tx; py = ty; }
+    peekId = r.id; peek.replaceChildren(art(r)); peek.classList.add('on');
+  }
+  if (!peekRaf) peekRaf = requestAnimationFrame(peekLoop);
+});
+$('#stage').addEventListener('pointerleave', hidePeek);
+window.addEventListener('scroll', () => { if (peekId) hidePeek(); }, {passive:true});
+
 $('#stage').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b && rowsById.has(b.dataset.id)) ficha(rowsById.get(b.dataset.id)); });
 
 function favButton(r){

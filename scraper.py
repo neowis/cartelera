@@ -250,7 +250,7 @@ def ecartelera(name, url):
         for blk in re.split(r'<div class="titem"', h)[1:]:
             t = re.search(r'<p class="tit"><a[^>]*>(.*?)</a>', blk, re.S)
             if not t: continue
-            img = (re.search(r'<img\s+src="([^"]+)"', blk) or [None, None])[1]
+            img = (re.search(r'<img[^>]*\ssrc="([^"]+)"', blk) or [None, None])[1]
             dr = txt((re.search(r'<p class="dir">Dir\.:(.*?)</p>', blk, re.S) or [None, ""])[1]) or None
             dur = re.search(r"<span>(\d+) min\.</span>", blk)
             for buy, hora, fmt in re.findall(r'<(?:a href="([^"]+)"|span)[^>]*data-session-time="(\d{1,2}:\d{2})" data-session-format="([^"]*)"', blk):
@@ -366,6 +366,124 @@ SOURCES = [("Cineteca Madrid", cineteca), ("Cine Doré · Filmoteca", dore), ("C
            ("Conde Duque y centros culturales municipales", ayuntamiento)] + \
           [(n, (lambda n=n, u=u: ecartelera(n, u))) for n, u in ECARTELERA]
 
+
+# ---------------------------------------------------------------- Portadas que faltan: búsqueda en Wikipedia
+WIKI_UA = "CarteleraDeBolsillo/1.0 (https://neowis.github.io/cartelera/)"
+CACHE_IN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "carteles_buscados.json")
+NO_FILM = re.compile(r"\b(curso|taller|cocina|cata|conferencia|charla|coloquio sobre|club de lectura|ficción sonora|creación audiovisual|jornada|concurso|cortos?\b|cortometrajes|festival|muestra|ciclo \d|semana)\b", re.I)
+
+def _norm(t):
+    import unicodedata
+    t = unicodedata.normalize("NFKD", t.lower())
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    t = re.sub(r"^(el|la|los|las|the|le|les|il|a)\s+", "", t)
+    return re.sub(r"[^a-z0-9]+", " ", t).strip()
+
+def clean_title(t):
+    """Devuelve (título, título alternativo, año) o None si no parece una película concreta."""
+    raw = t.strip()
+    year = None
+    m = re.search(r"\(([^()]*?)\b((?:18|19|20)\d{2})\)\s*\.?$", raw)
+    alt = None
+    if m:
+        year = int(m.group(2)); alt = m.group(1).strip(" ,;") or None
+        raw = raw[:m.start()].strip()
+    q = re.search(r"[‘'`´\"“]([^'’`´\"”]{2,80})[’'`´\"”]", raw)
+    if q and (":" in raw or re.search(r"cine|biblioteca|quedada|matinal", raw, re.I)):
+        inner = q.group(1).strip()
+        y2 = re.search(r"\(((?:18|19|20)\d{2})\b[^)]*\)", raw)
+        if y2 and not year: year = int(y2.group(1))
+        raw = inner
+    elif re.search(r"^(cine|cinefórum|cineclub|cine-club|cine club|documental)\b", raw, re.I):
+        raw = re.sub(r"^[^:]*:\s*", "", raw) if ":" in raw else ""
+    raw = re.sub(r"\s*\(V\.?O\.?S\.?E?\.?\)|\s*\(VOSE\)", "", raw, flags=re.I).strip(" .'\"")
+    if not raw or len(raw) < 2 or NO_FILM.search(t): return None
+    return raw, alt, year
+
+def _wiki_get(lang, params):
+    qs = urllib.parse.urlencode({"action": "query", "format": "json", "redirects": 1, **params})
+    req = urllib.request.Request(f"https://{lang}.wikipedia.org/w/api.php?{qs}", headers={"User-Agent": WIKI_UA})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.load(r).get("query", {}).get("pages", {})
+
+def wiki_poster(title, alt, year):
+    """Busca el artículo por título exacto (sin buscador) y devuelve su imagen principal si es una película."""
+    cands = [title] + ([alt] if alt and _norm(alt) != _norm(title) else [])
+    for lang in ("es", "en"):
+        titles = []
+        for c in cands:
+            c = c[:1].upper() + c[1:]
+            if lang == "es":
+                titles += ([f"{c} (película de {year})"] if year else []) + [f"{c} (película)", c]
+            else:
+                titles += ([f"{c} ({year} film)"] if year else []) + [f"{c} (film)", c]
+        try:
+            pages = _wiki_get(lang, {"titles": "|".join(titles[:50]), "prop": "pageimages|description|categories",
+                                     "piprop": "thumbnail", "pithumbsize": 500, "pilicense": "any", "cllimit": 50})
+        except Exception:
+            continue
+        order = {t: k for k, t in enumerate(titles)}
+        best = None
+        for pg in pages.values():
+            if "missing" in pg: continue
+            desc = (pg.get("description") or "").lower()
+            cats = " ".join(c.get("title", "") for c in pg.get("categories", [])).lower()
+            ptitle = pg.get("title", "")
+            text = f"{desc} {ptitle.lower()} {cats}"
+            if "desambiguación" in text or "disambiguation" in text: continue
+            if not re.search(r"\bfilm|película|pelicula|cortometraje|documental|animated|anime", text): continue
+            if year and not any(str(year + d) in text for d in (-1, 0, 1)): continue
+            th = (pg.get("thumbnail") or {}).get("source")
+            if not th: continue
+            rank = min([order.get(t, 99) for t in order if _norm(t.split(" (")[0]) == _norm(ptitle.split(" (")[0])] or [99])
+            if best is None or rank < best[0]: best = (rank, th)
+        if best: return best[1]
+        time.sleep(0.2)
+    return None
+
+def ecartelera_poster(title, alt, year):
+    """Busca en eCartelera y acepta solo una película con el mismo título (y año, si se conoce)."""
+    for c in [title] + ([alt] if alt else []):
+        try:
+            h = get("https://www.ecartelera.com/buscar/?q=" + urllib.parse.quote(c), tries=1)
+        except Exception:
+            continue
+        for href, img, t, meta in re.findall(r'<a class="sr-thing" href="(https://www\.ecartelera\.com/peliculas/[^"]+)">.*?<img src="([^"]+)".*?sr-thing__title">(.*?)</span>\s*<span class="sr-thing__meta">(.*?)</span>', h, re.S):
+            if _norm(txt(t)) != _norm(c): continue
+            y = re.search(r"(18|19|20)\d{2}", meta)
+            if year and (not y or abs(int(y.group()) - year) > 1): continue
+            big = img.replace("-th.jpg", ".jpg")
+            try:
+                get(big, binary=True, tries=1); return big
+            except Exception:
+                return img
+        time.sleep(0.4)
+    return None
+
+def fill_missing_posters(rows):
+    try: cache = json.load(open(CACHE_IN, encoding="utf8"))
+    except Exception: cache = {}
+    week_ago = (TODAY - timedelta(days=7)).isoformat()
+    found = 0
+    for r in rows:
+        if r.get("cartel"): continue
+        ct = clean_title(r["titulo"])
+        if not ct: continue
+        key = _norm(ct[0]) + (f"|{ct[2]}" if ct[2] else "")
+        hit = cache.get(key)
+        if hit is None or (not hit.get("url") and hit.get("t", "") < week_ago):
+            url, src = ecartelera_poster(*ct), "eCartelera"
+            if not url:
+                try: url, src = wiki_poster(*ct), "Wikipedia"
+                except Exception: url = None
+            hit = cache[key] = {"url": url or "", "fuente": src if url else "", "t": TODAY.isoformat(), "titulo": ct[0]}
+        if hit.get("url"):
+            r["cartel"] = poster(hit["url"])
+            if r["cartel"]: r["cartelFuente"] = hit.get("fuente") or "web"; found += 1
+    with open(f"{OUT}/data/carteles_buscados.json", "w", encoding="utf8") as fh:
+        json.dump(cache, fh, ensure_ascii=False, indent=0)
+    print(f"Portadas buscadas y encontradas: {found}", file=sys.stderr)
+
 def main():
     all_rows, fuentes = [], []
     for name, fn in SOURCES:
@@ -376,6 +494,8 @@ def main():
         except Exception as e:
             fuentes.append({"cine": name, "ok": False, "error": f"{type(e).__name__}: {str(e)[:120]}"})
         print(f"{name}: {fuentes[-1]} ({time.time()-t0:.0f}s)", file=sys.stderr)
+    try: fill_missing_posters(all_rows)
+    except Exception as e: print("Búsqueda de portadas falló:", e, file=sys.stderr)
     uniq = {r["id"]: {k: v for k, v in r.items() if v not in (None, "")} for r in all_rows}
     now = datetime.now(timezone.utc)
     data = {"actualizado": now.isoformat(timespec="seconds"), "proxima": (now + timedelta(hours=3)).isoformat(timespec="seconds"),

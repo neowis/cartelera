@@ -145,24 +145,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .datesel{position:relative;display:flex;justify-content:center}
 #dateBtn{font:900 20px/1 var(--sans);letter-spacing:.005em;text-transform:uppercase;-webkit-text-stroke:.35px currentColor;padding:9px 6px;min-height:44px;white-space:nowrap}
 #dateBtn .caret{font-weight:400;-webkit-text-stroke:0;font-size:.8em}
-.datepop{position:fixed;top:calc(env(safe-area-inset-top,0px) + var(--bar));left:50%;transform:translateX(-50%);z-index:45;width:min(360px,calc(100vw - 24px));background:var(--bg);border:1px solid var(--line);border-top:0;padding:14px 16px 16px}
-.dp-quick{display:flex;gap:8px;margin-bottom:14px}
-.dp-quick button{flex:1;border:1px solid var(--line);border-radius:999px;padding:11px 8px;font:15px var(--sans);text-transform:uppercase;letter-spacing:.01em}
-.dp-quick button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.dp-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
-.dp-head b{font:400 26px/1 var(--sans);letter-spacing:-.04em;text-transform:capitalize}
-.dp-head button{font:20px var(--sans);width:40px;height:36px;border:1px solid var(--line);border-radius:999px}
-.dp-head button:disabled{opacity:.2;cursor:default}
-.dp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
-.dp-grid .wd{font:12px var(--serif);padding:4px 0}
-.dp-grid button{position:relative;aspect-ratio:1;font:17px var(--sans);border-radius:999px}
-.dp-grid button:disabled{color:var(--gray);cursor:default}
-.dp-grid button.has::after{content:"";position:absolute;left:50%;bottom:5px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}
-.dp-grid button.tod{font-weight:900}
-.dp-grid button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-@media (hover:hover){.dp-grid button:not(:disabled):not([aria-pressed="true"]):hover{background:var(--soft)}}
-.dp-time{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;font:15px var(--serif)}
-.dp-time select{font:18px var(--sans);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--bg);color:var(--ink)}
+.datepop{position:fixed;top:calc(env(safe-area-inset-top,0px) + var(--bar));left:0;right:0;z-index:45;background:var(--bg);border-bottom:1px solid var(--line);max-height:calc(100vh - var(--bar) - env(safe-area-inset-top,0px));overflow:auto;box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.dp-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;padding:10px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+.dp-top h2{margin:0;font:400 clamp(34px,6vw,64px)/.95 var(--sans);letter-spacing:-.045em;text-transform:capitalize}
+.dp-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}
+.dp-q{font:400 20px/1 var(--sans);text-transform:uppercase;letter-spacing:-.02em;padding:10px 2px;min-height:44px}
+.dp-q[aria-pressed="true"]{font-weight:900;-webkit-text-stroke:.35px currentColor;letter-spacing:.005em}
+.dp-tools select{font:18px var(--sans);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--bg);color:var(--ink)}
+.calnav button:disabled{opacity:.25}
+.cgrid.pick .cday{min-height:64px;cursor:pointer}
+@media (min-width:900px){.cgrid.pick .cday{min-height:96px}}
+.cgrid.pick .cday:disabled{cursor:default}
+.cgrid.pick .cday:disabled .num{color:var(--gray)}
+.cday .cnt{margin-top:auto;font:12px/1.2 var(--serif);color:var(--ink)}
+.cday.sel{background:var(--yellow)}
+@media (hover:hover){.cgrid.pick .cday:not(:disabled):not(.sel):hover,.cday.has:not(.sel):hover{background:#ffffa6}}
+@media (max-width:599px){.cday .cnt{font-size:13px}.cday .cnt .w{display:none}}
 
 /* Barra inferior */
 .bar{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:30;background:var(--yellow);border-bottom:1px solid var(--line);height:var(--bar);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
@@ -510,7 +508,8 @@ function renderCal(st){
       const max = matchMedia('(min-width:900px)').matches ? 3 : 2;
       cell.append(el('div',{class:'thumbs'}, list.slice(0,max).map(r => el('div',{}, art(r)))));
       if (list.length > max) cell.append(el('span',{class:'more',text:`+${list.length-max}`}));
-      cell.onclick = () => { const t = document.getElementById('d-'+f); if (t) t.scrollIntoView({behavior:'smooth', block:'start'}); };
+      if (state.calSel === f) cell.classList.add('sel');
+      cell.onclick = () => { state.calSel = f; g.querySelectorAll('.cday.sel').forEach(c => c.classList.remove('sel')); cell.classList.add('sel'); const t = document.getElementById('d-'+f); if (t) t.scrollIntoView({behavior:'smooth', block:'start'}); };
     }
     g.append(cell);
   }
@@ -702,32 +701,36 @@ function openDatePop(){
   const sel = state.view === 'dia' ? state.date : (state.view === 'hoy' ? iso(today) : null);
   const first = state.pickMonth || new Date(today.getFullYear(), today.getMonth(), 1);
   state.pickMonth = first;
-  const days = new Set(state.rows.map(r => r.fecha));
-  const last = [...days].sort().pop() || iso(today);
-  const q1 = el('button',{'aria-pressed':String(state.view==='hoy'),text:'Hoy'}); q1.onclick = () => { setView('hoy'); closeDatePop(); };
-  const q2 = el('button',{'aria-pressed':String(state.view==='mes'),text:'Todo el mes'}); q2.onclick = () => { setView('mes'); closeDatePop(); };
+  const count = new Map(); state.rows.forEach(r => { if (!state.from || !r.hora || r.hora >= state.from) count.set(r.fecha, (count.get(r.fecha) || 0) + 1); });
+  const last = [...count.keys()].sort().pop() || iso(today);
+  const q1 = el('button',{class:'dp-q','aria-pressed':String(state.view==='hoy'),text:'Hoy'}); q1.onclick = () => { setView('hoy'); closeDatePop(); };
+  const q2 = el('button',{class:'dp-q','aria-pressed':String(state.view==='mes'),text:'Todo el mes'}); q2.onclick = () => { setView('mes'); closeDatePop(); };
+  const hs = el('select',{id:'fromSel','aria-label':'Desde la hora'}, el('option',{value:'',text:'Cualquier hora'}),
+    ['10:00','12:00','14:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00'].map(h => el('option',{value:h,text:'Desde las ' + h})));
+  hs.value = state.from; hs.onchange = () => { state.from = hs.value; render(); openDatePop(); };
   const prev = el('button',{'aria-label':'Mes anterior',text:'←'}), next = el('button',{'aria-label':'Mes siguiente',text:'→'});
   prev.disabled = first <= new Date(today.getFullYear(), today.getMonth(), 1);
   next.disabled = iso(new Date(first.getFullYear(), first.getMonth()+1, 1)) > last;
   prev.onclick = () => { state.pickMonth = new Date(first.getFullYear(), first.getMonth()-1, 1); openDatePop(); };
   next.onclick = () => { state.pickMonth = new Date(first.getFullYear(), first.getMonth()+1, 1); openDatePop(); };
-  const grid = el('div',{class:'dp-grid'}, ['L','M','X','J','V','S','D'].map(w => el('span',{class:'wd',text:w})));
-  const lead = (first.getDay()+6)%7; for (let i = 0; i < lead; i++) grid.append(el('span'));
-  const dim = new Date(first.getFullYear(), first.getMonth()+1, 0).getDate();
-  for (let d = 1; d <= dim; d++) {
-    const dt = new Date(first.getFullYear(), first.getMonth(), d), f = iso(dt);
-    const b = el('button',{class:(days.has(f)?'has':'')+(f===iso(today)?' tod':''),'aria-pressed':String(f===sel),'aria-label':`${d} de ${MESES_L[dt.getMonth()]}${days.has(f)?', con sesiones':''}`,text:String(d)});
-    b.disabled = dt < today || !days.has(f);
-    b.onclick = () => { setView('dia', f); closeDatePop(); };
-    grid.append(b);
+  const g = el('div',{class:'cgrid pick'}, ['L','M','X','J','V','S','D'].map(w => el('div',{class:'cwd',text:w})));
+  const start = new Date(first); start.setDate(1 - ((first.getDay()+6)%7));
+  for (let i = 0; i < 42; i++) {
+    const d = new Date(start); d.setDate(start.getDate()+i);
+    if (i >= 35 && d.getMonth() !== first.getMonth()) break;
+    const f = iso(d), n = count.get(f) || 0, out = d.getMonth() !== first.getMonth();
+    const cell = el('button',{class:'cday'+(d < today ? ' past':'')+(out?' out':'')+(f===sel?' sel':''),'aria-pressed':String(f===sel),
+      'aria-label':`${d.getDate()} de ${MESES_L[d.getMonth()]}${n ? `, ${n} sesiones` : ', sin sesiones'}`});
+    cell.append(el('span',{class:'num'+(f===iso(today)?' today':''),text:String(d.getDate())}));
+    if (n && d >= today) cell.append(el('span',{class:'cnt'}, String(n), el('span',{class:'w',text:` ${n===1?'sesión':'sesiones'}`})));
+    cell.disabled = d < today || !n;
+    cell.onclick = () => { setView('dia', f); closeDatePop(); };
+    g.append(cell);
   }
-  const hs = el('select',{id:'fromSel','aria-label':'Desde la hora'}, el('option',{value:'',text:'Cualquier hora'}),
-    ['10:00','12:00','14:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00'].map(h => el('option',{value:h,text:'Desde las ' + h})));
-  hs.value = state.from;
-  hs.onchange = () => { state.from = hs.value; render(); };
-  pop.replaceChildren(el('div',{class:'dp-quick'}, q1, q2),
-    el('div',{class:'dp-head'}, el('b',{text:`${MESES_L[first.getMonth()]}`}), el('span',{}, prev, ' ', next)),
-    grid, el('div',{class:'dp-time'}, el('span',{text:'Hora'}), hs));
+  pop.replaceChildren(
+    el('div',{class:'dp-top'}, el('h2',{text:MESES_L[first.getMonth()]}),
+      el('div',{class:'dp-tools'}, q1, q2, hs, el('div',{class:'calnav'}, prev, next))),
+    g);
   pop.hidden = false; $('#dateBtn').setAttribute('aria-expanded','true');
 }
 function closeDatePop(){ $('#datePop').hidden = true; $('#dateBtn').setAttribute('aria-expanded','false'); }

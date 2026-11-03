@@ -552,7 +552,9 @@
 "url": "",
 "fuente": "",
 "t": "2026-11-03",
-"titulo": "Cinemanía"
+"titulo": "Cinemanía",
+"tmdb": true,
+"v": 3
 },
 "cesar|1936": {
 "url": "https://image.tmdb.org/t/p/w780/pGMC7hSZ6HT68Mz4h5mqThvihwb.jpg",
@@ -1269,6 +1271,1068 @@
 "fuente": "TMDB",
 "t": "2026-11-03",
 "titulo": "Grease",
+"tmdb": true,
+"v": 3
+},
+"_tmdb": {
+"sonidos opticos|": {
+"url": "",
+"t": "2026-11-03"
+},
+"capitulo xxxv sonidos danzantes ii flamenco a contratiempo|": {
+"url": "",
+"t": "2026-11-03"
+},
+"deshielo|": {
+"url": "",
+"t": "2026-11-03"
+},
+"deux femmes en or|": {
+"url": "",
+"t": "2026-11-03"
+},
+"mecenaten|": {
+"url": "https://image.tmdb.org/t/p/w780/pf060UR1E0QyZZOS3xVKbv29Zdm.jpg",
+"t": "2026-11-03"
+},
+"se busca|": {
+"url": "",
+"t": "2026-11-03"
+},
+"ah girl|": {
+"url": "https://image.tmdb.org/t/p/w780/zbJtZcDdAlzvB2l5FgnxukWhmkO.jpg",
+"t": "2026-11-03"
+},
+"kairos|": {
+"url": "",
+"t": "2026-11-03"
+},
+"pupil|": {
+"url": "",
+"t": "2026-11-03"
+},
+"last resort|": {
+"url": "https://image.tmdb.org/t/p/w780/fKYfNnbyVnvo6Sf6dTJw40P5Jy0.jpg",
+"t": "2026-11-03"
+},
+"girls from above|": {
+"url": "https://image.tmdb.org/t/p/w780/7WXSD6i2jMzPuVpnqvu8zOeurqI.jpg",
+"t": "2026-11-03"
+},
+"vidas en la orilla|": {
+"url": "https://image.tmdb.org/t/p/w780/eSzbf8mcMVG926uqZPSkzb3C3ku.jpg",
+"t": "2026-11-03"
+},
+"gradiva|": {
+"url": "https://image.tmdb.org/t/p/w780/aFrhFiIhdf2klvXq8VFcB06b5pS.jpg",
+"t": "2026-11-03"
+},
+"jimpa|": {
+"url": "https://image.tmdb.org/t/p/w780/giSERsYBGUcfj9ctB0h9d5ympo8.jpg",
+"t": "2026-11-03"
+},
+"don t call me mama|": {
+"url": "https://image.tmdb.org/t/p/w780/c7BNHGJmqCspDWkzkng1cGM8rek.jpg",
+"t": "2026-11-03"
+},
+"postumo|": {
+"url": "",
+"t": "2026-11-03"
+},
+"tangles|": {
+"url": "https://image.tmdb.org/t/p/w780/agQGw5Cux2CYaxI8UHlLbta2bgw.jpg",
+"t": "2026-11-03"
+},
+"woman unknown|": {
+"url": "https://image.tmdb.org/t/p/w780/ly8Zf4McOMane0caBwnmuft6TTM.jpg",
+"t": "2026-11-03"
+},
+"timestamp|": {
+"url": "https://image.tmdb.org/t/p/w780/b49YNh0qTTBbxS7IP4sWdypTKoP.jpg",
+"t": "2026-11-03"
+},
+"un monstruo amable|": {
+"url": "",
+"t": "2026-11-03"
+},
+"cobijo|": {
+"url": "https://image.tmdb.org/t/p/w780/oiyKZhOBO72GARfymmeY3rm1HF4.jpg",
+"t": "2026-11-03"
+},
+"matins merveilleux|": {
+"url": "https://image.tmdb.org/t/p/w780/hZlmladO4eUrkdwcEn8nfDTFtQa.jpg",
+"t": "2026-11-03"
+},
+"carn|": {
+"url": "https://image.tmdb.org/t/p/w780/7OrOyDGt5WlzvTiRX4U2Lx9eCYg.jpg",
+"t": "2026-11-03"
+},
+"two mothers|": {
+"url": "https://image.tmdb.org/t/p/w780/k33FncQB4MgYqFAQFlMKxsY47Y.jpg",
+"t": "2026-11-03"
+},
+"uchronia|": {
+"url": "",
+"t": "2026-11-03"
+},
+"barbara forever|": {
+"url": "https://image.tmdb.org/t/p/w780/kYjCmL8sg17zoKtm5Pb6Cn4H0nB.jpg",
+"t": "2026-11-03"
+},
+"uberleben in new york|": {
+"url": "https://image.tmdb.org/t/p/w780/oWjPRefnIrVCU7KeRyyeJ87cNro.jpg",
+"t": "2026-11-03"
+},
+"runa simi|": {
+"url": "https://image.tmdb.org/t/p/w780/eXeQscX8CHbp2orMEF33d4OAshA.jpg",
+"t": "2026-11-03"
+},
+"dias posibles la moto|": {
+"url": "",
+"t": "2026-11-03"
+},
+"corren las liebres|": {
+"url": "https://image.tmdb.org/t/p/w780/nDtlD60o7siXg6zI4MRNra5m8d4.jpg",
+"t": "2026-11-03"
+},
+"lo que haciamos en las sombras|": {
+"url": "https://image.tmdb.org/t/p/w780/gPsYctBvmSPlmv8hlm7ImEbUQCL.jpg",
+"t": "2026-11-03"
+},
+"elles|": {
+"url": "https://image.tmdb.org/t/p/w780/uTgVDey4yjwFXIih26zUJjPaUVG.jpg",
+"t": "2026-11-03"
+},
+"paixao segundo g h b a cupula dos prazeres|": {
+"url": "",
+"t": "2026-11-03"
+},
+"harte|": {
+"url": "https://image.tmdb.org/t/p/w780/nUj6PzDZDDvCPjyRGHgy5DiFAcN.jpg",
+"t": "2026-11-03"
+},
+"cinemania|": {
+"url": "",
+"t": "2026-11-03"
+},
+"song without home|": {
+"url": "https://image.tmdb.org/t/p/w780/47oUluNEXUdcAX6QZeCnSSTAw4N.jpg",
+"t": "2026-11-03"
+},
+"oca|": {
+"url": "https://image.tmdb.org/t/p/w780/aJvxTjLGJXfs9Kv0Nfa5AdOlLUS.jpg",
+"t": "2026-11-03"
+},
+"un hombre en un puente|": {
+"url": "https://image.tmdb.org/t/p/w780/wkSaw5nAURqcBHmJ538BiMtpvye.jpg",
+"t": "2026-11-03"
+},
+"ghost in the machine|": {
+"url": "",
+"t": "2026-11-03"
+},
+"cuento de verano|": {
+"url": "",
+"t": "2026-11-03"
+},
+"dias libres|": {
+"url": "https://image.tmdb.org/t/p/w780/d1wUbc4Jufy7rUzM8amQAvjRkSX.jpg",
+"t": "2026-11-03"
+},
+"hermanas|": {
+"url": "",
+"t": "2026-11-03"
+},
+"tree of knowledge|": {
+"url": "",
+"t": "2026-11-03"
+},
+"calada|": {
+"url": "",
+"t": "2026-11-03"
+},
+"filipinana|": {
+"url": "",
+"t": "2026-11-03"
+},
+"mantis|": {
+"url": "",
+"t": "2026-11-03"
+},
+"hoxe e o resto do mundo|": {
+"url": "https://image.tmdb.org/t/p/w780/iXYVBc5EzSt2LuI3zgBhVucu4E9.jpg",
+"t": "2026-11-03"
+},
+"yastay|": {
+"url": "",
+"t": "2026-11-03"
+},
+"gran fiesta del cine|": {
+"url": "",
+"t": "2026-11-03"
+},
+"muerte de dracula|": {
+"url": "https://image.tmdb.org/t/p/w780/xeTenmN0IRvAwOg61t9ybp7TKhB.jpg",
+"t": "2026-11-03"
+},
+"un eclipse y el caos|": {
+"url": "https://image.tmdb.org/t/p/w780/vTBWEBx9NRrjJx8V0VajlQL7bnx.jpg",
+"t": "2026-11-03"
+},
+"simulacro|": {
+"url": "",
+"t": "2026-11-03"
+},
+"entrega de premios live a v jaydee y josephine soundscapes|": {
+"url": "",
+"t": "2026-11-03"
+},
+"cristina y los otros mundos|": {
+"url": "",
+"t": "2026-11-03"
+},
+"cantics a la penombra|": {
+"url": "",
+"t": "2026-11-03"
+},
+"rose|": {
+"url": "",
+"t": "2026-11-03"
+},
+"carmen s pure love|1952|keisuke kinoshita": {
+"url": "https://image.tmdb.org/t/p/w780/agSTKAOO4A9KBAauXiho3ZH9iPa.jpg",
+"t": "2026-11-03"
+},
+"melodia de arrabal|1933|louis gasnier": {
+"url": "https://image.tmdb.org/t/p/w780/8XbL26huBSCTA4ON460MPVDZ7vO.jpg",
+"t": "2026-11-03"
+},
+"marlene|1984|maximilian schell": {
+"url": "https://image.tmdb.org/t/p/w780/rkjXTH5LZlAQt48SvqFLV4CK4Pm.jpg",
+"t": "2026-11-03"
+},
+"un amor inmortal|1961|keisuke kinoshita": {
+"url": "https://image.tmdb.org/t/p/w780/xlwXRAHl5BYxkZ7PEfWqFcqSSfu.jpg",
+"t": "2026-11-03"
+},
+"santanotte|1922|elvira notari": {
+"url": "https://image.tmdb.org/t/p/w780/lEKw80a6En86USEQilFfRgansce.jpg",
+"t": "2026-11-03"
+},
+"nobleza baturra|1935|florian rey": {
+"url": "https://image.tmdb.org/t/p/w780/t1P9CtJsXHFjdSmHD42T8WeW3qa.jpg",
+"t": "2026-11-03"
+},
+"marius|1931|alexander korda": {
+"url": "https://image.tmdb.org/t/p/w780/tXzmV2LCH8zSNlFmcAQTGKzqv6y.jpg",
+"t": "2026-11-03"
+},
+"fantasia e surdate|1927|elvira notari": {
+"url": "",
+"t": "2026-11-03"
+},
+"balada de narayama|1958|keisuke kinoshita": {
+"url": "https://image.tmdb.org/t/p/w780/pEumH3PdMEBqyp0oWTJsOUqjnN7.jpg",
+"t": "2026-11-03"
+},
+"duque|2020|roger michell": {
+"url": "https://image.tmdb.org/t/p/w780/3QA5MfTIMnMhiiq9emwSFF60nnl.jpg",
+"t": "2026-11-03"
+},
+"e piccerella|1922|elvira notari": {
+"url": "https://image.tmdb.org/t/p/w780/42Jrzbx9O3DwxrbeywHxgKuU0wb.jpg",
+"t": "2026-11-03"
+},
+"shorts for future|un mundo mejor 2017 2025": {
+"url": "",
+"t": "2026-11-03"
+},
+"twenty four eyes|1954|keisuke kinoshita": {
+"url": "https://image.tmdb.org/t/p/w780/lHV1b64e42LCYMGUwxSZWPPcuEE.jpg",
+"t": "2026-11-03"
+},
+"locura de mujer|1983|margarethe von trotta": {
+"url": "https://image.tmdb.org/t/p/w780/dB7WPcqjZ67ATZS4cewxMM0oogP.jpg",
+"t": "2026-11-03"
+},
+"honey|2025|natasha arthy": {
+"url": "https://image.tmdb.org/t/p/w780/5a3YbuC4o7ISD4DgPG5VLRAtElc.jpg",
+"t": "2026-11-03"
+},
+"cuando cae el otono|2024|francois ozon": {
+"url": "https://image.tmdb.org/t/p/w780/fyU6HbAwdsDWOVoXtrP4WVhVRaB.jpg",
+"t": "2026-11-03"
+},
+"para hacer una pelicula solo hace falta un arma|2026|santiago sein": {
+"url": "https://image.tmdb.org/t/p/w780/yUCtz2Daw4pmDSWc0A0jjmHf3f4.jpg",
+"t": "2026-11-03"
+},
+"5 es el numero perfecto|2019|igor tuveri": {
+"url": "https://image.tmdb.org/t/p/w780/7okIhjrhqRqiSyLJHtfa4FPl7BI.jpg",
+"t": "2026-11-03"
+},
+"mburucuya cuadros de la naturaleza|1992|jorge acha": {
+"url": "https://image.tmdb.org/t/p/w780/zeZBF2ED7BRtR7mG64E28zBhIcP.jpg",
+"t": "2026-11-03"
+},
+"madrastra|1974|roberto gavaldon": {
+"url": "https://image.tmdb.org/t/p/w780/hj6NgZS6RIsrGzBIiT7s9yoYA5Z.jpg",
+"t": "2026-11-03"
+},
+"adios de un hijo|1944|keisuke kinoshita": {
+"url": "https://image.tmdb.org/t/p/w780/dHRZ343PwYvpwNudLX4x6Ypc5wW.jpg",
+"t": "2026-11-03"
+},
+"belle mariniere 12 nov|": {
+"url": "",
+"t": "2026-11-03"
+},
+"polvo seran|2024|carlos marques marcet": {
+"url": "https://image.tmdb.org/t/p/w780/UR3cOvqPJSMsAiaebAIZUd6jGR.jpg",
+"t": "2026-11-03"
+},
+"fin de jornada|1939|julie duvivier": {
+"url": "",
+"t": "2026-11-03"
+},
+"amor solfeando|1930|robert florey": {
+"url": "https://image.tmdb.org/t/p/w780/n0MgrNjaNaOUhRvBoZ5P6M7zrl7.jpg",
+"t": "2026-11-03"
+},
+"mujer y el pelele|1929|jacques de baroncelli": {
+"url": "https://image.tmdb.org/t/p/w780/mUYi2rZ4F8WjvCLTccEIfM56Ql6.jpg",
+"t": "2026-11-03"
+},
+"crazy stop motion|": {
+"url": "",
+"t": "2026-11-03"
+},
+"nouvelle vague|1990|jean luc godard": {
+"url": "https://image.tmdb.org/t/p/w780/pFofqGMcfiIoDISZBjctw2qggla.jpg",
+"t": "2026-11-03"
+},
+"dialogando con la vida|2022|christophe honore": {
+"url": "https://image.tmdb.org/t/p/w780/ziGStCIES7uUMpL29rC8q0iihNP.jpg",
+"t": "2026-11-03"
+},
+"goonies|1985|richard donner": {
+"url": "https://image.tmdb.org/t/p/w780/v7dWDGqLS0FHsVpSLNeKo9xlkg1.jpg",
+"t": "2026-11-03"
+},
+"cesar|1936|marcel pagnol": {
+"url": "https://image.tmdb.org/t/p/w780/pGMC7hSZ6HT68Mz4h5mqThvihwb.jpg",
+"t": "2026-11-03"
+},
+"no quiero volver a casa|2000|albertina carri": {
+"url": "https://image.tmdb.org/t/p/w780/daiQx0T1YcldnXsTyoLCXyIp3oa.jpg",
+"t": "2026-11-03"
+},
+"chansons d amour|2007|christophe honore": {
+"url": "https://image.tmdb.org/t/p/w780/7AyXJuPflcMmX06qdwUxPi9uREp.jpg",
+"t": "2026-11-03"
+},
+"bosque arriba en la montana|2026|sofia bordenave": {
+"url": "https://image.tmdb.org/t/p/w780/r5brsK8rdog4ewLZPihvb0tntZh.jpg",
+"t": "2026-11-03"
+},
+"vivir deprisa amar despacio|2018|christophe honore": {
+"url": "https://image.tmdb.org/t/p/w780/87lRqnFKNH88snrleci5cfeiSZR.jpg",
+"t": "2026-11-03"
+},
+"dolorosa|1934|jean gramillon": {
+"url": "https://image.tmdb.org/t/p/w780/6KJCmjN0YqBYLaYxXwa2D8au3Wy.jpg",
+"t": "2026-11-03"
+},
+"marcello mio|2024|christophe honore": {
+"url": "https://image.tmdb.org/t/p/w780/pJiFmwvYQTYIIx5sCUjLKTPtF5t.jpg",
+"t": "2026-11-03"
+},
+"ultimo|1924|f w murnau": {
+"url": "https://image.tmdb.org/t/p/w780/r23jNChGtptT7elVDbBaBH6TwsK.jpg",
+"t": "2026-11-03"
+},
+"raices aromas y color|": {
+"url": "",
+"t": "2026-11-03"
+},
+"eight bridges|2026|james benning": {
+"url": "https://image.tmdb.org/t/p/w780/h480wkeccETRDi50EhfWlZgsfco.jpg",
+"t": "2026-11-03"
+},
+"orange flavor wedding|2026|christophe honore": {
+"url": "https://image.tmdb.org/t/p/w780/zxXlaXcxhDRaKzHEtUIO9rku1j3.jpg",
+"t": "2026-11-03"
+},
+"fanny|1932|marc allegret": {
+"url": "https://image.tmdb.org/t/p/w780/r3nkvnM6tkutjPiNP9KxP6ctnNX.jpg",
+"t": "2026-11-03"
+},
+"little boy|2025|james benning": {
+"url": "https://image.tmdb.org/t/p/w780/vLtpJtn7gEDx0rpZdfaoiPLtXs3.jpg",
+"t": "2026-11-03"
+},
+"apenas un delincuente|1949|hugo fregonese": {
+"url": "https://image.tmdb.org/t/p/w780/6n6WwQ3cdvG58Gwjyh2LrTTkOoI.jpg",
+"t": "2026-11-03"
+},
+"deuda|2019|gustavo fontan": {
+"url": "https://image.tmdb.org/t/p/w780/lPsEhmLVqzwbMNf1jjfEAia0viC.jpg",
+"t": "2026-11-03"
+},
+"belle mariniere|1932|harry lachman": {
+"url": "https://image.tmdb.org/t/p/w780/nMwG19eai9dDf4XsIHsTb6QitD1.jpg",
+"t": "2026-11-03"
+},
+"zulueta aguirre tentativa y obra|": {
+"url": "",
+"t": "2026-11-03"
+},
+"carne de fieras|1936|armand guerra": {
+"url": "https://image.tmdb.org/t/p/w780/7FgtE6KbBB2qpgCja3WFQangCgo.jpg",
+"t": "2026-11-03"
+},
+"no soy yo|2024|leos carax": {
+"url": "https://image.tmdb.org/t/p/w780/wQ3T6eEVqf3ReKm0DJT8eWj03XC.jpg",
+"t": "2026-11-03"
+},
+"pusher un paseo por el abismo|1996|nicolas winding refn": {
+"url": "https://image.tmdb.org/t/p/w780/xVW0sVJaZ11q7re2wi1kAheBFvC.jpg",
+"t": "2026-11-03"
+},
+"mientras dure la guerra|2019|alejandro amenabar": {
+"url": "https://image.tmdb.org/t/p/w780/AojRnYAdJEScffAOlFpOHs5iy0i.jpg",
+"t": "2026-11-03"
+},
+"pusher ii con las manos ensangrentadas|2004|nicolas winding refn": {
+"url": "https://image.tmdb.org/t/p/w780/sDThpbDZXby3SS529Sm7DoDmVdU.jpg",
+"t": "2026-11-03"
+},
+"libertarias|1996|vicente aranda": {
+"url": "https://image.tmdb.org/t/p/w780/k9HiiZRNS6N0PnUM7Wyeo5cspEn.jpg",
+"t": "2026-11-03"
+},
+"pusher iii soy el angel de la muerte|2005|nicolas winding refn": {
+"url": "https://image.tmdb.org/t/p/w780/pHQ1PB8jGvdolfPHcn1F0W8Vsyd.jpg",
+"t": "2026-11-03"
+},
+"chicho o mientras el cuerpo aguante una comedia didactica|fernando trueba": {
+"url": "https://image.tmdb.org/t/p/w780/cP197uAp0E3AeOBHSOlcaVzS2n4.jpg",
+"t": "2026-11-03"
+},
+"piscina por la tarde|pablo llorca": {
+"url": "",
+"t": "2026-11-03"
+},
+"blue heron|sophy romvari": {
+"url": "https://image.tmdb.org/t/p/w780/8qy2dbkyeLj0Jh2lUPLCNTHMmxy.jpg",
+"t": "2026-11-03"
+},
+"naza|yuval abraham rachel szor": {
+"url": "https://image.tmdb.org/t/p/w780/urM4MnCGIsCxowqDnwExSUtVKAg.jpg",
+"t": "2026-11-03"
+},
+"isla indomita|pablo garcia sanz": {
+"url": "",
+"t": "2026-11-03"
+},
+"bola negra|javier calvo y javier ambrossi": {
+"url": "https://image.tmdb.org/t/p/w780/t1azKLExwUxKj6v6m2L535evuRa.jpg",
+"t": "2026-11-03"
+},
+"rayo verde la noche del cazador|charles laughton": {
+"url": "",
+"t": "2026-11-03"
+},
+"noche esta marchandose ya|ezequiel salinas y ramiro sonzini": {
+"url": "https://image.tmdb.org/t/p/w780/39jzHk0VK2kdt9lRAb8CqNuGcGc.jpg",
+"t": "2026-11-03"
+},
+"hope el primer impacto|na hong jin": {
+"url": "",
+"t": "2026-11-03"
+},
+"franz|agnieszka holland": {
+"url": "https://image.tmdb.org/t/p/w780/4bzQ0ka5ru65dEVS6MF3kKWKWvV.jpg",
+"t": "2026-11-03"
+},
+"mundo es ansi|": {
+"url": "",
+"t": "2026-11-03"
+},
+"ninos estan bien|": {
+"url": "https://image.tmdb.org/t/p/w780/vzqWLzP0PBljYnuKU52q6qW7cff.jpg",
+"t": "2026-11-03"
+},
+"naza|": {
+"url": "https://image.tmdb.org/t/p/w780/urM4MnCGIsCxowqDnwExSUtVKAg.jpg",
+"t": "2026-11-03"
+},
+"inside gaza|": {
+"url": "https://image.tmdb.org/t/p/w780/9CfYPVwuhQSOysvcy8vYWOIBz8t.jpg",
+"t": "2026-11-03"
+},
+"hope|": {
+"url": "https://image.tmdb.org/t/p/w780/lkWqvj24NG3vEgu19ZQ9erG3Vj7.jpg",
+"t": "2026-11-03"
+},
+"voz quebrada|": {
+"url": "https://image.tmdb.org/t/p/w780/4cPhWQu79dUJnVrxJRAtVp94Bda.jpg",
+"t": "2026-11-03"
+},
+"ceniza en la boca|": {
+"url": "https://image.tmdb.org/t/p/w780/mO2OqwqlCcBZ3QYcxIfafW37Uey.jpg",
+"t": "2026-11-03"
+},
+"vida de una mujer|": {
+"url": "",
+"t": "2026-11-03"
+},
+"digger|": {
+"url": "https://image.tmdb.org/t/p/w780/koqE0V2IgIPVy5o2vVkoGJvnB8b.jpg",
+"t": "2026-11-03"
+},
+"bola negra|": {
+"url": "https://image.tmdb.org/t/p/w780/t1azKLExwUxKj6v6m2L535evuRa.jpg",
+"t": "2026-11-03"
+},
+"historia de souleymane|": {
+"url": "https://image.tmdb.org/t/p/w780/p5b8aNWopnUxORdHcmHP7WttEQO.jpg",
+"t": "2026-11-03"
+},
+"lisandro alonso la libertad doble|": {
+"url": "",
+"t": "2026-11-03"
+},
+"ana apontes y sol munoz nocturno y maria aparicio a veces me entra tristeza otras veces rebelion|": {
+"url": "",
+"t": "2026-11-03"
+},
+"paola buontempo las fuerzas y julian d angiolillo cuerpo de letra|": {
+"url": "",
+"t": "2026-11-03"
+},
+"ezequiel salinas y ramiro sonzini la noche esta marchandose ya|": {
+"url": "",
+"t": "2026-11-03"
+},
+"fernando restelli merodeo y colectivo antes muerto cine y tatiana mazu todo documento de civilizacion|": {
+"url": "",
+"t": "2026-11-03"
+},
+"pablo marin materia vibrante y mariano llinas popular tradicion de esta tierra|": {
+"url": "",
+"t": "2026-11-03"
+},
+"raul perrone sean eternxs|": {
+"url": "",
+"t": "2026-11-03"
+},
+"amandine fredon y benjamin massoubre el pequeno nicolas|": {
+"url": "",
+"t": "2026-11-03"
+},
+"rodrigo moreno los delincuentes|": {
+"url": "",
+"t": "2026-11-03"
+},
+"doce lunas|": {
+"url": "https://image.tmdb.org/t/p/w780/8997sd107XxrOP2uxzJPwkQwBTQ.jpg",
+"t": "2026-11-03"
+},
+"hija condor|": {
+"url": "https://image.tmdb.org/t/p/w780/apNxjF4eu2Oy3kqugfBgUP37C4O.jpg",
+"t": "2026-11-03"
+},
+"matar un oso|": {
+"url": "",
+"t": "2026-11-03"
+},
+"vicentina pede desculpas|": {
+"url": "https://image.tmdb.org/t/p/w780/2Lw3ouMPsK8F0asNdXl2xfyV78T.jpg",
+"t": "2026-11-03"
+},
+"godzilla minus zero|": {
+"url": "https://image.tmdb.org/t/p/w780/taoPyKQTXh0FSwO5rin8Djrt20C.jpg",
+"t": "2026-11-03"
+},
+"hangar rojo|": {
+"url": "https://image.tmdb.org/t/p/w780/e2smZi0wCDFgCbx2gSwbCetPZhF.jpg",
+"t": "2026-11-03"
+},
+"ray gunn|": {
+"url": "https://image.tmdb.org/t/p/w780/rpP29aOKpHy1FhX8OZQdUICEs2j.jpg",
+"t": "2026-11-03"
+},
+"llueve sobre babel|": {
+"url": "https://image.tmdb.org/t/p/w780/o6IDuFe3bBUR46DQbTy4tRCvnuk.jpg",
+"t": "2026-11-03"
+},
+"amor era esto universo juanma carrillo|": {
+"url": "",
+"t": "2026-11-03"
+},
+"test|": {
+"url": "",
+"t": "2026-11-03"
+},
+"memotest|": {
+"url": "https://image.tmdb.org/t/p/w780/I2fI9e0CgCikF7Rc6JYfXbHan1.jpg",
+"t": "2026-11-03"
+},
+"cooking up democracy|": {
+"url": "https://image.tmdb.org/t/p/w780/eHyupF3LCPffKzhgWcltwxbTJz3.jpg",
+"t": "2026-11-03"
+},
+"mineshaft the cruising murders|": {
+"url": "https://image.tmdb.org/t/p/w780/zDW3fKL5orJZSnjXYk1Lxv3toKq.jpg",
+"t": "2026-11-03"
+},
+"apolo|": {
+"url": "",
+"t": "2026-11-03"
+},
+"eva|": {
+"url": "",
+"t": "2026-11-03"
+},
+"ana rodrigo y agustina giovio en concierto|": {
+"url": "",
+"t": "2026-11-03"
+},
+"algo horrible y maravilloso de patricio ruiz argentina|": {
+"url": "",
+"t": "2026-11-03"
+},
+"crimenes cotidianos de rafael pence uruguay|": {
+"url": "",
+"t": "2026-11-03"
+},
+"flores muertas de natalia villamil argentina|": {
+"url": "",
+"t": "2026-11-03"
+},
+"musica de regreso a casa de victoria vera uruguay|": {
+"url": "",
+"t": "2026-11-03"
+},
+"bette davis estas ahi de domingo milesi uruguay|": {
+"url": "",
+"t": "2026-11-03"
+},
+"luciernagas sueno bastardo de horacio nin uria argentina|": {
+"url": "",
+"t": "2026-11-03"
+},
+"castillo capitulo 3 45|": {
+"url": "",
+"t": "2026-11-03"
+},
+"castillo capitulo 1 58 y capitulo 2 53|": {
+"url": "",
+"t": "2026-11-03"
+},
+"salen las lobas|": {
+"url": "https://image.tmdb.org/t/p/w780/5IFDmqIFPWefoqEtb9ETbXIRb9l.jpg",
+"t": "2026-11-03"
+},
+"forastera|": {
+"url": "",
+"t": "2026-11-03"
+},
+"75 anos en madrid siempre vicalvaro|": {
+"url": "",
+"t": "2026-11-03"
+},
+"animales con mucho cuento|": {
+"url": "",
+"t": "2026-11-03"
+},
+"aventuras en pijama|": {
+"url": "",
+"t": "2026-11-03"
+},
+"bambi una vida en el bosque|2024|felix salten": {
+"url": "https://image.tmdb.org/t/p/w780/fvtIXQH4JcifptPe0J9GfLDIOAQ.jpg",
+"t": "2026-11-03"
+},
+"chinas|": {
+"url": "https://image.tmdb.org/t/p/w780/xjW4jbnqPq3sNH6SLzHgwi778CV.jpg",
+"t": "2026-11-03"
+},
+"andrzej zulawski el amor sin limites|": {
+"url": "",
+"t": "2026-11-03"
+},
+"shrek 2|": {
+"url": "https://image.tmdb.org/t/p/w780/knRt4E8KyfwEv0SVu9LsLvD28IQ.jpg",
+"t": "2026-11-03"
+},
+"shrek|": {
+"url": "https://image.tmdb.org/t/p/w780/jTQONM7jt1yv2lL972TtmWO0UIZ.jpg",
+"t": "2026-11-03"
+},
+"nosferatu|": {
+"url": "",
+"t": "2026-11-03"
+},
+"cine chino del nuevo milenio|": {
+"url": "",
+"t": "2026-11-03"
+},
+"prevencion del duelo complicado|": {
+"url": "",
+"t": "2026-11-03"
+},
+"mejores peliculas de la historia del cine|": {
+"url": "",
+"t": "2026-11-03"
+},
+"soledad no deseada|": {
+"url": "",
+"t": "2026-11-03"
+},
+"memoria es nuestra|": {
+"url": "https://image.tmdb.org/t/p/w780/9DU1kj47uZBtEWDUV3qffpr4x17.jpg",
+"t": "2026-11-03"
+},
+"your name|": {
+"url": "https://image.tmdb.org/t/p/w780/iaiy3tg9QVkDpObm1IGqmbC9A5C.jpg",
+"t": "2026-11-03"
+},
+"erase una vez en hollywood|1974|": {
+"url": "https://image.tmdb.org/t/p/w780/4RdWkWn4tVVtFjsSLBBXaVExtCq.jpg",
+"t": "2026-11-03"
+},
+"esto si es bailar|": {
+"url": "https://image.tmdb.org/t/p/w780/mAQZhdP6HIXq6JKYZtgEo2rU2bZ.jpg",
+"t": "2026-11-03"
+},
+"hollywood hollywood|1976|": {
+"url": "https://image.tmdb.org/t/p/w780/yuvgOvG0OSOS33EW1L42ZM7PEI0.jpg",
+"t": "2026-11-03"
+},
+"cosas de chicos|": {
+"url": "https://image.tmdb.org/t/p/w780/aFFzXvBgV3VbnMO5FSKYxbzFOBw.jpg",
+"t": "2026-11-03"
+},
+"casa y cuartel eta contra la benemerita|": {
+"url": "",
+"t": "2026-11-03"
+},
+"amor que permanece|": {
+"url": "https://image.tmdb.org/t/p/w780/4j1hblHh0DmpSdRqSQtqN8mepCU.jpg",
+"t": "2026-11-03"
+},
+"relevo|": {
+"url": "https://image.tmdb.org/t/p/w780/vVNNeUi2EYtJq4oDjF7WiWhN3A6.jpg",
+"t": "2026-11-03"
+},
+"ultimo vikingo|2025|": {
+"url": "https://image.tmdb.org/t/p/w780/xpxirvtkQBFHAGWkTamKjDWp9rG.jpg",
+"t": "2026-11-03"
+},
+"medias hermanas|2025|yoel morales": {
+"url": "https://image.tmdb.org/t/p/w780/gTaZU3E6fHtWPvw60sF16TwVm6E.jpg",
+"t": "2026-11-03"
+},
+"irlanda mas alla de los topicos|": {
+"url": "",
+"t": "2026-11-03"
+},
+"fuerza|": {
+"url": "",
+"t": "2026-11-03"
+},
+"furia|": {
+"url": "https://image.tmdb.org/t/p/w780/oURIkXKGTBJ2R3rw61SIEWYmhq3.jpg",
+"t": "2026-11-03"
+},
+"tarta del presidente|2025|": {
+"url": "https://image.tmdb.org/t/p/w780/9zfQ8eanWwkFA6S3YhZWle7jp75.jpg",
+"t": "2026-11-03"
+},
+"cosas sencillas|2023|": {
+"url": "https://image.tmdb.org/t/p/w780/njMF6LA48YxnwLR0iUXN2NtevxF.jpg",
+"t": "2026-11-03"
+},
+"estaciones|": {
+"url": "https://image.tmdb.org/t/p/w780/yrRsR3O64Yzq6wYFBv6k3jfycBi.jpg",
+"t": "2026-11-03"
+},
+"loca por la musica|1937|henry koster": {
+"url": "https://image.tmdb.org/t/p/w780/bWCDQRYTq4rnD7sVh1p959mEASe.jpg",
+"t": "2026-11-03"
+},
+"domingos|alauda ruiz de azua": {
+"url": "https://image.tmdb.org/t/p/w780/kwpDm6qtON8pLCSY0C8MltMofEE.jpg",
+"t": "2026-11-03"
+},
+"madrid residencia de talento|": {
+"url": "",
+"t": "2026-11-03"
+},
+"mas vivos que nunca|": {
+"url": "https://image.tmdb.org/t/p/w780/6qoNSzSbbORgyctlLmCWqgfARYR.jpg",
+"t": "2026-11-03"
+},
+"talento km 0|": {
+"url": "",
+"t": "2026-11-03"
+},
+"monsieur verdoux|1947|charles chaplin": {
+"url": "https://image.tmdb.org/t/p/w780/bqk56Z7Y8IiPNAMRflUl3FDxkrE.jpg",
+"t": "2026-11-03"
+},
+"domingos|2025|alauda ruiz de azua": {
+"url": "https://image.tmdb.org/t/p/w780/kwpDm6qtON8pLCSY0C8MltMofEE.jpg",
+"t": "2026-11-03"
+},
+"furia|2025|gemma blasco": {
+"url": "https://image.tmdb.org/t/p/w780/qnqvxOgcEYaePEFkIqRPovpsBl.jpg",
+"t": "2026-11-03"
+},
+"romeria|2025|carla simon pipo": {
+"url": "https://image.tmdb.org/t/p/w780/9mkLV32jOUXhC8uQaw7zV9ymm8Y.jpg",
+"t": "2026-11-03"
+},
+"domingo de carnaval|": {
+"url": "https://image.tmdb.org/t/p/w780/dR7FLvHCCDoSxT93kcan5B4HH17.jpg",
+"t": "2026-11-03"
+},
+"duende y misterio del flamenco|1952|": {
+"url": "https://image.tmdb.org/t/p/w780/zp0hGrqZ4549NDtotu3scMIQZJl.jpg",
+"t": "2026-11-03"
+},
+"cameraman|1928|edward sedgwick": {
+"url": "https://image.tmdb.org/t/p/w780/q67uxNfJ2nIDW48eOgF8s99Wy0m.jpg",
+"t": "2026-11-03"
+},
+"crimen de la calle bordadores|1946|": {
+"url": "",
+"t": "2026-11-03"
+},
+"forzudo|1926|frank capra": {
+"url": "https://image.tmdb.org/t/p/w780/64J8XyG7mNMQlMDeW1xYoBY7xnw.jpg",
+"t": "2026-11-03"
+},
+"nada|1947|": {
+"url": "https://image.tmdb.org/t/p/w780/n0HheYaI1Rr668Pq0CpUnpX1Tt5.jpg",
+"t": "2026-11-03"
+},
+"vagabundo vagabundo vagabundo|1926|harry edwards": {
+"url": "",
+"t": "2026-11-03"
+},
+"requiem por un sueno|": {
+"url": "https://image.tmdb.org/t/p/w780/2B5brHMhaHN1d9KmdeZI6RlU3aE.jpg",
+"t": "2026-11-03"
+},
+"resurreccion|": {
+"url": "",
+"t": "2026-11-03"
+},
+"romeria|carla simon": {
+"url": "https://image.tmdb.org/t/p/w780/9mkLV32jOUXhC8uQaw7zV9ymm8Y.jpg",
+"t": "2026-11-03"
+},
+"sabados de cine de otono|": {
+"url": "",
+"t": "2026-11-03"
+},
+"teo va al espacio|": {
+"url": "https://image.tmdb.org/t/p/w780/ut2Y23MyxfwFzoeQ3MMdHEtGrFv.jpg",
+"t": "2026-11-03"
+},
+"tres amigas|2024|": {
+"url": "https://image.tmdb.org/t/p/w780/bpK4nHk52cUL4TajeGsIjG8YDLd.jpg",
+"t": "2026-11-03"
+},
+"un dios salvaje|": {
+"url": "https://image.tmdb.org/t/p/w780/mHbO1Q6aphUz3QProHMd143J8eC.jpg",
+"t": "2026-11-03"
+},
+"una batalla tras otra|": {
+"url": "https://image.tmdb.org/t/p/w780/iZ1499F6hYxDxiqioy8oSUaxipG.jpg",
+"t": "2026-11-03"
+},
+"una cabeza en la pared|": {
+"url": "https://image.tmdb.org/t/p/w780/2w7lZyuBp5XB2QjSD2f32rVecgF.jpg",
+"t": "2026-11-03"
+},
+"una pelicula de minecraft|": {
+"url": "https://image.tmdb.org/t/p/w780/mFjtmmh4RtK9tLv1aPnUsl6st3m.jpg",
+"t": "2026-11-03"
+},
+"uno dos tres|1961|billy wilder": {
+"url": "https://image.tmdb.org/t/p/w780/toTjc11iO3tgdKLAIeLGse1LTk9.jpg",
+"t": "2026-11-03"
+},
+"grease|": {
+"url": "https://image.tmdb.org/t/p/w780/flSy0dexE82TiS6Si2FtulSHk8o.jpg",
+"t": "2026-11-03"
+},
+"mujer fantasma|1947|roy del ruth": {
+"url": "https://image.tmdb.org/t/p/w780/cHYAcdqqQYPFfjMNnJ3YcOAPCG7.jpg",
+"t": "2026-11-03"
+},
+"cabeza borradora|david lynch": {
+"url": "https://image.tmdb.org/t/p/w780/j8Z0M4rUmxVFtvpN7bZ2JTASrsy.jpg",
+"t": "2026-11-03"
+},
+"una historia verdadera|david lynch": {
+"url": "https://image.tmdb.org/t/p/w780/qakfW6Mt0iJ4HziS5OOuLTfOihJ.jpg",
+"t": "2026-11-03"
+},
+"esta soledad|javier giner": {
+"url": "https://image.tmdb.org/t/p/w780/gDsAXwxRwH9nQCv1z5GvqVwPnTI.jpg",
+"t": "2026-11-03"
+},
+"nido|hugo stuven casasnovas": {
+"url": "https://image.tmdb.org/t/p/w780/ip3VExjF1sJoejq4juAZmutO6E5.jpg",
+"t": "2026-11-03"
+},
+"hope|hong jin na": {
+"url": "https://image.tmdb.org/t/p/w780/lkWqvj24NG3vEgu19ZQ9erG3Vj7.jpg",
+"t": "2026-11-03"
+},
+"invitacion|olivia wilde": {
+"url": "https://image.tmdb.org/t/p/w780/21JnfyCARiRkms9AZHtTXiZKbIj.jpg",
+"t": "2026-11-03"
+},
+"sentido y sensibilidad|georgia oakley": {
+"url": "https://image.tmdb.org/t/p/w780/9BvQHFAQ3BhKk5NSYxtYSMn5lrb.jpg",
+"t": "2026-11-03"
+},
+"bola negra|javier ambrossi javier calvo": {
+"url": "https://image.tmdb.org/t/p/w780/t1azKLExwUxKj6v6m2L535evuRa.jpg",
+"t": "2026-11-03"
+},
+"victorian psycho|zachary wigon": {
+"url": "https://image.tmdb.org/t/p/w780/eknMIThHWZCxMzDAcUDk4rK2Wpc.jpg",
+"t": "2026-11-03"
+},
+"adolescencia sexo y muerte en campamento miasma|jane schoenbrun": {
+"url": "https://image.tmdb.org/t/p/w780/8UTCpwvHxWPllCJ7YnaCbffmYyD.jpg",
+"t": "2026-11-03"
+},
+"clayface|james watkins": {
+"url": "https://image.tmdb.org/t/p/w780/6ihSDJlBNcvoTWzSA0jonZyOXTs.jpg",
+"t": "2026-11-03"
+},
+"digger|alejandro gonzalez inarritu": {
+"url": "https://image.tmdb.org/t/p/w780/koqE0V2IgIPVy5o2vVkoGJvnB8b.jpg",
+"t": "2026-11-03"
+},
+"ser querido|rodrigo sorogoyen": {
+"url": "https://image.tmdb.org/t/p/w780/LdKLipXCdKHNXxUxn8l7UTdnXJ.jpg",
+"t": "2026-11-03"
+},
+"karateka|aritz moreno": {
+"url": "https://image.tmdb.org/t/p/w780/bJh97VEUn9TWygQSrOOyJrwQXek.jpg",
+"t": "2026-11-03"
+},
+"leviticus|adrian chiarella": {
+"url": "https://image.tmdb.org/t/p/w780/tGS5jugRsn7KwZLrvkqWeMtR7nB.jpg",
+"t": "2026-11-03"
+},
+"wildwood el bosque salvaje|travis knight": {
+"url": "https://image.tmdb.org/t/p/w780/sJ1uZ4DKsjs2iqLtCX46TifxqoE.jpg",
+"t": "2026-11-03"
+},
+"arriba tutto|jose mota": {
+"url": "https://image.tmdb.org/t/p/w780/a8MvsDCP3sv0WXNW3I0ainSuLcd.jpg",
+"t": "2026-11-03"
+},
+"tiempos de ilusion|olivier nakache eric toledano": {
+"url": "https://image.tmdb.org/t/p/w780/ku7zVdj7yUZn71cG6YvCoC3Rxjm.jpg",
+"t": "2026-11-03"
+}
+},
+"sonidos opticos": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Sonidos ópticos",
+"tmdb": true,
+"v": 3
+},
+"capitulo xxxv sonidos danzantes ii flamenco a contratiempo": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Capítulo XXXV: Sonidos danzantes II (flamenco a contratiempo)",
+"tmdb": true,
+"v": 3
+},
+"uchronia": {
+"url": "https://upload.wikimedia.org/wikipedia/en/c/cf/Uchronia_film_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+"fuente": "Wikipedia",
+"t": "2026-11-03",
+"titulo": "Uchronia",
+"tmdb": true,
+"v": 3
+},
+"entrega de premios live a v jaydee y josephine soundscapes": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Entrega de premios + Live A/V: JayDee y Josephine’ Soundscapes",
+"tmdb": true,
+"v": 3
+},
+"fantasia e surdate|1927": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Fantasia ‘e surdate",
+"tmdb": true,
+"v": 3
+},
+"belle mariniere 12 nov": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "La belle marinière 12 NOV",
+"tmdb": true,
+"v": 3
+},
+"piscina por la tarde": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Piscina por la tarde",
+"tmdb": true,
+"v": 3
+},
+"isla indomita": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Isla indómita",
+"tmdb": true,
+"v": 3
+},
+"rayo verde la noche del cazador": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "El rayo verde: La noche del cazador",
+"tmdb": true,
+"v": 3
+},
+"hope el primer impacto": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Hope: el primer impacto",
+"tmdb": true,
+"v": 3
+},
+"matar un oso": {
+"url": "",
+"fuente": "",
+"t": "2026-11-03",
+"titulo": "Matar un oso",
 "tmdb": true,
 "v": 3
 }

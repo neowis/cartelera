@@ -57,7 +57,10 @@ button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{ou
 .tk{display:grid;grid-template-columns:92px 1fr auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
 .tk.sold{opacity:.62}
 .poster{width:92px;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--stub);max-width:100%}
-.fake{width:92px;aspect-ratio:2/3;display:flex;align-items:flex-end;padding:8px;box-sizing:border-box;font:800 13px/1.05 var(--f-display);color:#fff;overflow:hidden;word-break:break-word}
+.fake{width:92px;aspect-ratio:2/3;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:8px;box-sizing:border-box;color:#fff;overflow:hidden;max-width:100%}
+.fk-kind{font:700 9px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.28);padding:3px 5px;border-radius:3px}
+.fk-ico{width:42%;height:auto;align-self:center;fill:none;stroke:rgba(255,255,255,.7);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.fk-title{font:800 12px/1.08 var(--f-display);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;hyphens:auto;width:100%}
 .info{padding:10px 12px;min-width:0;display:flex;flex-direction:column;gap:4px}
 .info h3{margin:0;font-family:var(--f-display);font-weight:800;font-size:17px;line-height:1.15;text-wrap:balance}
 .meta{font-size:13px;color:var(--muted)}
@@ -105,6 +108,7 @@ details.src ul{padding-left:18px;columns:2 260px}
   .grid{gap:12px}
   .tk{grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto}
   .poster,.fake{width:96px;grid-row:1}
+  .fk-title{font-size:13px}
   .info{padding:12px 14px;gap:6px}
   .info h3{font-size:19px;line-height:1.2}
   .meta{font-size:15px}
@@ -217,13 +221,58 @@ function filtered(){
   }).sort((x,y) => (x.fecha+x.hora).localeCompare(y.fecha+y.hora) || x.cine.localeCompare(y.cine));
 }
 
+const KINDS = [
+  [/cine\s*-?\s*club|cineclub/i, 'Cineclub', 'reel'],
+  [/cinef[oó]rum|coloquio|debate/i, 'Cinefórum', 'talk'],
+  [/infantil|peques|familiar|mi primer festival|matinal/i, 'Infantil', 'star'],
+  [/corto|cortometraje/i, 'Cortos', 'clap'],
+  [/documental/i, 'Documental', 'eye'],
+  [/concierto|m[uú]sica/i, 'Cine y música', 'note'],
+  [/ciclo|muestra|festival|semana/i, 'Ciclo', 'grid'],
+  [/biblioteca|quedada|filmoteca/i, 'En la biblioteca', 'book'],
+];
+const ICONS = {
+  reel:'<circle cx="24" cy="24" r="18"/><circle cx="24" cy="14" r="4"/><circle cx="24" cy="34" r="4"/><circle cx="14" cy="24" r="4"/><circle cx="34" cy="24" r="4"/>',
+  talk:'<path d="M8 12h24v16H18l-8 6v-6H8z"/><path d="M36 18h4v14h-2v5l-6-5H22"/>',
+  star:'<path d="M24 6l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/>',
+  clap:'<rect x="8" y="18" width="32" height="22" rx="2"/><path d="M8 18l4-10 28 4-2 6"/><path d="M16 10l4 8M26 11l4 7"/>',
+  eye:'<path d="M4 24s8-12 20-12 20 12 20 12-8 12-20 12S4 24 4 24z"/><circle cx="24" cy="24" r="6"/>',
+  note:'<path d="M18 36V10l20-4v26"/><circle cx="14" cy="36" r="5"/><circle cx="34" cy="32" r="5"/>',
+  grid:'<rect x="8" y="8" width="13" height="13" rx="2"/><rect x="27" y="8" width="13" height="13" rx="2"/><rect x="8" y="27" width="13" height="13" rx="2"/><rect x="27" y="27" width="13" height="13" rx="2"/>',
+  book:'<path d="M8 10c6-2 11-1 16 3 5-4 10-5 16-3v28c-6-2-11-1-16 3-5-4-10-5-16-3z"/><path d="M24 13v28"/>',
+  film:'<rect x="8" y="6" width="32" height="36" rx="3"/><path d="M14 6v36M34 6v36M8 14h6M8 22h6M8 30h6M34 14h6M34 22h6M34 30h6"/>',
+};
+function posterText(r){
+  let t = r.titulo, year = r.anio || null;
+  const m = t.match(/\s*\(([^()]*?)\b((?:18|19|20)\d{2})\)\s*\.?$/);
+  if (m) { year = year || m[2]; t = t.slice(0, m.index); }
+  const q = t.match(/[‘'`´"“]([^'’`´"”]{2,80})[’'`´"”]/);
+  let kind = null;
+  for (const [re, label, icon] of KINDS) if (re.test(r.titulo) || (r.municipal && re.test(r.ciclo || ''))) { kind = {label, icon}; break; }
+  if (q && /:|cine|biblioteca|quedada|filmoteca/i.test(t)) t = q[1];
+  else if (kind && t.includes(':')) t = t.split(':').slice(1).join(':').trim() || t;
+  return { t: t.replace(/^[\s'"`´]+|[\s'"`´.]+$/g,''), year, kind };
+}
+function fakePoster(r){
+  const {t, year, kind} = posterText(r);
+  const h = hue(r.titulo), icon = kind ? kind.icon : 'film';
+  const box = el('div',{class:'fake',role:'img','aria-label':`Portada de ${r.titulo}`,
+    style:`background:linear-gradient(165deg,hsl(${h} 48% 38%),hsl(${(h+35)%360} 55% 18%))`});
+  box.append(el('span',{class:'fk-kind',text: kind ? kind.label : (year ? String(year) : 'Película')}));
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox','0 0 48 48'); svg.setAttribute('class','fk-ico'); svg.setAttribute('aria-hidden','true');
+  svg.innerHTML = ICONS[icon]; box.append(svg);
+  box.append(el('span',{class:'fk-title',text:t}));
+  return box;
+}
+
 function ticket(r){
   const sold = r.estado === 'agotado';
   const est = ESTADO[r.estado] ? r.estado : 'desconocido';
   const art = r.cartel
     ? el('img',{class:'poster',src:r.cartel,alt:`Cartel de ${r.titulo}`,loading:'lazy'})
-    : el('div',{class:'fake',style:`background:linear-gradient(160deg,hsl(${hue(r.titulo)} 55% 42%),hsl(${(hue(r.titulo)+40)%360} 60% 24%))`,text:r.titulo});
-  if (r.cartel) art.addEventListener('error',()=>art.replaceWith(el('div',{class:'fake',style:`background:hsl(${hue(r.titulo)} 50% 35%)`,text:r.titulo})));
+    : fakePoster(r);
+  if (r.cartel) art.addEventListener('error',()=>art.replaceWith(fakePoster(r)));
   const bits = [r.director, r.anio, r.duracion && `${r.duracion} min`, r.version].filter(Boolean).join(' · ');
   const info = el('div',{class:'info'},
     el('h3',{text:r.titulo}),
@@ -233,9 +282,9 @@ function ticket(r){
   );
   const stub = el('div',{class:'stub'},
     el('div',{class:'hora',text:r.hora || '--:--'}),
-    el('div',{class:'precio',text:money(r)}),
-    el('span',{class:`pill s-${est}`,text:ESTADO[est]}),
-    r.enlace ? el('a',{class:'buy',href:r.enlace,target:'_blank',rel:'noopener',text: sold ? 'Ver ficha' : 'Entradas →'}) : null
+    est === 'gratis' ? null : el('div',{class:'precio',text:money(r)}),
+    el('span',{class:`pill s-${est}`,text: est === 'gratis' && r.precioTexto && /reserva|aforo/i.test(r.precioTexto) ? (/reserva/i.test(r.precioTexto) ? 'Gratis · reserva' : 'Gratis · aforo') : ESTADO[est]}),
+    r.enlace ? el('a',{class:'buy',href:r.enlace,target:'_blank',rel:'noopener',text: sold ? 'Ver ficha' : (r.precio === 0 ? 'Más info →' : 'Entradas →')}) : null
   );
   return el('article',{class:'tk'+(sold?' sold':'')}, art, info, stub);
 }

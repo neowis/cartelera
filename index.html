@@ -145,6 +145,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .bar{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:30;background:var(--yellow);border-bottom:1px solid var(--line);height:var(--bar);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
 .mark{font:400 20px var(--sans);letter-spacing:-.03em;white-space:nowrap}
 @media (max-width:899px){.mark{font-size:18px}}
+@media (max-width:379px){.mark,.barR button,.pill button{font-size:16px!important}.pill{gap:2px}.pill button{padding-left:4px!important;padding-right:4px!important}}
 .barR{display:flex;gap:16px;align-items:baseline;justify-self:end}
 .barR button{font:400 20px var(--sans);letter-spacing:-.03em;white-space:nowrap}
 .barR .n{font:11px var(--sans);vertical-align:super;margin-left:2px}
@@ -152,7 +153,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 /* Píldora */
 .pill{position:relative;display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--line);border-radius:999px;background:transparent}
-.pill button{position:relative;font:11px/1 var(--sans);letter-spacing:.02em;text-transform:uppercase;padding:9px 14px;white-space:nowrap}
+.pill button{position:relative;font:400 20px/1 var(--sans);letter-spacing:-.02em;text-transform:uppercase;padding:9px 14px;white-space:nowrap}
 .pill button+button{border-left:0}
 .pill{border:0!important;border-radius:0;gap:clamp(4px,1.6vw,22px);grid-auto-columns:auto}
 .pill button{padding-left:6px!important;padding-right:6px!important}
@@ -165,21 +166,26 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @media (prefers-reduced-motion:no-preference){.scrib path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw .45s ease-out forwards}}
 @keyframes draw{to{stroke-dashoffset:0}}
 #viewPill{grid-area:view;justify-self:center}
-#viewPill button{font-size:12px;padding:11px 14px}
+
 #viewPill .n{font-size:9px;line-height:0;vertical-align:super;margin-left:2px}
 body[data-layout="guardadas"] #periodPill{visibility:hidden}
 .only-wide{display:none}
 @media (min-width:900px){
-  #viewPill button{font-size:11px;padding:9px 14px}
+  .pill button{font-size:clamp(15px,1.45vw,20px)}
   .only-wide{display:block}
   .top{padding-top:16px}
 }
 @media (max-width:899px){
-  :root{--bar:96px}
-  .bar{grid-template-columns:auto 1fr auto;grid-template-areas:"mark period filt" "view view view";align-content:center;row-gap:10px}
+  :root{--bar:100px}
+  .pill button,.mark,.barR button{min-height:44px}
+  .pill button{padding-top:0;padding-bottom:0}
+  .bar{grid-template-columns:auto 1fr auto;grid-template-areas:"mark view filt" "period period period";align-content:center;row-gap:2px;column-gap:8px}
+  .pill button{font-size:18px}
+  #viewPill{grid-area:view}
   .mid{display:contents}
   .mark{grid-area:mark}
   #periodPill{grid-area:period;justify-self:center}
+  body[data-layout="guardadas"] #periodPill{display:none}
   .barR{grid-area:filt}
   .barR button{font-size:18px}
   .pill button{padding:10px 12px}
@@ -194,6 +200,15 @@ body[data-layout="guardadas"] #periodPill{visibility:hidden}
 .sheet .lab{font:11px var(--sans);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 6px}
 .sheet .val{font:400 22px/1.15 var(--sans);letter-spacing:-.025em}
 .fic{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:560px){
+  .fic{grid-template-columns:1fr;gap:14px}
+  .fic .ph{width:min(62%,260px)}
+  .sheet h3{font-size:clamp(30px,9vw,40px);padding-right:70px}
+  .buy,.favbtn{white-space:nowrap;width:100%;justify-content:center;text-align:center;margin-right:0}
+  .favbtn{display:flex}
+  .search{font-size:21px}
+}
+.buy{white-space:nowrap}
 .fic .ph{aspect-ratio:2/3;overflow:hidden;background:var(--soft)}
 .fic .ph img{width:100%;height:100%;object-fit:cover}
 .buy{display:inline-block;margin-top:20px;border:1px solid var(--line);border-radius:999px;padding:12px 20px;font:13px var(--sans);text-transform:uppercase;letter-spacing:.03em;text-decoration:none}
@@ -608,7 +623,7 @@ function filtros(){
   if (state.rows.some(r=>r.municipal)) names.push(MUNI);
   const precios = [['','Cualquier precio'],['0','Solo gratis'],['4','Hasta 4 €'],['6','Hasta 6 €'],['9','Hasta 9 €']];
   openSheet(() => {
-    const q = el('input',{class:'search',id:'q',type:'search',placeholder:'Buscar película, director, ciclo…','aria-label':'Buscar'}); q.value = state.q;
+    const q = el('input',{class:'search',id:'q',type:'search',placeholder:'Buscar película, director…','aria-label':'Buscar'}); q.value = state.q;
     let t; q.oninput = () => { clearTimeout(t); t = setTimeout(() => { state.q = q.value; render(); }, 180); };
     const pc = el('div',{class:'chips'}, precios.map(([v,l]) => { const b = el('button',{class:'chip','aria-pressed':String(state.precio===v),text:l}); b.onclick = () => { state.precio = v; savePrefs(); render(); filtros(); }; return b; }));
     const ag = el('button',{class:'chip','aria-pressed':String(state.ocultar),text:'Ocultar agotadas'}); ag.onclick = () => { state.ocultar = !state.ocultar; savePrefs(); render(); filtros(); };

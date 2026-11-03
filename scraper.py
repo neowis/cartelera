@@ -370,7 +370,7 @@ SOURCES = [("Cineteca Madrid", cineteca), ("Cine Doré · Filmoteca", dore), ("C
 # ---------------------------------------------------------------- Portadas que faltan: búsqueda en Wikipedia
 WIKI_UA = "CarteleraDeBolsillo/1.0 (https://neowis.github.io/cartelera/)"
 CACHE_IN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "carteles_buscados.json")
-NO_FILM = re.compile(r"\b(curso|taller|cocina|cata|conferencia|charla|coloquio sobre|club de lectura|ficción sonora|creación audiovisual|jornada|concurso|cortos?\b|cortometrajes|festival|muestra|ciclo \d|semana)\b", re.I)
+NO_FILM = re.compile(r"\b(teatro|danza|curso|taller|cocina|cata|conferencia|charla|coloquio sobre|club de lectura|ficción sonora|creación audiovisual|jornada|concurso|cortos?\b|cortometrajes|festival|muestra|ciclo \d|semana)\b", re.I)
 
 def _norm(t):
     import unicodedata
@@ -448,8 +448,10 @@ def ecartelera_poster(title, alt, year):
             h = get("https://www.ecartelera.com/buscar/?q=" + urllib.parse.quote(c), tries=1)
         except Exception:
             continue
-        for href, img, t, meta in re.findall(r'<a class="sr-thing" href="(https://www\.ecartelera\.com/peliculas/[^"]+)">.*?<img src="([^"]+)".*?sr-thing__title">(.*?)</span>\s*<span class="sr-thing__meta">(.*?)</span>', h, re.S):
-            if _norm(txt(t)) != _norm(c): continue
+        found = re.findall(r'<a class="sr-thing" href="(https://www\.ecartelera\.com/peliculas/[^"]+)">.*?<img src="([^"]+)".*?sr-thing__title">(.*?)</span>\s*<span class="sr-thing__meta">(.*?)</span>', h, re.S)
+        same = [f for f in found if _norm(txt(f[2])) == _norm(c)]
+        if not year and len(same) != 1: continue
+        for href, img, t, meta in same:
             y = re.search(r"(18|19|20)\d{2}", meta)
             if year and (not y or abs(int(y.group()) - year) > 1): continue
             big = img.replace("-th.jpg", ".jpg")

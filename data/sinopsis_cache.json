@@ -1729,5 +1729,49 @@
 "d": "2026-11-04",
 "anio": "",
 "v": 3
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/bearcave/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/coward/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/elephants-in-the-fog/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/taiga/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/tangles/": {
+"t": "",
+"d": "2026-11-04"
+},
+"tmdb|elephants in the fog|": {
+"t": "In a small Nepalese village nestled in the heart of a forest populated by wild elephants, Pirati is the matriarch of a Kinnar community. She dreams of escaping to a “normal” life with the man she is in love with. But when one of her daughters disappears, she must investigate and choose between love and responsibility to her community.",
+"d": "2026-11-04",
+"anio": "2026",
+"v": 3
+},
+"tmdb|bearcave|": {
+"t": "Set in the Greek mountain village of Tirna, Bearcave follows Argyro, a badass farmer, and her best friend Anneta, the village \"it\" girl and local manicurist. Once Anneta admits that she's pregnant and planning to leave town with her lame cop boyfriend, Argyro challenges Anneta to embark on an adventure to find the mystical bear cave. Before Argyro has a chance to confess her own love, Anneta leaves for her new life in the big city. Argyro is left broken. Meanwhile, in her new home with her clingy mother-in-law, Anneta quickly realizes her destiny lies elsewhere.",
+"d": "2026-11-04",
+"anio": "2026",
+"v": 3
+},
+"tmdb|coward|": {
+"t": "En 1916, en pleno frente belga de la Primera Guerra Mundial, Pierre acaba de incorporarse al ejército con ganas de demostrar su valía. En la retaguardia conoce a Francis, que organiza espectáculos para levantar la moral de las tropas. Mientras la violencia arrecia, ambos buscan alguna forma de escapar —aunque sea por un instante— de la brutalidad de la guerra.",
+"d": "2026-11-04",
+"anio": "2026",
+"v": 3
+},
+"tmdb|taiga|": {
+"t": "",
+"d": "2026-11-04",
+"anio": "",
+"v": 3
 }
 }

@@ -2370,6 +2370,34 @@
 "chopin|michal kwiecinski": {
 "url": "https://image.tmdb.org/t/p/w780/lwEsL7EhbPtEyfgOuvrDUVXbTyQ.jpg",
 "t": "2026-11-04"
+},
+"ephemera|shan jiang": {
+"url": "",
+"t": "2026-11-04"
+},
+"man i love|ira sachs": {
+"url": "https://image.tmdb.org/t/p/w780/8qwnjSldZjF3axsjTYgFJquU6lm.jpg",
+"t": "2026-11-04"
+},
+"professora de frances|ricardo alves jr": {
+"url": "https://image.tmdb.org/t/p/w780/yYLldrDwXwlF8a7DA0hhGGlAJNn.jpg",
+"t": "2026-11-04"
+},
+"camp|avalon fast": {
+"url": "https://image.tmdb.org/t/p/w780/pQrlFAiakpphxCrR5lmHT3GR7Td.jpg",
+"t": "2026-11-04"
+},
+"seis meses en el edificio rosa con azul|bruno santamaria razo": {
+"url": "https://image.tmdb.org/t/p/w780/lyLZDgacnDkTFWIkWr9iiASLb4z.jpg",
+"t": "2026-11-04"
+},
+"una extrana velada|": {
+"url": "",
+"t": "2026-11-04"
+},
+"miserables|fred cavaye": {
+"url": "https://image.tmdb.org/t/p/w780/jwRMUI6rGjAwkXHEqBlSnViT6gG.jpg",
+"t": "2026-11-04"
 }
 },
 "sonidos opticos": {
@@ -2497,6 +2525,22 @@
 "fuente": "",
 "t": "2026-11-03",
 "titulo": "Ruega por nosotras (OCAP)",
+"tmdb": true,
+"v": 3
+},
+"ephemera": {
+"url": "",
+"fuente": "",
+"t": "2026-11-04",
+"titulo": "Ephemera",
+"tmdb": true,
+"v": 3
+},
+"una extrana velada": {
+"url": "",
+"fuente": "",
+"t": "2026-11-04",
+"titulo": "Una extraña velada",
 "tmdb": true,
 "v": 3
 }

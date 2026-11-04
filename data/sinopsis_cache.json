@@ -1655,5 +1655,79 @@
 "d": "2026-11-04",
 "anio": "2026",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/una-extrana-velada/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/a-professora-de-frances/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/camp/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/ephemera/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/queercinemad-especial-halloween-adolescencia-sexo-y-muerte-en-campamento-miasma/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/seis-meses-en-el-edificio-rosa-con-azul/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/the-man-i-love/": {
+"t": "",
+"d": "2026-11-04"
+},
+"https://www.ecartelera.com/peliculas/los-miserables-2026/": {
+"t": "Los miserables: sinopsis, reparto, tráiler, críticas y dónde ver la película.",
+"d": "2026-11-04"
+},
+"tmdb|ephemera|": {
+"t": "",
+"d": "2026-11-04",
+"anio": "",
+"v": 3
+},
+"tmdb|man i love|": {
+"t": "En el vibrante Nueva York de finales de los 80, Jimmy George (Rami Malik), un conocido artista de la escena underground, atraviesa un momento decisivo en su vida en el que, pese a todo, la belleza y el amor siguen siendo posibles.",
+"d": "2026-11-04",
+"anio": "2027",
+"v": 3
+},
+"tmdb|adolescencia sexo y muerte en campamento miasma|": {
+"t": "Tras años de secuelas cutres y un fandom en declive, la franquicia slasher 'Camp Miasma' es puesta en manos de una joven y entusiasta directora para que la resucite. Pero cuando visita a la estrella de la película original, una actriz que ahora vive recluida y envuelta en misterio, las dos caen en una espiral de sangre, deseo, miedo y delirio.",
+"d": "2026-11-04",
+"anio": "2026",
+"v": 3
+},
+"tmdb|professora de frances|": {
+"t": "",
+"d": "2026-11-04",
+"anio": "2026",
+"v": 3
+},
+"tmdb|camp|": {
+"t": "",
+"d": "2026-11-04",
+"anio": "2026",
+"v": 3
+},
+"tmdb|seis meses en el edificio rosa con azul|": {
+"t": "",
+"d": "2026-11-04",
+"anio": "2026",
+"v": 3
+},
+"tmdb|una extrana velada|": {
+"t": "",
+"d": "2026-11-04",
+"anio": "",
+"v": 3
 }
 }

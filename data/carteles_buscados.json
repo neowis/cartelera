@@ -2422,6 +2422,18 @@
 "hola frida|": {
 "url": "https://image.tmdb.org/t/p/w780/fh8qIKgIwaeuDZ215JF4ylugMZs.jpg",
 "t": "2026-11-04"
+},
+"20 anos de el laberinto del fauno|": {
+"url": "",
+"t": "2026-11-05"
+},
+"neurotica anonima|": {
+"url": "https://image.tmdb.org/t/p/w780/eU7tw9NIaWbCL51uzMjP35QRkre.jpg",
+"t": "2026-11-05"
+},
+"gato con sombrero|alessandro carloni": {
+"url": "https://image.tmdb.org/t/p/w780/8TW5oOMZbxaMFVgletpW0bxd2Aa.jpg",
+"t": "2026-11-05"
 }
 },
 "sonidos opticos": {
@@ -2565,6 +2577,14 @@
 "fuente": "",
 "t": "2026-11-04",
 "titulo": "Una extraña velada",
+"tmdb": true,
+"v": 3
+},
+"20 anos de el laberinto del fauno": {
+"url": "",
+"fuente": "",
+"t": "2026-11-05",
+"titulo": "20 años de… El Laberinto del Fauno",
 "tmdb": true,
 "v": 3
 }

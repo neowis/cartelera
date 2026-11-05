@@ -1773,5 +1773,29 @@
 "d": "2026-11-04",
 "anio": "",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/20-anos-de-el-laberinto-del-fauno/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-05"
+},
+"https://www.academiadecine.com/actividades/neurotica-anonima/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-05"
+},
+"https://www.ecartelera.com/peliculas/el-gato-con-sombrero/": {
+"t": "Más de veinte años después de que Mike Myers se pusiera el sombrero de rayas en 'El gato', el personaje que el Dr. Seuss dibujó en 1957 vuelve al cine, esta…",
+"d": "2026-11-05"
+},
+"tmdb|20 anos de el laberinto del fauno|": {
+"t": "",
+"d": "2026-11-05",
+"anio": "",
+"v": 3
+},
+"tmdb|neurotica anonima|": {
+"t": "Narra la historia de Iluminada, una mujer que, habiendo estudiado para ser profesora de Literatura, termina trabajando como acomodadora en un emblemático cine de La Habana.",
+"d": "2026-11-05",
+"anio": "2025",
+"v": 3
 }
 }

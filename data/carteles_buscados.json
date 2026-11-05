@@ -2434,6 +2434,26 @@
 "gato con sombrero|alessandro carloni": {
 "url": "https://image.tmdb.org/t/p/w780/8TW5oOMZbxaMFVgletpW0bxd2Aa.jpg",
 "t": "2026-11-05"
+},
+"capitulo xxxvi carta blanca a maria castro y alvaro caceres|": {
+"url": "",
+"t": "2026-11-05"
+},
+"misterio de lucy lost|olivier clert": {
+"url": "",
+"t": "2026-11-05"
+},
+"deuses de pedra|ivan castineiras": {
+"url": "https://image.tmdb.org/t/p/w780/dNs03PBimzWzXfmjvikTwE4Opz2.jpg",
+"t": "2026-11-05"
+},
+"fallen angels|": {
+"url": "https://image.tmdb.org/t/p/w780/yyM9BPdwttK5LKZSLvHae7QPKo1.jpg",
+"t": "2026-11-05"
+},
+"sanjuro|akira kurosawa": {
+"url": "https://image.tmdb.org/t/p/w780/v45YU8EQe0zgRI0nYwQ0NcBUEjg.jpg",
+"t": "2026-11-05"
 }
 },
 "sonidos opticos": {
@@ -2585,6 +2605,22 @@
 "fuente": "",
 "t": "2026-11-05",
 "titulo": "20 años de… El Laberinto del Fauno",
+"tmdb": true,
+"v": 3
+},
+"capitulo xxxvi carta blanca a maria castro y alvaro caceres": {
+"url": "",
+"fuente": "",
+"t": "2026-11-05",
+"titulo": "Capítulo XXXVI: Carta blanca a María Castro y Álvaro Cáceres",
+"tmdb": true,
+"v": 3
+},
+"misterio de lucy lost": {
+"url": "https://www.ecartelera.com/carteles/21100/21176/001.jpg",
+"fuente": "eCartelera",
+"t": "2026-11-05",
+"titulo": "El misterio de Lucy Lost",
 "tmdb": true,
 "v": 3
 }

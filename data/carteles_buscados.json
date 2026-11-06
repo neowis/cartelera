@@ -2478,6 +2478,10 @@
 "happy together|wong kar wai": {
 "url": "https://image.tmdb.org/t/p/w780/9OYXLgM5C9wZbbVgIMDlQu2rC9N.jpg",
 "t": "2026-11-06"
+},
+"documental hablar la musica y concierto coral de lavapies|": {
+"url": "",
+"t": "2026-11-06"
 }
 },
 "sonidos opticos": {
@@ -2661,6 +2665,14 @@
 "fuente": "",
 "t": "2026-11-06",
 "titulo": "Bienvenido Mr",
+"tmdb": true,
+"v": 3
+},
+"documental hablar la musica y concierto coral de lavapies": {
+"url": "",
+"fuente": "",
+"t": "2026-11-06",
+"titulo": "Documental Hablar la música y concierto Coral de Lavapiés",
 "tmdb": true,
 "v": 3
 }

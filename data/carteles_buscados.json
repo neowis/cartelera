@@ -2462,6 +2462,22 @@
 "tortuga|": {
 "url": "https://image.tmdb.org/t/p/w780/phJgLFEPACo3cyEqC3c5BoBEjrE.jpg",
 "t": "2026-11-06"
+},
+"ojos verdes|": {
+"url": "",
+"t": "2026-11-06"
+},
+"bienvenido mr|": {
+"url": "",
+"t": "2026-11-06"
+},
+"hiedra|": {
+"url": "https://image.tmdb.org/t/p/w780/tFsej7QP5VxEBEJFu6x65te6WvO.jpg",
+"t": "2026-11-06"
+},
+"happy together|wong kar wai": {
+"url": "https://image.tmdb.org/t/p/w780/9OYXLgM5C9wZbbVgIMDlQu2rC9N.jpg",
+"t": "2026-11-06"
 }
 },
 "sonidos opticos": {
@@ -2629,6 +2645,22 @@
 "fuente": "eCartelera",
 "t": "2026-11-05",
 "titulo": "El misterio de Lucy Lost",
+"tmdb": true,
+"v": 3
+},
+"ojos verdes": {
+"url": "",
+"fuente": "",
+"t": "2026-11-06",
+"titulo": "Los ojos verdes",
+"tmdb": true,
+"v": 3
+},
+"bienvenido mr": {
+"url": "",
+"fuente": "",
+"t": "2026-11-06",
+"titulo": "Bienvenido Mr",
 "tmdb": true,
 "v": 3
 }

@@ -1849,5 +1849,39 @@
 "d": "2026-11-06",
 "anio": "2025",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/bienvenido-mr-podcast-el-programa-de-sita-abellan-epsa/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-06"
+},
+"https://www.academiadecine.com/actividades/hiedra/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-06"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/presentacion-del-libro-los-ojos-verdes-de-marguerite-duras/": {
+"t": "",
+"d": "2026-11-06"
+},
+"https://www.ecartelera.com/peliculas/happy-together/": {
+"t": "Toda la información sobre 'Happy Together' (1997): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Happy Together'",
+"d": "2026-11-06"
+},
+"tmdb|ojos verdes|": {
+"t": "",
+"d": "2026-11-06",
+"anio": "",
+"v": 3
+},
+"tmdb|bienvenido mr|": {
+"t": "",
+"d": "2026-11-06",
+"anio": "",
+"v": 3
+},
+"tmdb|hiedra|": {
+"t": "",
+"d": "2026-11-06",
+"anio": "",
+"v": 3
 }
 }

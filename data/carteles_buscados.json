@@ -2498,6 +2498,14 @@
 "paper tiger|": {
 "url": "https://image.tmdb.org/t/p/w780/p6oLmq5KmuWY6uRXBQBL2q30jia.jpg",
 "t": "2026-11-07"
+},
+"legitima defensa lluvia de jaulas|": {
+"url": "",
+"t": "2026-11-07"
+},
+"oveja shaun mision calabaza|": {
+"url": "https://image.tmdb.org/t/p/w780/ajiSFBxo1h0MNbu7q9I5aSVHUgE.jpg",
+"t": "2026-11-07"
 }
 },
 "sonidos opticos": {
@@ -2705,6 +2713,14 @@
 "fuente": "",
 "t": "2026-11-07",
 "titulo": "Magda - La lengua de las mariposas",
+"tmdb": true,
+"v": 3
+},
+"legitima defensa lluvia de jaulas": {
+"url": "",
+"fuente": "",
+"t": "2026-11-07",
+"titulo": "Legítima defensa / Lluvia de jaulas",
 "tmdb": true,
 "v": 3
 }

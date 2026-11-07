@@ -1883,5 +1883,45 @@
 "d": "2026-11-06",
 "anio": "",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/luciernagas-en-el-mozote/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-07"
+},
+"https://www.academiadecine.com/actividades/magda-la-lengua-de-las-mariposas/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-07"
+},
+"https://www.academiadecine.com/actividades/paper-tiger/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-07"
+},
+"https://www.golem.es/golem/pelicula/MuguruzaFM-40-Tour": {
+"t": "",
+"d": "2026-11-07"
+},
+"tmdb|muguruzafm 40 tour|": {
+"t": "",
+"d": "2026-11-07",
+"anio": "",
+"v": 3
+},
+"tmdb|magda la lengua de las mariposas|": {
+"t": "",
+"d": "2026-11-07",
+"anio": "",
+"v": 3
+},
+"tmdb|luciernagas en el mozote|": {
+"t": "La masacre de la aldea de El Mozote, en la provincia de Morazán (El Salvador), es considerada la peor atrocidad perpetrada por las fuerzas gubernamentales contra civiles en la historia moderna de América Latina. Un superviviente de diez años busca vengar la muerte de su familia y la destrucción de su pueblo.",
+"d": "2026-11-07",
+"anio": "2025",
+"v": 3
+},
+"tmdb|paper tiger|": {
+"t": "Dos hermanos se ven envueltos en un plan que resulta ser demasiado bueno para ser verdad. Mientras intentan desenvolverse en el peligroso mundo de la mafia rusa, los lazos familiares comienzan a resquebrajarse, con consecuencias que cambiarán sus vidas.",
+"d": "2026-11-07",
+"anio": "2026",
+"v": 3
 }
 }

@@ -2482,6 +2482,22 @@
 "documental hablar la musica y concierto coral de lavapies|": {
 "url": "",
 "t": "2026-11-06"
+},
+"muguruzafm 40 tour|": {
+"url": "",
+"t": "2026-11-07"
+},
+"magda la lengua de las mariposas|": {
+"url": "",
+"t": "2026-11-07"
+},
+"luciernagas en el mozote|": {
+"url": "https://image.tmdb.org/t/p/w780/cNFOpANYLJpq0q4rdKs0m2Zwdiu.jpg",
+"t": "2026-11-07"
+},
+"paper tiger|": {
+"url": "https://image.tmdb.org/t/p/w780/p6oLmq5KmuWY6uRXBQBL2q30jia.jpg",
+"t": "2026-11-07"
 }
 },
 "sonidos opticos": {
@@ -2673,6 +2689,22 @@
 "fuente": "",
 "t": "2026-11-06",
 "titulo": "Documental Hablar la música y concierto Coral de Lavapiés",
+"tmdb": true,
+"v": 3
+},
+"muguruzafm 40 tour": {
+"url": "",
+"fuente": "",
+"t": "2026-11-07",
+"titulo": "MuguruzaFM 40 Tour",
+"tmdb": true,
+"v": 3
+},
+"magda la lengua de las mariposas": {
+"url": "",
+"fuente": "",
+"t": "2026-11-07",
+"titulo": "Magda - La lengua de las mariposas",
 "tmdb": true,
 "v": 3
 }

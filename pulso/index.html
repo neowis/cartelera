@@ -429,10 +429,13 @@ $('#bDemo').onclick=()=>{ S.demo=true; S.cache={}; $('#login').style.display='no
   $('#ruri').textContent = REDIRECT;
   $('#cid').value = store.get('pulso_cid')||'';
   // Si la página está en un sitio que bloquea conexiones externas (p. ej. dentro de claude.ai), avisa
-  fetch('https://api.spotify.com/v1/').catch(()=>{
+  // (solo salta si el navegador bloquea la conexión por política de seguridad, no por CORS)
+  document.addEventListener('securitypolicyviolation', e=>{
+    if(!/spotify\.com/.test(e.blockedURI||'')) return;
     $('#bLogin').disabled = true; $('#bLogin').style.opacity = .4;
-    $('#err').textContent = 'Aquí solo funciona el modo ejemplo. Para conectar Spotify, abre la app desde tu propia URL (GitHub Pages).';
+    $('#err').textContent = 'Aquí solo funciona el modo ejemplo. Para conectar Spotify, abre https://neowis.github.io/cartelera/pulso/';
   });
+  fetch('https://api.spotify.com/v1/').catch(()=>{});
   const q = new URLSearchParams(location.search);
   try{
     if(q.get('code')){

@@ -2522,6 +2522,30 @@
 "buscavidas|robert rossen": {
 "url": "https://image.tmdb.org/t/p/w780/6jicxcrfFZpXIBgQidj3uouwsiP.jpg",
 "t": "2026-11-09"
+},
+"something you should know about me|andy fidoten": {
+"url": "https://image.tmdb.org/t/p/w780/1uv8mwdhLLUnnYsDcTk8dsfdKzP.jpg",
+"t": "2026-11-09"
+},
+"soy mario|sharon kleinberg": {
+"url": "https://image.tmdb.org/t/p/w780/gjeWXZ2O7aD9xoKilncp6K8DmkT.jpg",
+"t": "2026-11-09"
+},
+"gugu s world feito pipa|allan deberton": {
+"url": "",
+"t": "2026-11-09"
+},
+"i rarely wake up dreaming|isabelle stever": {
+"url": "https://image.tmdb.org/t/p/w780/5uQ3m7Qt4rj73ubBylu0lzElbL8.jpg",
+"t": "2026-11-09"
+},
+"pelicula sorpresa|": {
+"url": "",
+"t": "2026-11-09"
+},
+"du fioul dans les arteres|pierre le gall": {
+"url": "https://image.tmdb.org/t/p/w780/f2MApfmXnpDnWhLEA0k6bZo8kOl.jpg",
+"t": "2026-11-09"
 }
 },
 "sonidos opticos": {
@@ -2737,6 +2761,22 @@
 "fuente": "",
 "t": "2026-11-07",
 "titulo": "Legítima defensa / Lluvia de jaulas",
+"tmdb": true,
+"v": 3
+},
+"gugu s world feito pipa": {
+"url": "",
+"fuente": "",
+"t": "2026-11-09",
+"titulo": "Gugu’s World (Feito Pipa)",
+"tmdb": true,
+"v": 3
+},
+"pelicula sorpresa": {
+"url": "",
+"fuente": "",
+"t": "2026-11-09",
+"titulo": "Película sorpresa",
 "tmdb": true,
 "v": 3
 }

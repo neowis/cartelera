@@ -2023,5 +2023,33 @@
 "https://www.ecartelera.com/peliculas/delitos-y-faltas/": {
 "t": "Toda la información sobre 'Delitos y faltas' (1989): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Delitos y faltas'",
 "d": "2026-11-10"
+},
+"https://www.cinetecamadrid.com/programacion/cima-proyecta-25-n-cortos-contra-las-violencias": {
+"t": "",
+"d": "2026-11-10"
+},
+"https://www.cinetecamadrid.com/programacion/la-carn": {
+"t": "",
+"d": "2026-11-10"
+},
+"https://www.cinetecamadrid.com/programacion/las-casas-en-mi": {
+"t": "",
+"d": "2026-11-10"
+},
+"https://www.golem.es/golem/pelicula/El-tren-fluvial": {
+"t": "",
+"d": "2026-11-10"
+},
+"tmdb|casas en mi|": {
+"t": "",
+"d": "2026-11-10",
+"anio": "2026",
+"v": 3
+},
+"tmdb|tren fluvial|": {
+"t": "",
+"d": "2026-11-10",
+"anio": "2026",
+"v": 3
 }
 }

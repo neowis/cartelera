@@ -2057,5 +2057,49 @@
 "d": "2026-11-10",
 "anio": "1973",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/cordillera-de-fuego/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-11"
+},
+"https://www.academiadecine.com/actividades/problemista/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-11"
+},
+"https://www.ecartelera.com/peliculas/el-apartamento/": {
+"t": "Toda la información sobre 'El apartamento' (1960): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'El apartamento'",
+"d": "2026-11-11"
+},
+"https://www.golem.es/golem/pelicula/QUEERTEST": {
+"t": "",
+"d": "2026-11-11"
+},
+"https://www.golem.es/golem/pelicula/Wild-Horse-Nine-(V.O.S.E.)": {
+"t": "",
+"d": "2026-11-11"
+},
+"tmdb|wild horse nine|": {
+"t": "Poco antes del golpe de Estado chileno de 1973, los agentes de la CIA Chris y Lee son enviados desde Santiago a la Isla de Pascua por su jefa de la oficina, MJ. Entre las emblemáticas estatuas de la isla, y mientras los veteranos compañeros lidian con sus oscuros pasados ​​y conspiraciones actuales, el nuevo vínculo que Chris establece con un par de estudiantes rebeldes amenaza con desbaratar el viaje de todos a este remoto paraíso.",
+"d": "2026-11-11",
+"anio": "2026",
+"v": 3
+},
+"tmdb|queercinemad test|": {
+"t": "",
+"d": "2026-11-11",
+"anio": "",
+"v": 3
+},
+"tmdb|cordillera de fuego|": {
+"t": "",
+"d": "2026-11-11",
+"anio": "2026",
+"v": 3
+},
+"tmdb|problemista|": {
+"t": "Un salvadoreño aspirante a diseñador de juguetes lucha por hacer realidad sus inusuales ideas en Nueva York.",
+"d": "2026-11-11",
+"anio": "2024",
+"v": 3
 }
 }

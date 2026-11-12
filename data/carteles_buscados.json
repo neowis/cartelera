@@ -2301,11 +2301,11 @@
 },
 "conciertos lucia beltran jesus de rosario nuevos territorios tomatito|": {
 "url": "",
-"t": "2026-11-04"
+"t": "2026-11-12"
 },
 "entrevista a tomatito conciertos angela zarzuela benito bernal nuevos territorios|": {
 "url": "",
-"t": "2026-11-04"
+"t": "2026-11-12"
 },
 "deseando amar|wong kar wai": {
 "url": "https://image.tmdb.org/t/p/w780/r1kobz0ceeNdxzCntkSL5Rzkevi.jpg",
@@ -2373,7 +2373,7 @@
 },
 "ephemera|shan jiang": {
 "url": "",
-"t": "2026-11-04"
+"t": "2026-11-12"
 },
 "man i love|ira sachs": {
 "url": "https://image.tmdb.org/t/p/w780/8qwnjSldZjF3axsjTYgFJquU6lm.jpg",
@@ -2606,6 +2606,14 @@
 "moscas|fernando eimbcke": {
 "url": "https://image.tmdb.org/t/p/w780/hs9huYKLyKdcI8LJw9DZ8eiW850.jpg",
 "t": "2026-11-11"
+},
+"aftersun|charlotte wells": {
+"url": "https://image.tmdb.org/t/p/w780/zJd2NwGzciSMppCHividNSROIZR.jpg",
+"t": "2026-11-12"
+},
+"un verano con monica|ingmar bergman": {
+"url": "https://image.tmdb.org/t/p/w780/8uTYxMcJTIv7sJCEyvPssoDcn9.jpg",
+"t": "2026-11-12"
 }
 },
 "sonidos opticos": {
@@ -2739,7 +2747,7 @@
 "ephemera": {
 "url": "",
 "fuente": "",
-"t": "2026-11-04",
+"t": "2026-11-12",
 "titulo": "Ephemera",
 "tmdb": true,
 "v": 3

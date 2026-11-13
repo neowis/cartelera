@@ -2437,7 +2437,7 @@
 },
 "capitulo xxxvi carta blanca a maria castro y alvaro caceres|": {
 "url": "",
-"t": "2026-11-05"
+"t": "2026-11-13"
 },
 "misterio de lucy lost|olivier clert": {
 "url": "",
@@ -2614,6 +2614,22 @@
 "un verano con monica|ingmar bergman": {
 "url": "https://image.tmdb.org/t/p/w780/8uTYxMcJTIv7sJCEyvPssoDcn9.jpg",
 "t": "2026-11-12"
+},
+"queercinemad taiga|": {
+"url": "",
+"t": "2026-11-13"
+},
+"ellas en la ciudad|": {
+"url": "https://image.tmdb.org/t/p/w780/2eLpNCDlF6D5dQ8WvA8entac1JV.jpg",
+"t": "2026-11-13"
+},
+"moscas|": {
+"url": "https://image.tmdb.org/t/p/w780/hs9huYKLyKdcI8LJw9DZ8eiW850.jpg",
+"t": "2026-11-13"
+},
+"yo soy rocky i play rocky|": {
+"url": "",
+"t": "2026-11-13"
 }
 },
 "sonidos opticos": {
@@ -2771,7 +2787,7 @@
 "capitulo xxxvi carta blanca a maria castro y alvaro caceres": {
 "url": "",
 "fuente": "",
-"t": "2026-11-05",
+"t": "2026-11-13",
 "titulo": "Capítulo XXXVI: Carta blanca a María Castro y Álvaro Cáceres",
 "tmdb": true,
 "v": 3
@@ -2853,6 +2869,22 @@
 "fuente": "",
 "t": "2026-11-11",
 "titulo": "QueerCineMad: Test",
+"tmdb": true,
+"v": 3
+},
+"queercinemad taiga": {
+"url": "",
+"fuente": "",
+"t": "2026-11-13",
+"titulo": "QueerCineMad: Taiga",
+"tmdb": true,
+"v": 3
+},
+"yo soy rocky i play rocky": {
+"url": "",
+"fuente": "",
+"t": "2026-11-13",
+"titulo": "Yo soy Rocky (I Play Rocky)",
 "tmdb": true,
 "v": 3
 }

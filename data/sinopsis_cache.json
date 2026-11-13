@@ -2133,5 +2133,45 @@
 "https://www.ecartelera.com/peliculas/un-verano-con-monica/": {
 "t": "Toda la información sobre 'Un Verano con Mónica' (1953): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Un Verano con Mónica'",
 "d": "2026-11-12"
+},
+"https://www.academiadecine.com/actividades/moscas/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-13"
+},
+"https://www.academiadecine.com/actividades/yo-soy-rocky-i-play-rocky/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-13"
+},
+"https://www.golem.es/golem/pelicula/QUEERTAIGA": {
+"t": "",
+"d": "2026-11-13"
+},
+"https://www.golem.es/golem/pelicula/ciudad": {
+"t": "",
+"d": "2026-11-13"
+},
+"tmdb|queercinemad taiga|": {
+"t": "",
+"d": "2026-11-13",
+"anio": "",
+"v": 3
+},
+"tmdb|ellas en la ciudad|": {
+"t": "Documental centrado en una generación de mujeres, las primeras pobladoras de los barrios de la periferia. A través de las historias sobre sus vidas cotidianas en cinco barrios de Sevilla, descubrimos cómo ellas son el sostén de una ciudad que les da la espalda.",
+"d": "2026-11-13",
+"anio": "2025",
+"v": 3
+},
+"tmdb|moscas|": {
+"t": "",
+"d": "2026-11-13",
+"anio": "2026",
+"v": 3
+},
+"tmdb|yo soy rocky i play rocky|": {
+"t": "",
+"d": "2026-11-13",
+"anio": "",
+"v": 3
 }
 }

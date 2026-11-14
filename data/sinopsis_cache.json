@@ -2173,5 +2173,43 @@
 "d": "2026-11-13",
 "anio": "",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/bogoshorts-venezuela-2026/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-14"
+},
+"https://www.academiadecine.com/actividades/chichero/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-14"
+},
+"https://www.ecartelera.com/peliculas/el-mal-padre/": {
+"t": "Toda la información sobre 'El mal padre' (2026): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'El mal padre'",
+"d": "2026-11-14"
+},
+"https://www.ecartelera.com/peliculas/mi-vecino-totoro/": {
+"t": "Toda la información sobre 'Mi vecino Totoro' (1988): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Mi vecino Totoro'",
+"d": "2026-11-14"
+},
+"https://www.golem.es/golem/pelicula/QUEERCAMP": {
+"t": "",
+"d": "2026-11-14"
+},
+"tmdb|queercinemad camp|": {
+"t": "",
+"d": "2026-11-14",
+"anio": "",
+"v": 3
+},
+"tmdb|chichero|": {
+"t": "En el Perú de la década de 1980, el conflicto entre la guerrilla Sendero Luminoso y el ejército obligó a Josué, un joven quechua con el sueño de convertirse en campeón de boxeo, a huir de su pueblo natal. Separado de su familia y obligado a alistarse en el ejército, promete luchar por un futuro mejor para ellos.",
+"d": "2026-11-14",
+"anio": "2026",
+"v": 3
+},
+"tmdb|bogoshorts venezuela 2026|": {
+"t": "",
+"d": "2026-11-14",
+"anio": "",
+"v": 3
 }
 }

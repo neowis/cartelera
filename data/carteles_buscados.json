@@ -2481,7 +2481,7 @@
 },
 "documental hablar la musica y concierto coral de lavapies|": {
 "url": "",
-"t": "2026-11-06"
+"t": "2026-11-14"
 },
 "muguruzafm 40 tour|": {
 "url": "",
@@ -2630,6 +2630,26 @@
 "yo soy rocky i play rocky|": {
 "url": "",
 "t": "2026-11-13"
+},
+"queercinemad camp|": {
+"url": "",
+"t": "2026-11-14"
+},
+"chichero|": {
+"url": "https://image.tmdb.org/t/p/w780/rx3KUEdWaHsmnYvaQjDXwClikW7.jpg",
+"t": "2026-11-14"
+},
+"bogoshorts venezuela 2026|": {
+"url": "",
+"t": "2026-11-14"
+},
+"mi vecino totoro|hayao miyazaki": {
+"url": "https://image.tmdb.org/t/p/w780/uu6RaEAfkIQaolf20axWaRU4h3w.jpg",
+"t": "2026-11-14"
+},
+"mal padre|roberto bueso": {
+"url": "https://image.tmdb.org/t/p/w780/g8JgLE6obZIf57O8nfBTSHHEQ27.jpg",
+"t": "2026-11-14"
 }
 },
 "sonidos opticos": {
@@ -2819,7 +2839,7 @@
 "documental hablar la musica y concierto coral de lavapies": {
 "url": "",
 "fuente": "",
-"t": "2026-11-06",
+"t": "2026-11-14",
 "titulo": "Documental Hablar la música y concierto Coral de Lavapiés",
 "tmdb": true,
 "v": 3
@@ -2885,6 +2905,22 @@
 "fuente": "",
 "t": "2026-11-13",
 "titulo": "Yo soy Rocky (I Play Rocky)",
+"tmdb": true,
+"v": 3
+},
+"queercinemad camp": {
+"url": "",
+"fuente": "",
+"t": "2026-11-14",
+"titulo": "QueerCineMad: Camp",
+"tmdb": true,
+"v": 3
+},
+"bogoshorts venezuela 2026": {
+"url": "",
+"fuente": "",
+"t": "2026-11-14",
+"titulo": "Bogoshorts Venezuela 2026",
 "tmdb": true,
 "v": 3
 }

@@ -2485,11 +2485,11 @@
 },
 "muguruzafm 40 tour|": {
 "url": "",
-"t": "2026-11-07"
+"t": "2026-11-15"
 },
 "magda la lengua de las mariposas|": {
 "url": "",
-"t": "2026-11-07"
+"t": "2026-11-15"
 },
 "luciernagas en el mozote|": {
 "url": "https://image.tmdb.org/t/p/w780/cNFOpANYLJpq0q4rdKs0m2Zwdiu.jpg",
@@ -2501,7 +2501,7 @@
 },
 "legitima defensa lluvia de jaulas|": {
 "url": "",
-"t": "2026-11-07"
+"t": "2026-11-15"
 },
 "oveja shaun mision calabaza|": {
 "url": "https://image.tmdb.org/t/p/w780/ajiSFBxo1h0MNbu7q9I5aSVHUgE.jpg",
@@ -2650,6 +2650,26 @@
 "mal padre|roberto bueso": {
 "url": "https://image.tmdb.org/t/p/w780/g8JgLE6obZIf57O8nfBTSHHEQ27.jpg",
 "t": "2026-11-14"
+},
+"cima conversa fuera de campo edadismo y genero en el audiovisual|": {
+"url": "",
+"t": "2026-11-15"
+},
+"milagro|": {
+"url": "",
+"t": "2026-11-15"
+},
+"queercinemad seis meses en el edificio rosa con azul|": {
+"url": "",
+"t": "2026-11-15"
+},
+"queercinemad something you should know about me|": {
+"url": "",
+"t": "2026-11-15"
+},
+"fantasmas atacan al jefe|charles dickens": {
+"url": "https://image.tmdb.org/t/p/w780/xIrP2JK3m0z50y0ROuVQLqfK907.jpg",
+"t": "2026-11-15"
 }
 },
 "sonidos opticos": {
@@ -2847,7 +2867,7 @@
 "muguruzafm 40 tour": {
 "url": "",
 "fuente": "",
-"t": "2026-11-07",
+"t": "2026-11-15",
 "titulo": "MuguruzaFM 40 Tour",
 "tmdb": true,
 "v": 3
@@ -2855,7 +2875,7 @@
 "magda la lengua de las mariposas": {
 "url": "",
 "fuente": "",
-"t": "2026-11-07",
+"t": "2026-11-15",
 "titulo": "Magda - La lengua de las mariposas",
 "tmdb": true,
 "v": 3
@@ -2863,7 +2883,7 @@
 "legitima defensa lluvia de jaulas": {
 "url": "",
 "fuente": "",
-"t": "2026-11-07",
+"t": "2026-11-15",
 "titulo": "Legítima defensa / Lluvia de jaulas",
 "tmdb": true,
 "v": 3
@@ -2921,6 +2941,30 @@
 "fuente": "",
 "t": "2026-11-14",
 "titulo": "Bogoshorts Venezuela 2026",
+"tmdb": true,
+"v": 3
+},
+"cima conversa fuera de campo edadismo y genero en el audiovisual": {
+"url": "",
+"fuente": "",
+"t": "2026-11-15",
+"titulo": "CIMA Conversa: Fuera de campo, Edadismo y género en el audiovisual",
+"tmdb": true,
+"v": 3
+},
+"queercinemad seis meses en el edificio rosa con azul": {
+"url": "",
+"fuente": "",
+"t": "2026-11-15",
+"titulo": "QueerCineMad: Seis meses en el edificio rosa con azul",
+"tmdb": true,
+"v": 3
+},
+"queercinemad something you should know about me": {
+"url": "",
+"fuente": "",
+"t": "2026-11-15",
+"titulo": "QueerCineMad: Something You Should Know About Me",
 "tmdb": true,
 "v": 3
 }

@@ -2509,7 +2509,7 @@
 },
 "ya veras|": {
 "url": "",
-"t": "2026-11-08"
+"t": "2026-11-16"
 },
 "colores primarios|": {
 "url": "https://image.tmdb.org/t/p/w780/mt3nitsowjx3mytiIuWM553i55F.jpg",
@@ -2674,6 +2674,26 @@
 "jonas kaufmann the sound of movies|andreas morell": {
 "url": "",
 "t": "2026-11-15"
+},
+"pinito del oro a ras de cielo|": {
+"url": "",
+"t": "2026-11-16"
+},
+"biografia de jorge luis borges|mariano llinas": {
+"url": "https://image.tmdb.org/t/p/w780/mfdOs8iwLQ7T9x1drtfrb1LzyDG.jpg",
+"t": "2026-11-16"
+},
+"cold war|pawe pawlikowski": {
+"url": "https://image.tmdb.org/t/p/w780/2MNuonmf074NuCRuVVnUMexhnyn.jpg",
+"t": "2026-11-16"
+},
+"queercinemad el espejo|": {
+"url": "",
+"t": "2026-11-16"
+},
+"queercinemad ephemera|": {
+"url": "",
+"t": "2026-11-16"
 }
 },
 "sonidos opticos": {
@@ -2969,6 +2989,30 @@
 "fuente": "",
 "t": "2026-11-15",
 "titulo": "QueerCineMad: Something You Should Know About Me",
+"tmdb": true,
+"v": 3
+},
+"pinito del oro a ras de cielo": {
+"url": "",
+"fuente": "",
+"t": "2026-11-16",
+"titulo": "Pinito del Oro. A ras de cielo",
+"tmdb": true,
+"v": 3
+},
+"queercinemad el espejo": {
+"url": "",
+"fuente": "",
+"t": "2026-11-16",
+"titulo": "QueerCineMad: El espejo",
+"tmdb": true,
+"v": 3
+},
+"queercinemad ephemera": {
+"url": "",
+"fuente": "",
+"t": "2026-11-16",
+"titulo": "QueerCineMad: Ephemera",
 "tmdb": true,
 "v": 3
 }

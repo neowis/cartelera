@@ -2255,5 +2255,65 @@
 "https://www.ecartelera.com/peliculas/jonas-kaufmann-the-sound-of-movies/": {
 "t": "Toda la información sobre 'Jonas Kaufmann: The Sound of Movies' (2026): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Jonas Kaufmann: The Sound of Movies'",
 "d": "2026-11-15"
+},
+"https://www.cinetecamadrid.com/programacion/pinito-del-oro-ras-de-cielo": {
+"t": "",
+"d": "2026-11-16"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/16o-festival-margenes-biografia-de-jorge-luis-borges/": {
+"t": "",
+"d": "2026-11-16"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/chopin/": {
+"t": "",
+"d": "2026-11-16"
+},
+"https://www.circulobellasartes.com/ciclos-cine/peliculas/cold-war/": {
+"t": "",
+"d": "2026-11-16"
+},
+"https://www.golem.es/golem/pelicula/QUEEREPHEMERA": {
+"t": "",
+"d": "2026-11-16"
+},
+"https://www.golem.es/golem/pelicula/QUEERESPEJO": {
+"t": "",
+"d": "2026-11-16"
+},
+"tmdb|pinito del oro a ras de cielo|": {
+"t": "",
+"d": "2026-11-16",
+"anio": "",
+"v": 3
+},
+"tmdb|biografia de jorge luis borges|": {
+"t": "",
+"d": "2026-11-16",
+"anio": "2026",
+"v": 3
+},
+"tmdb|chopin|": {
+"t": "",
+"d": "2026-11-16",
+"anio": "2025",
+"v": 3
+},
+"tmdb|cold war|": {
+"t": "Con la Guerra Fría como telón de fondo, “Cold War” presenta una apasionada historia de amor entre dos personas de diferente origen y temperamento que son totalmente incompatibles, pero cuyo destino les condena a estar juntos.",
+"d": "2026-11-16",
+"anio": "2018",
+"v": 3
+},
+"tmdb|queercinemad el espejo|": {
+"t": "",
+"d": "2026-11-16",
+"anio": "",
+"v": 3
+},
+"tmdb|queercinemad ephemera|": {
+"t": "",
+"d": "2026-11-16",
+"anio": "",
+"v": 3
 }
 }

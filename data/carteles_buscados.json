@@ -2533,7 +2533,7 @@
 },
 "gugu s world feito pipa|allan deberton": {
 "url": "",
-"t": "2026-11-09"
+"t": "2026-11-17"
 },
 "i rarely wake up dreaming|isabelle stever": {
 "url": "https://image.tmdb.org/t/p/w780/5uQ3m7Qt4rj73ubBylu0lzElbL8.jpg",
@@ -2541,7 +2541,7 @@
 },
 "pelicula sorpresa|": {
 "url": "",
-"t": "2026-11-09"
+"t": "2026-11-17"
 },
 "du fioul dans les arteres|pierre le gall": {
 "url": "https://image.tmdb.org/t/p/w780/f2MApfmXnpDnWhLEA0k6bZo8kOl.jpg",
@@ -2694,6 +2694,30 @@
 "queercinemad ephemera|": {
 "url": "",
 "t": "2026-11-16"
+},
+"mas que una casa|": {
+"url": "",
+"t": "2026-11-17"
+},
+"lejos de los arboles|": {
+"url": "",
+"t": "2026-11-17"
+},
+"oficios del cine en familia entrar a escena|": {
+"url": "",
+"t": "2026-11-17"
+},
+"narciso|": {
+"url": "",
+"t": "2026-11-17"
+},
+"puedes verlo todo|nathan fielder lance oppenheim": {
+"url": "https://image.tmdb.org/t/p/w780/g2PKUCpDChvYvT7IaUOYfjO0mbG.jpg",
+"t": "2026-11-17"
+},
+"cascanueces y los cuatro reinos|lasse hallstrom joe johnston": {
+"url": "https://image.tmdb.org/t/p/w780/eYDNJvFvjgVIklbf76St7ldnsaX.jpg",
+"t": "2026-11-17"
 }
 },
 "sonidos opticos": {
@@ -2915,7 +2939,7 @@
 "gugu s world feito pipa": {
 "url": "",
 "fuente": "",
-"t": "2026-11-09",
+"t": "2026-11-17",
 "titulo": "Gugu’s World (Feito Pipa)",
 "tmdb": true,
 "v": 3
@@ -2923,7 +2947,7 @@
 "pelicula sorpresa": {
 "url": "",
 "fuente": "",
-"t": "2026-11-09",
+"t": "2026-11-17",
 "titulo": "Película sorpresa",
 "tmdb": true,
 "v": 3
@@ -3013,6 +3037,22 @@
 "fuente": "",
 "t": "2026-11-16",
 "titulo": "QueerCineMad: Ephemera",
+"tmdb": true,
+"v": 3
+},
+"oficios del cine en familia entrar a escena": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "Los oficios del cine en familia: Entrar a escena",
+"tmdb": true,
+"v": 3
+},
+"narciso": {
+"url": "https://www.ecartelera.com/carteles/20400/20444/001.jpg",
+"fuente": "eCartelera",
+"t": "2026-11-17",
+"titulo": "Narciso",
 "tmdb": true,
 "v": 3
 }

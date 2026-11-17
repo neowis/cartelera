@@ -2319,5 +2319,53 @@
 "https://www.golem.es/golem/pelicula/Rose-(V.O.S.E.)": {
 "t": "",
 "d": "2026-11-16"
+},
+"https://www.academiadecine.com/actividades/los-oficios-del-cine-en-familia-entrar-a-escena/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-17"
+},
+"https://www.academiadecine.com/actividades/narciso/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-17"
+},
+"https://www.cinetecamadrid.com/programacion/lejos-de-los-arboles-1": {
+"t": "",
+"d": "2026-11-17"
+},
+"https://www.cinetecamadrid.com/programacion/mas-que-una-casa": {
+"t": "",
+"d": "2026-11-17"
+},
+"https://www.ecartelera.com/peliculas/the-nutcraker-and-the-four-realms/": {
+"t": "Toda la información sobre 'El cascanueces y los cuatro reinos' (2018): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'El cascanueces y los cuatro reinos'",
+"d": "2026-11-17"
+},
+"https://www.ecartelera.com/peliculas/you-can-see-everything/": {
+"t": "Toda la información sobre 'Puedes verlo todo' (2026): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Puedes verlo todo'",
+"d": "2026-11-17"
+},
+"tmdb|mas que una casa|": {
+"t": "En medio de la nada, enormes urbanizaciones de vivienda social se alzan como archipiélagos donde los sueños chocan contra la realidad. Estos espacios, marcados por la incertidumbre, laten con una vida inesperada. Retrato de una generación de trabajadores y su capacidad para convertir entornos opresivos en un lugar al que llamar hogar.",
+"d": "2026-11-17",
+"anio": "2026",
+"v": 3
+},
+"tmdb|lejos de los arboles|": {
+"t": "",
+"d": "2026-11-17",
+"anio": "",
+"v": 3
+},
+"tmdb|oficios del cine en familia entrar a escena|": {
+"t": "",
+"d": "2026-11-17",
+"anio": "",
+"v": 3
+},
+"tmdb|narciso|": {
+"t": "",
+"d": "2026-11-17",
+"anio": "",
+"v": 3
 }
 }

@@ -2718,6 +2718,98 @@
 "cascanueces y los cuatro reinos|lasse hallstrom joe johnston": {
 "url": "https://image.tmdb.org/t/p/w780/eYDNJvFvjgVIklbf76St7ldnsaX.jpg",
 "t": "2026-11-17"
+},
+"mrgente 1|": {
+"url": "",
+"t": "2026-11-17"
+},
+"providence and the guitar|": {
+"url": "https://image.tmdb.org/t/p/w780/m485znZEsU1tgjbI1YZ8jo5h7S3.jpg",
+"t": "2026-11-17"
+},
+"mrgente 2|": {
+"url": "",
+"t": "2026-11-17"
+},
+"day in the life of jo chapter phaedra normal planet|": {
+"url": "",
+"t": "2026-11-17"
+},
+"todo es carcel|": {
+"url": "https://image.tmdb.org/t/p/w780/qPK58KRmMSSzUb6UeoONcmUt49h.jpg",
+"t": "2026-11-17"
+},
+"mrgente 3|": {
+"url": "",
+"t": "2026-11-17"
+},
+"como todo mortal|": {
+"url": "https://image.tmdb.org/t/p/w780/3TXVd1r7uDsyiDWaQRUZ8iZdMiH.jpg",
+"t": "2026-11-17"
+},
+"hombre mas solitario de la ciudad the blessing|": {
+"url": "",
+"t": "2026-11-17"
+},
+"islas afortunadas cronica del cansancio|": {
+"url": "",
+"t": "2026-11-17"
+},
+"diario de una camarera|": {
+"url": "",
+"t": "2026-11-17"
+},
+"adios rios|": {
+"url": "https://image.tmdb.org/t/p/w780/bAblNZiWLbql9ffwrstt6NLN0fW.jpg",
+"t": "2026-11-17"
+},
+"dreamed adventure|": {
+"url": "https://image.tmdb.org/t/p/w780/aC2YiLDDs89mmb2n6Na0NbPKi0j.jpg",
+"t": "2026-11-17"
+},
+"un arbre es un arbre|": {
+"url": "https://image.tmdb.org/t/p/w780/1l9zRvnV1slfIXeTBGVeuAEteFT.jpg",
+"t": "2026-11-17"
+},
+"vertige unidentified nonflying objects uno|": {
+"url": "",
+"t": "2026-11-17"
+},
+"seize moments de ma vie ghazal e sorkh|": {
+"url": "",
+"t": "2026-11-17"
+},
+"heil jupiter|": {
+"url": "https://image.tmdb.org/t/p/w780/oYxBJuatx5pJPmbmNOQPiC5Gdrm.jpg",
+"t": "2026-11-17"
+},
+"end of it|": {
+"url": "https://image.tmdb.org/t/p/w780/oBuOnVG26qIhytKNvHxfwYxzToe.jpg",
+"t": "2026-11-17"
+},
+"presentacion de las residencias de cine 2026 cra cineteca|": {
+"url": "",
+"t": "2026-11-17"
+},
+"relatos de los relatos historias y genealogias de las musicas experimentales y el arte sonoro en espana|": {
+"url": "",
+"t": "2026-11-17"
+},
+"sostener el ruido estrategias para el apoyo y la difusion del arte sonoro y las musicas experimentales en espana|": {
+"url": "",
+"t": "2026-11-17"
+},
+"historia por venir la escucha del archivo en la creacion y la investigacion artistica|": {
+"url": "",
+"t": "2026-11-17"
+},
+"agustina giovio y ana rodrigo en concierto|": {
+"url": "",
+"t": "2026-11-17"
+},
+"rose|markus schleinzer": {
+"url": "https://image.tmdb.org/t/p/w780/4k3ph6BoeZr7IMiQx8ioEV8d9cJ.jpg",
+"t": "2026-11-17"
 }
 },
 "sonidos opticos": {
@@ -3053,6 +3145,62 @@
 "fuente": "eCartelera",
 "t": "2026-11-17",
 "titulo": "Narciso",
+"tmdb": true,
+"v": 3
+},
+"mrgente 1": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "MRGente 1",
+"tmdb": true,
+"v": 3
+},
+"mrgente 2": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "MRGente 2",
+"tmdb": true,
+"v": 3
+},
+"mrgente 3": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "MRGente 3",
+"tmdb": true,
+"v": 3
+},
+"presentacion de las residencias de cine 2026 cra cineteca": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "Presentación de las Residencias de Cine 2026 (CRA/Cineteca)",
+"tmdb": true,
+"v": 3
+},
+"relatos de los relatos historias y genealogias de las musicas experimentales y el arte sonoro en espana": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "Relatos de los relatos. Historias y genealogías de las músicas experimentales y el arte sonoro en España",
+"tmdb": true,
+"v": 3
+},
+"sostener el ruido estrategias para el apoyo y la difusion del arte sonoro y las musicas experimentales en espana": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "Sostener el ruido. Estrategias para el apoyo y la difusión del arte sonoro y las músicas experimentales en España",
+"tmdb": true,
+"v": 3
+},
+"historia por venir la escucha del archivo en la creacion y la investigacion artistica": {
+"url": "",
+"fuente": "",
+"t": "2026-11-17",
+"titulo": "La historia por venir. La escucha del archivo en la creación y la investigación artística",
 "tmdb": true,
 "v": 3
 }

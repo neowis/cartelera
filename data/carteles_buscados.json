@@ -2850,6 +2850,78 @@
 "director|dani de la orden": {
 "url": "https://image.tmdb.org/t/p/w780/9FKhEtXhX2Omvc7kVcjvDYk8DWG.jpg",
 "t": "2026-11-18"
+},
+"violinista|": {
+"url": "https://image.tmdb.org/t/p/w780/tt8GZ35a4MYDWjqD0jJl50ChK9o.jpg",
+"t": "2026-11-18"
+},
+"inauguracion viva carmen daughters of the late colonel|": {
+"url": "",
+"t": "2026-11-18"
+},
+"amor azar y otras anomalias priit y olga parn|": {
+"url": "",
+"t": "2026-11-18"
+},
+"trazando el camino|": {
+"url": "",
+"t": "2026-11-18"
+},
+"contemporaneos nuevas voces|": {
+"url": "",
+"t": "2026-11-18"
+},
+"cuando el guion impulsa la tecnologia seminario impartido por priit y olga parn|": {
+"url": "",
+"t": "2026-11-18"
+},
+"mu ki ra|": {
+"url": "https://image.tmdb.org/t/p/w780/arJSTCDZ1Q34c6aXZxZJF9XuhhQ.jpg",
+"t": "2026-11-18"
+},
+"panorama de animacion espanola animario 26|": {
+"url": "",
+"t": "2026-11-18"
+},
+"ulo pikkov objetos contra el olvido|": {
+"url": "",
+"t": "2026-11-18"
+},
+"contemporaneos cuerpos instintos y otros monstruos|": {
+"url": "",
+"t": "2026-11-18"
+},
+"o filho da puta|": {
+"url": "https://image.tmdb.org/t/p/w780/pFfpxHWCgYzAhXbom2zzhrtryzt.jpg",
+"t": "2026-11-18"
+},
+"iron boy|": {
+"url": "https://image.tmdb.org/t/p/w780/oM39gmpBRjyKt9zJ71ae25nHSAT.jpg",
+"t": "2026-11-18"
+},
+"clasicos deliciosos para peques|": {
+"url": "",
+"t": "2026-11-18"
+},
+"mirando al futuro|": {
+"url": "",
+"t": "2026-11-18"
+},
+"clausura blaise cuatro perros|": {
+"url": "",
+"t": "2026-11-18"
+},
+"tren de sombras coloquio con carla simon|": {
+"url": "",
+"t": "2026-11-18"
+},
+"iron boy|louis clichy": {
+"url": "https://image.tmdb.org/t/p/w780/oM39gmpBRjyKt9zJ71ae25nHSAT.jpg",
+"t": "2026-11-18"
+},
+"sleeper el caravaggio perdido|alvaro longoria": {
+"url": "https://image.tmdb.org/t/p/w780/tj8KYSsBxf4TVmjtEu1JFbY5ZA4.jpg",
+"t": "2026-11-18"
 }
 },
 "sonidos opticos": {
@@ -3257,6 +3329,78 @@
 "fuente": "",
 "t": "2026-11-18",
 "titulo": "Sucia",
+"tmdb": true,
+"v": 3
+},
+"amor azar y otras anomalias priit y olga parn": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Amor, azar y otras anomalías: Priit y Olga Pärn",
+"tmdb": true,
+"v": 3
+},
+"trazando el camino": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Trazando el camino",
+"tmdb": true,
+"v": 3
+},
+"contemporaneos nuevas voces": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Contemporáneos: Nuevas voces",
+"tmdb": true,
+"v": 3
+},
+"cuando el guion impulsa la tecnologia seminario impartido por priit y olga parn": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Cuando el guion impulsa la tecnología: Seminario impartido por Priit y Olga Pärn",
+"tmdb": true,
+"v": 3
+},
+"panorama de animacion espanola animario 26": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Panorama de animación española / ANIMARIO 26",
+"tmdb": true,
+"v": 3
+},
+"ulo pikkov objetos contra el olvido": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Ülo Pikkov: Objetos contra el olvido",
+"tmdb": true,
+"v": 3
+},
+"contemporaneos cuerpos instintos y otros monstruos": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Contemporáneos: Cuerpos, instintos y otros monstruos",
+"tmdb": true,
+"v": 3
+},
+"clasicos deliciosos para peques": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Clásicos deliciosos para peques",
+"tmdb": true,
+"v": 3
+},
+"mirando al futuro": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Mirando al futuro",
 "tmdb": true,
 "v": 3
 }

@@ -2810,6 +2810,46 @@
 "rose|markus schleinzer": {
 "url": "https://image.tmdb.org/t/p/w780/4k3ph6BoeZr7IMiQx8ioEV8d9cJ.jpg",
 "t": "2026-11-17"
+},
+"silvia criatura|": {
+"url": "",
+"t": "2026-11-18"
+},
+"que cojones es un hombre|": {
+"url": "",
+"t": "2026-11-18"
+},
+"sucia|": {
+"url": "",
+"t": "2026-11-18"
+},
+"nuevas desventuras de cliff booth|": {
+"url": "https://image.tmdb.org/t/p/w780/5jO6rhfethzH7xdWl6KCOxCNCzQ.jpg",
+"t": "2026-11-18"
+},
+"vino la noche|": {
+"url": "https://image.tmdb.org/t/p/w780/wnAbPFsCwmt1CEdNzjej3sm4VSk.jpg",
+"t": "2026-11-18"
+},
+"cemetery of splendour|": {
+"url": "https://image.tmdb.org/t/p/w780/vVmUp3NPh2qtpIadQ1RttClKN9Q.jpg",
+"t": "2026-11-18"
+},
+"distant voices still lives voces distantes|": {
+"url": "",
+"t": "2026-11-18"
+},
+"miracolo a milano|": {
+"url": "https://image.tmdb.org/t/p/w780/cJXH484VN7zQIsZm3A6AkXdABSD.jpg",
+"t": "2026-11-18"
+},
+"india song|": {
+"url": "https://image.tmdb.org/t/p/w780/p9TcpsGmp0c0fg72uQK5X1QMYaq.jpg",
+"t": "2026-11-18"
+},
+"director|dani de la orden": {
+"url": "https://image.tmdb.org/t/p/w780/9FKhEtXhX2Omvc7kVcjvDYk8DWG.jpg",
+"t": "2026-11-18"
 }
 },
 "sonidos opticos": {
@@ -3201,6 +3241,22 @@
 "fuente": "",
 "t": "2026-11-17",
 "titulo": "La historia por venir. La escucha del archivo en la creación y la investigación artística",
+"tmdb": true,
+"v": 3
+},
+"que cojones es un hombre": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "¡Qué cojones es un hombre?",
+"tmdb": true,
+"v": 3
+},
+"sucia": {
+"url": "",
+"fuente": "",
+"t": "2026-11-18",
+"titulo": "Sucia",
 "tmdb": true,
 "v": 3
 }

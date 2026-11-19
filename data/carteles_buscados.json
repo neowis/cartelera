@@ -2938,6 +2938,70 @@
 "ninas sucias|": {
 "url": "",
 "t": "2026-11-19"
+},
+"tren fluvial|lorenzo ferro y lucas a vignale": {
+"url": "https://image.tmdb.org/t/p/w780/wElH8qOEoF1Fl09DI0CA82AW4oe.jpg",
+"t": "2026-11-19"
+},
+"fatherland|pawe pawlikowski": {
+"url": "https://image.tmdb.org/t/p/w780/oNejN1l69nBF8LdQwy5FkAQZT44.jpg",
+"t": "2026-11-19"
+},
+"hiedra|ana cristina barragan": {
+"url": "https://image.tmdb.org/t/p/w780/tFsej7QP5VxEBEJFu6x65te6WvO.jpg",
+"t": "2026-11-19"
+},
+"luna de papel paper moon|peter bogdanovich y polly platt": {
+"url": "",
+"t": "2026-11-19"
+},
+"ensayo final para utopia|andres duque": {
+"url": "https://image.tmdb.org/t/p/w780/6UlMLvdaGJbBdlKTDLioPKIZD9b.jpg",
+"t": "2026-11-19"
+},
+"hermanas|ione hernandez saenz": {
+"url": "https://image.tmdb.org/t/p/w780/bnevRIPTUM6P3uFyvySNBq190Rh.jpg",
+"t": "2026-11-19"
+},
+"hester street|joan micklin silver": {
+"url": "https://image.tmdb.org/t/p/w780/sEYKnLShvnJuXzYWFI870F1hqZK.jpg",
+"t": "2026-11-19"
+},
+"bailar la muerte|luis e pares": {
+"url": "https://image.tmdb.org/t/p/w780/mI79B0avLONcjoLydGo1QMXSWPa.jpg",
+"t": "2026-11-19"
+},
+"screening lav 36 no vi que se movieran los petalos|": {
+"url": "",
+"t": "2026-11-19"
+},
+"septimo cielo|frank borzage": {
+"url": "https://image.tmdb.org/t/p/w780/3ETXMu5PrcVMRJpfN2Z3MwcfXzy.jpg",
+"t": "2026-11-19"
+},
+"conciertos sabe sao nuevos territorios marwan|": {
+"url": "",
+"t": "2026-11-19"
+},
+"entrevista a marwan conciertos alba lamerced angela gonzalez nuevos territorios|": {
+"url": "",
+"t": "2026-11-19"
+},
+"mulholland drive|david lynch": {
+"url": "https://image.tmdb.org/t/p/w780/kLpwkbimTwTbsYixCO3eAdNCQJ8.jpg",
+"t": "2026-11-19"
+},
+"sauna|": {
+"url": "",
+"t": "2026-11-19"
+},
+"con hasan en gaza|": {
+"url": "https://image.tmdb.org/t/p/w780/wjMb0HRrxkU21aygJO7qR5W9rgA.jpg",
+"t": "2026-11-19"
+},
+"extranjero|francois ozon": {
+"url": "https://image.tmdb.org/t/p/w780/n7frRF1nA8JLoGk4enOSlgpH27R.jpg",
+"t": "2026-11-19"
 }
 },
 "sonidos opticos": {
@@ -3417,6 +3481,22 @@
 "fuente": "",
 "t": "2026-11-18",
 "titulo": "Mirando al futuro",
+"tmdb": true,
+"v": 3
+},
+"luna de papel paper moon": {
+"url": "",
+"fuente": "",
+"t": "2026-11-19",
+"titulo": "Luna de papel (Paper Moon)",
+"tmdb": true,
+"v": 3
+},
+"screening lav 36 no vi que se movieran los petalos": {
+"url": "",
+"fuente": "",
+"t": "2026-11-19",
+"titulo": "Screening LAV #36. No vi que se movieran los pétalos",
 "tmdb": true,
 "v": 3
 }

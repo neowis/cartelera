@@ -2855,5 +2855,45 @@
 "d": "2026-11-18",
 "anio": "",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/being-heumann/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-19"
+},
+"https://www.academiadecine.com/actividades/maria-vitoria/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-19"
+},
+"https://www.academiadecine.com/actividades/sesion4-ninassucias/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-19"
+},
+"https://www.cinetecamadrid.com/programacion/mailin-spiral": {
+"t": "",
+"d": "2026-11-19"
+},
+"tmdb|mailin the spiral|": {
+"t": "",
+"d": "2026-11-19",
+"anio": "",
+"v": 3
+},
+"tmdb|being heumann|": {
+"t": "Judy Heumann, luchadora, desafiante y harta de que la traten como a una carga, convierte su indignación en una revolución. En 1977, junto con más de 100 manifestantes por los derechos de las personas con discapacidad, manda un mensaje muy firme: El sistema está dañado, no nosotros.",
+"d": "2026-11-19",
+"anio": "2026",
+"v": 3
+},
+"tmdb|maria vitoria|": {
+"t": "",
+"d": "2026-11-19",
+"anio": "2025",
+"v": 3
+},
+"tmdb|ninas sucias|": {
+"t": "",
+"d": "2026-11-19",
+"anio": "",
+"v": 3
 }
 }

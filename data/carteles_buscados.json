@@ -2,7 +2,7 @@
 "cine chino del nuevo milenio": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Cine chino del nuevo milenio",
 "tmdb": true,
 "v": 3
@@ -18,7 +18,7 @@
 "sabados de cine de otono": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Sábados de cine de otoño",
 "tmdb": true,
 "v": 3
@@ -33,7 +33,7 @@
 "mejores peliculas de la historia del cine": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Las mejores películas de la historia del cine",
 "tmdb": true,
 "v": 3
@@ -41,7 +41,7 @@
 "soledad no deseada": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Soledad No Deseada",
 "tmdb": true,
 "v": 3
@@ -63,7 +63,7 @@
 "prevencion del duelo complicado": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Prevención del duelo complicado",
 "tmdb": true,
 "v": 3
@@ -87,7 +87,7 @@
 "andrzej zulawski el amor sin limites": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Andrzej Zulawski, El amor sin límites",
 "tmdb": true,
 "v": 3
@@ -804,7 +804,7 @@
 "zulueta aguirre tentativa y obra": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Zulueta / Aguirre. Tentativa y obra",
 "tmdb": true,
 "v": 3
@@ -1053,7 +1053,7 @@
 "raices aromas y color": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Raíces, aromas y color",
 "tmdb": true,
 "v": 3
@@ -1157,7 +1157,7 @@
 "madrid residencia de talento": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Madrid Residencia de Talento",
 "tmdb": true,
 "v": 3
@@ -1245,7 +1245,7 @@
 "vagabundo vagabundo vagabundo|1926": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Vagabundo, vagabundo, vagabundo",
 "tmdb": true,
 "v": 3
@@ -1445,19 +1445,19 @@
 },
 "tree of knowledge|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "calada|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "filipinana|": {
-"url": "",
-"t": "2026-11-11"
+"url": "https://image.tmdb.org/t/p/w780/pe0MudvC8VOoTtAMCTIfHqrRo8o.jpg",
+"t": "2026-11-19"
 },
 "mantis|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "hoxe e o resto do mundo|": {
 "url": "https://image.tmdb.org/t/p/w780/iXYVBc5EzSt2LuI3zgBhVucu4E9.jpg",
@@ -1465,11 +1465,11 @@
 },
 "yastay|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "gran fiesta del cine|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "muerte de dracula|": {
 "url": "https://image.tmdb.org/t/p/w780/xeTenmN0IRvAwOg61t9ybp7TKhB.jpg",
@@ -1481,19 +1481,19 @@
 },
 "simulacro|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "entrega de premios live a v jaydee y josephine soundscapes|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "cristina y los otros mundos|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "cantics a la penombra|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "rose|": {
 "url": "https://image.tmdb.org/t/p/w780/4k3ph6BoeZr7IMiQx8ioEV8d9cJ.jpg",
@@ -1653,7 +1653,7 @@
 },
 "raices aromas y color|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "eight bridges|2026|james benning": {
 "url": "https://image.tmdb.org/t/p/w780/h480wkeccETRDi50EhfWlZgsfco.jpg",
@@ -1685,7 +1685,7 @@
 },
 "zulueta aguirre tentativa y obra|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "carne de fieras|1936|armand guerra": {
 "url": "https://image.tmdb.org/t/p/w780/7FgtE6KbBB2qpgCja3WFQangCgo.jpg",
@@ -1901,27 +1901,27 @@
 },
 "algo horrible y maravilloso de patricio ruiz argentina|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "crimenes cotidianos de rafael pence uruguay|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "flores muertas de natalia villamil argentina|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "musica de regreso a casa de victoria vera uruguay|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "bette davis estas ahi de domingo milesi uruguay|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "luciernagas sueno bastardo de horacio nin uria argentina|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "castillo capitulo 3 45|": {
 "url": "",
@@ -1961,7 +1961,7 @@
 },
 "andrzej zulawski el amor sin limites|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "shrek 2|": {
 "url": "https://image.tmdb.org/t/p/w780/knRt4E8KyfwEv0SVu9LsLvD28IQ.jpg",
@@ -1977,19 +1977,19 @@
 },
 "cine chino del nuevo milenio|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "prevencion del duelo complicado|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "mejores peliculas de la historia del cine|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "soledad no deseada|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "memoria es nuestra|": {
 "url": "https://image.tmdb.org/t/p/w780/9DU1kj47uZBtEWDUV3qffpr4x17.jpg",
@@ -2069,7 +2069,7 @@
 },
 "madrid residencia de talento|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "mas vivos que nunca|": {
 "url": "https://image.tmdb.org/t/p/w780/6qoNSzSbbORgyctlLmCWqgfARYR.jpg",
@@ -2121,7 +2121,7 @@
 },
 "vagabundo vagabundo vagabundo|1926|harry edwards": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "requiem por un sueno|": {
 "url": "https://image.tmdb.org/t/p/w780/2B5brHMhaHN1d9KmdeZI6RlU3aE.jpg",
@@ -2129,7 +2129,7 @@
 },
 "resurreccion|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "romeria|carla simon": {
 "url": "https://image.tmdb.org/t/p/w780/9mkLV32jOUXhC8uQaw7zV9ymm8Y.jpg",
@@ -2137,7 +2137,7 @@
 },
 "sabados de cine de otono|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "teo va al espacio|": {
 "url": "https://image.tmdb.org/t/p/w780/ut2Y23MyxfwFzoeQ3MMdHEtGrFv.jpg",
@@ -2285,7 +2285,7 @@
 },
 "ruega por nosotras ocap|": {
 "url": "",
-"t": "2026-11-11"
+"t": "2026-11-19"
 },
 "sacamantecas|": {
 "url": "https://image.tmdb.org/t/p/w780/7338FnwdzX9oNpODZIJH1OliUGV.jpg",
@@ -2922,6 +2922,22 @@
 "sleeper el caravaggio perdido|alvaro longoria": {
 "url": "https://image.tmdb.org/t/p/w780/tj8KYSsBxf4TVmjtEu1JFbY5ZA4.jpg",
 "t": "2026-11-18"
+},
+"mailin the spiral|": {
+"url": "",
+"t": "2026-11-19"
+},
+"being heumann|": {
+"url": "https://image.tmdb.org/t/p/w780/2NcNYzSD436UlV7Ar8D2Fr5790.jpg",
+"t": "2026-11-19"
+},
+"maria vitoria|": {
+"url": "https://image.tmdb.org/t/p/w780/rZ79RLKS3G9X1VVdI8Ju4iTIecM.jpg",
+"t": "2026-11-19"
+},
+"ninas sucias|": {
+"url": "",
+"t": "2026-11-19"
 }
 },
 "sonidos opticos": {
@@ -2951,7 +2967,7 @@
 "entrega de premios live a v jaydee y josephine soundscapes": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Entrega de premios + Live A/V: JayDee y Josephine’ Soundscapes",
 "tmdb": true,
 "v": 3
@@ -3047,7 +3063,7 @@
 "ruega por nosotras ocap": {
 "url": "",
 "fuente": "",
-"t": "2026-11-11",
+"t": "2026-11-19",
 "titulo": "Ruega por nosotras (OCAP)",
 "tmdb": true,
 "v": 3

@@ -3011,5 +3011,49 @@
 "d": "2026-11-19",
 "anio": "",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/elsinore/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-20"
+},
+"https://www.academiadecine.com/actividades/esta-isla/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-20"
+},
+"https://www.ecartelera.com/peliculas/ponyo-en-el-acantilado/": {
+"t": "Toda la información sobre 'Ponyo en el acantilado' (2008): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Ponyo en el acantilado'",
+"d": "2026-11-20"
+},
+"https://www.golem.es/golem/pelicula/Puedes-verlo-todo-(V.O.S.E.)": {
+"t": "",
+"d": "2026-11-20"
+},
+"https://www.golem.es/golem/pelicula/soulevements": {
+"t": "",
+"d": "2026-11-20"
+},
+"tmdb|puedes verlo todo|": {
+"t": "Treinta y cuatro días antes de ingresar en prisión, la famosa fundadora de Theranos, Elizabeth Holmes, invita a un equipo de rodaje escéptico a documentar cada uno de sus movimientos. Lo que comienza como un retrato íntimo se convierte en un alucinante viaje de tres años.",
+"d": "2026-11-20",
+"anio": "2026",
+"v": 3
+},
+"tmdb|soulevements|": {
+"t": "",
+"d": "2026-11-20",
+"anio": "2026",
+"v": 3
+},
+"tmdb|elsinore|": {
+"t": "La historia real, profundamente emotiva e inspiradora, de Ian Charleson, un actor de gran talento cuyo mayor desafío se convierte en su mayor triunfo. Al afrontar su propia mortalidad con una honestidad inquebrantable, ingenio y elegancia, Charleson ofrece una interpretación valiente que se transforma en una fuente de sanación e inspiración para quienes le rodean.",
+"d": "2026-11-20",
+"anio": "2026",
+"v": 3
+},
+"tmdb|esta isla|": {
+"t": "",
+"d": "2026-11-20",
+"anio": "2025",
+"v": 3
 }
 }

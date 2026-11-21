@@ -2437,7 +2437,7 @@
 },
 "capitulo xxxvi carta blanca a maria castro y alvaro caceres|": {
 "url": "",
-"t": "2026-11-13"
+"t": "2026-11-21"
 },
 "misterio de lucy lost|olivier clert": {
 "url": "",
@@ -3026,6 +3026,22 @@
 "juegos del hambre amanecer en la cosecha|francis lawrence": {
 "url": "https://image.tmdb.org/t/p/w780/8K4lZ5oepk3kArMWfQuqSegxSRe.jpg",
 "t": "2026-11-20"
+},
+"cristal oscuro|": {
+"url": "https://image.tmdb.org/t/p/w780/vNv1gozXLXkfWRQ4ppUJxYiQ8zb.jpg",
+"t": "2026-11-21"
+},
+"gaudi de honor 2026 silvia munt|": {
+"url": "",
+"t": "2026-11-21"
+},
+"bajo el mismo sol|": {
+"url": "",
+"t": "2026-11-21"
+},
+"hechizo bienvenidos a hexe|jason hand fawn veerasunthorn": {
+"url": "https://image.tmdb.org/t/p/w780/zPaypaMulDEVhuTCN1hPN1Hg4DI.jpg",
+"t": "2026-11-21"
 }
 },
 "sonidos opticos": {
@@ -3183,7 +3199,7 @@
 "capitulo xxxvi carta blanca a maria castro y alvaro caceres": {
 "url": "",
 "fuente": "",
-"t": "2026-11-13",
+"t": "2026-11-21",
 "titulo": "Capítulo XXXVI: Carta blanca a María Castro y Álvaro Cáceres",
 "tmdb": true,
 "v": 3
@@ -3521,6 +3537,22 @@
 "fuente": "",
 "t": "2026-11-19",
 "titulo": "Screening LAV #36. No vi que se movieran los pétalos",
+"tmdb": true,
+"v": 3
+},
+"gaudi de honor 2026 silvia munt": {
+"url": "",
+"fuente": "",
+"t": "2026-11-21",
+"titulo": "Gaudí de Honor 2026: Sílvia Munt",
+"tmdb": true,
+"v": 3
+},
+"bajo el mismo sol": {
+"url": "https://www.ecartelera.com/carteles/20200/20217/001.jpg",
+"fuente": "eCartelera",
+"t": "2026-11-21",
+"titulo": "Bajo el mismo sol",
 "tmdb": true,
 "v": 3
 }

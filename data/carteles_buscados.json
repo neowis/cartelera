@@ -2653,11 +2653,11 @@
 },
 "cima conversa fuera de campo edadismo y genero en el audiovisual|": {
 "url": "",
-"t": "2026-11-15"
+"t": "2026-11-23"
 },
 "milagro|": {
 "url": "",
-"t": "2026-11-15"
+"t": "2026-11-23"
 },
 "queercinemad seis meses en el edificio rosa con azul|": {
 "url": "",
@@ -3050,6 +3050,14 @@
 "blade runner 2049|denis villeneuve": {
 "url": "https://image.tmdb.org/t/p/w780/cOt8SQwrxpoTv9Bc3kyce3etkZX.jpg",
 "t": "2026-11-22"
+},
+"espantapajaros scarecrow|jerry schatzberg": {
+"url": "",
+"t": "2026-11-23"
+},
+"fargo|ethan coen joel coen": {
+"url": "https://image.tmdb.org/t/p/w780/e25EHAVCA16rnbeAYl8qrSrc942.jpg",
+"t": "2026-11-23"
 }
 },
 "sonidos opticos": {
@@ -3327,7 +3335,7 @@
 "cima conversa fuera de campo edadismo y genero en el audiovisual": {
 "url": "",
 "fuente": "",
-"t": "2026-11-15",
+"t": "2026-11-23",
 "titulo": "CIMA Conversa: Fuera de campo, Edadismo y género en el audiovisual",
 "tmdb": true,
 "v": 3
@@ -3561,6 +3569,14 @@
 "fuente": "eCartelera",
 "t": "2026-11-21",
 "titulo": "Bajo el mismo sol",
+"tmdb": true,
+"v": 3
+},
+"espantapajaros scarecrow": {
+"url": "",
+"fuente": "",
+"t": "2026-11-23",
+"titulo": "Espantapájaros (Scarecrow)",
 "tmdb": true,
 "v": 3
 }

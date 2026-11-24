@@ -3125,5 +3125,33 @@
 "d": "2026-11-23",
 "anio": "",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/en-barcelona-20-anos-de-el-laberinto-del-fauno/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-24"
+},
+"https://www.academiadecine.com/actividades/un-cabo-suelto/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-24"
+},
+"https://www.ecartelera.com/peliculas/hermanas-2026/": {
+"t": "Toda la información sobre 'Hermanas' (2026): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Hermanas'",
+"d": "2026-11-24"
+},
+"https://www.ecartelera.com/peliculas/todo-lo-que-fuimos/": {
+"t": "Toda la información sobre 'Todo lo que fuimos' (2025): Tráiler, cartelera en cines, sinopsis, imágenes, reparto, críticas, curiosidades de 'Todo lo que fuimos'",
+"d": "2026-11-24"
+},
+"tmdb|un cabo suelto|": {
+"t": "Santiago, un cabo de la policía argentina, cruza la frontera hacia Uruguay huyendo de otros agentes policiales que lo andan buscando. Valiéndose de su uniforme, va inspeccionando puestos de comida regional, probando lácteos y embutidos para sobrevivir, al tiempo que intenta pasar desapercibido entre los lugareños. Sin dinero ni hospedaje pero con empatía y astucia, comienza a tramar una nueva vida, recibiendo la ayuda de personajes locales que va cruzando en el camino e, incluso, encuentra a quien cree puede ser el amor de su vida.",
+"d": "2026-11-24",
+"anio": "2025",
+"v": 3
+},
+"tmdb|en barcelona 20 anos de el laberinto del fauno|": {
+"t": "",
+"d": "2026-11-24",
+"anio": "",
+"v": 3
 }
 }

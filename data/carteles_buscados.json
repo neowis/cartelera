@@ -2509,7 +2509,7 @@
 },
 "ya veras|": {
 "url": "",
-"t": "2026-11-16"
+"t": "2026-11-24"
 },
 "colores primarios|": {
 "url": "https://image.tmdb.org/t/p/w780/mt3nitsowjx3mytiIuWM553i55F.jpg",
@@ -2677,7 +2677,7 @@
 },
 "pinito del oro a ras de cielo|": {
 "url": "",
-"t": "2026-11-16"
+"t": "2026-11-24"
 },
 "biografia de jorge luis borges|mariano llinas": {
 "url": "https://image.tmdb.org/t/p/w780/mfdOs8iwLQ7T9x1drtfrb1LzyDG.jpg",
@@ -3058,6 +3058,26 @@
 "fargo|ethan coen joel coen": {
 "url": "https://image.tmdb.org/t/p/w780/e25EHAVCA16rnbeAYl8qrSrc942.jpg",
 "t": "2026-11-23"
+},
+"un cabo suelto|": {
+"url": "https://image.tmdb.org/t/p/w780/d7UZp9QKmAsG7fUqvRdLf4tVe5z.jpg",
+"t": "2026-11-24"
+},
+"en barcelona 20 anos de el laberinto del fauno|": {
+"url": "",
+"t": "2026-11-24"
+},
+"coloquio posterior con sus directores jose antonio barquilla diaz y alexander butler|": {
+"url": "",
+"t": "2026-11-24"
+},
+"todo lo que fuimos|cherien dabis": {
+"url": "https://image.tmdb.org/t/p/w780/y6p2Vk7r27xA0PjQN066ferbjxs.jpg",
+"t": "2026-11-24"
+},
+"hermanas|ione hernandez": {
+"url": "https://image.tmdb.org/t/p/w780/42gyhoe1yiijW7kk9FDqIVvahGP.jpg",
+"t": "2026-11-24"
 }
 },
 "sonidos opticos": {
@@ -3359,7 +3379,7 @@
 "pinito del oro a ras de cielo": {
 "url": "",
 "fuente": "",
-"t": "2026-11-16",
+"t": "2026-11-24",
 "titulo": "Pinito del Oro. A ras de cielo",
 "tmdb": true,
 "v": 3
@@ -3577,6 +3597,22 @@
 "fuente": "",
 "t": "2026-11-23",
 "titulo": "Espantapájaros (Scarecrow)",
+"tmdb": true,
+"v": 3
+},
+"en barcelona 20 anos de el laberinto del fauno": {
+"url": "",
+"fuente": "",
+"t": "2026-11-24",
+"titulo": "EN BARCELONA: 20 años de… El Laberinto del Fauno",
+"tmdb": true,
+"v": 3
+},
+"coloquio posterior con sus directores jose antonio barquilla diaz y alexander butler": {
+"url": "",
+"fuente": "",
+"t": "2026-11-24",
+"titulo": "Coloquio posterior con sus directores José Antonio Barquilla Díaz y Alexander Butler",
 "tmdb": true,
 "v": 3
 }

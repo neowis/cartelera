@@ -3078,6 +3078,26 @@
 "hermanas|ione hernandez": {
 "url": "https://image.tmdb.org/t/p/w780/42gyhoe1yiijW7kk9FDqIVvahGP.jpg",
 "t": "2026-11-24"
+},
+"ruega por nosotras sps|": {
+"url": "",
+"t": "2026-11-24"
+},
+"para vivir el implacable tiempo de pablo milanes|": {
+"url": "https://image.tmdb.org/t/p/w780/wSWIirnIEMIWCIWdnFZqTdZI3ex.jpg",
+"t": "2026-11-24"
+},
+"pride orgullo|": {
+"url": "https://image.tmdb.org/t/p/w780/60yODrgrKDw8d2427tQRC7Vsa5V.jpg",
+"t": "2026-11-24"
+},
+"9a gala de premios pioneros madrilenos del pop 2026|": {
+"url": "",
+"t": "2026-11-24"
+},
+"gummy|javi prada": {
+"url": "https://image.tmdb.org/t/p/w780/5yRJsnuq0M2kBzOz1GvSEe5sRF7.jpg",
+"t": "2026-11-24"
 }
 },
 "sonidos opticos": {
@@ -3613,6 +3633,30 @@
 "fuente": "",
 "t": "2026-11-24",
 "titulo": "Coloquio posterior con sus directores José Antonio Barquilla Díaz y Alexander Butler",
+"tmdb": true,
+"v": 3
+},
+"ruega por nosotras sps": {
+"url": "",
+"fuente": "",
+"t": "2026-11-24",
+"titulo": "Ruega por nosotras (SPS)",
+"tmdb": true,
+"v": 3
+},
+"gran fiesta del cine": {
+"url": "https://www.ecartelera.com/carteles/22100/22174/001.jpg",
+"fuente": "eCartelera",
+"t": "2026-11-24",
+"titulo": "La Gran Fiesta del Cine",
+"tmdb": true,
+"v": 3
+},
+"9a gala de premios pioneros madrilenos del pop 2026": {
+"url": "",
+"fuente": "",
+"t": "2026-11-24",
+"titulo": "9ª Gala de Premios Pioneros Madrileños del Pop 2026",
 "tmdb": true,
 "v": 3
 }

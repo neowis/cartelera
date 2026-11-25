@@ -3195,5 +3195,49 @@
 "d": "2026-11-24",
 "anio": "2014",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/centenario-azcona-la-escopeta-nacional/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-25"
+},
+"https://www.academiadecine.com/actividades/el-pez-que-fuma/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-25"
+},
+"https://www.cinetecamadrid.com/programacion/los-telenecos-conquistan-manhattan": {
+"t": "",
+"d": "2026-11-25"
+},
+"https://www.golem.es/golem/pelicula/Salen-las-lobas": {
+"t": "",
+"d": "2026-11-25"
+},
+"https://www.golem.es/golem/pelicula/hermanas": {
+"t": "",
+"d": "2026-11-25"
+},
+"tmdb|telenecos conquistan manhattan|": {
+"t": "Los simpáticos teleñecos van a Manhattan a intentar vender su espectáculo a algún productor de Broadway, pero al principio las cosas no serán tan fáciles como pensaban.",
+"d": "2026-11-25",
+"anio": "1984",
+"v": 3
+},
+"tmdb|salen las lobas|": {
+"t": "Luna es una adolescente rebelde y enérgica que se ve injustamente encerrada en un centro penitenciario juvenil. Allí, encuentra en «Las Lobas» un grupo de amigas con quienes comparte una pasión por la música trap. Juntas, tienen un objetivo claro: escapar del centro para participar en un concurso de trap en Barcelona.",
+"d": "2026-11-25",
+"anio": "2026",
+"v": 3
+},
+"tmdb|escopeta nacional|": {
+"t": "Un fabricante catalán de porteros electrónicos viaja a Madrid, acompañado de su amante, para asistir a una cacería que él mismo ha organizado. Lo que pretende es relacionarse con gente de la alta sociedad para promocionar su negocio. En la finca del marqués de Leguineche conoce a diversos personajes y vive las situaciones más absurdas y disparatadas.",
+"d": "2026-11-25",
+"anio": "1978",
+"v": 3
+},
+"tmdb|pez que fuma|": {
+"t": "",
+"d": "2026-11-25",
+"anio": "",
+"v": 3
 }
 }

@@ -3303,5 +3303,25 @@
 "d": "2026-11-25",
 "anio": "2026",
 "v": 3
+},
+"https://www.academiadecine.com/actividades/preseleccionados-a-mejor-cortometraje-de-animacion/": {
+"t": "Noticias. Estrenos. Festivales. Ciclos. Rodajes. Biblioteca. Coworking. Somos la Academia de las Artes y las Ciencias Cinematográficas.",
+"d": "2026-11-26"
+},
+"https://www.cinetecamadrid.com/programacion/dentro-del-laberinto-1": {
+"t": "",
+"d": "2026-11-26"
+},
+"tmdb|dentro del laberinto|": {
+"t": "Sarah debe atravesar un laberinto para rescatar a su hermano pequeño, que ha sido secuestrado por los duendes y está en manos del poderoso rey Jareth. La niña descubre que ha llegado a un lugar donde las cosas no son siempre lo que parecen.",
+"d": "2026-11-26",
+"anio": "1986",
+"v": 3
+},
+"tmdb|preseleccionados a mejor cortometraje de animacion|": {
+"t": "",
+"d": "2026-11-26",
+"anio": "",
+"v": 3
 }
 }

@@ -2813,15 +2813,15 @@
 },
 "silvia criatura|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "que cojones es un hombre|": {
-"url": "",
-"t": "2026-11-18"
+"url": "https://image.tmdb.org/t/p/w780/4dDPSYlsHoERfzKKgEkSrAuoZZ1.jpg",
+"t": "2026-11-26"
 },
 "sucia|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "nuevas desventuras de cliff booth|": {
 "url": "https://image.tmdb.org/t/p/w780/5jO6rhfethzH7xdWl6KCOxCNCzQ.jpg",
@@ -2837,7 +2837,7 @@
 },
 "distant voices still lives voces distantes|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "miracolo a milano|": {
 "url": "https://image.tmdb.org/t/p/w780/cJXH484VN7zQIsZm3A6AkXdABSD.jpg",
@@ -2857,23 +2857,23 @@
 },
 "inauguracion viva carmen daughters of the late colonel|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "amor azar y otras anomalias priit y olga parn|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "trazando el camino|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "contemporaneos nuevas voces|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "cuando el guion impulsa la tecnologia seminario impartido por priit y olga parn|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "mu ki ra|": {
 "url": "https://image.tmdb.org/t/p/w780/arJSTCDZ1Q34c6aXZxZJF9XuhhQ.jpg",
@@ -2881,15 +2881,15 @@
 },
 "panorama de animacion espanola animario 26|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "ulo pikkov objetos contra el olvido|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "contemporaneos cuerpos instintos y otros monstruos|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "o filho da puta|": {
 "url": "https://image.tmdb.org/t/p/w780/pFfpxHWCgYzAhXbom2zzhrtryzt.jpg",
@@ -2901,19 +2901,19 @@
 },
 "clasicos deliciosos para peques|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "mirando al futuro|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "clausura blaise cuatro perros|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "tren de sombras coloquio con carla simon|": {
 "url": "",
-"t": "2026-11-18"
+"t": "2026-11-26"
 },
 "iron boy|louis clichy": {
 "url": "https://image.tmdb.org/t/p/w780/oM39gmpBRjyKt9zJ71ae25nHSAT.jpg",
@@ -3170,6 +3170,34 @@
 "primavera|damiano michieletto": {
 "url": "https://image.tmdb.org/t/p/w780/yjIJHYc3jkpP9lIJvRsxWxTbzlo.jpg",
 "t": "2026-11-25"
+},
+"dentro del laberinto|": {
+"url": "https://image.tmdb.org/t/p/w780/ij9GS6boWQLgTjBrK5ST8OOXao0.jpg",
+"t": "2026-11-26"
+},
+"preseleccionados a mejor cortometraje de animacion|": {
+"url": "",
+"t": "2026-11-26"
+},
+"gran juventud|": {
+"url": "https://image.tmdb.org/t/p/w780/kH1rOzSQuRurtTMmlpP8VfTZZMf.jpg",
+"t": "2026-11-26"
+},
+"baile|1959|": {
+"url": "https://image.tmdb.org/t/p/w780/dxpOw0c0TYpru7anpuprRiaVk5j.jpg",
+"t": "2026-11-26"
+},
+"espejismos|1928|king vidor": {
+"url": "https://image.tmdb.org/t/p/w780/kMf0YYCNMqUbS9cTJBTCWcvsXEn.jpg",
+"t": "2026-11-26"
+},
+"hermanita rebelde|1928|king vidor": {
+"url": "",
+"t": "2026-11-26"
+},
+"mi calle 1960 y mesa redonda|": {
+"url": "",
+"t": "2026-11-26"
 }
 },
 "sonidos opticos": {
@@ -3575,7 +3603,7 @@
 "sucia": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Sucia",
 "tmdb": true,
 "v": 3
@@ -3583,7 +3611,7 @@
 "amor azar y otras anomalias priit y olga parn": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Amor, azar y otras anomalías: Priit y Olga Pärn",
 "tmdb": true,
 "v": 3
@@ -3591,7 +3619,7 @@
 "trazando el camino": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Trazando el camino",
 "tmdb": true,
 "v": 3
@@ -3599,7 +3627,7 @@
 "contemporaneos nuevas voces": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Contemporáneos: Nuevas voces",
 "tmdb": true,
 "v": 3
@@ -3607,7 +3635,7 @@
 "cuando el guion impulsa la tecnologia seminario impartido por priit y olga parn": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Cuando el guion impulsa la tecnología: Seminario impartido por Priit y Olga Pärn",
 "tmdb": true,
 "v": 3
@@ -3615,7 +3643,7 @@
 "panorama de animacion espanola animario 26": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Panorama de animación española / ANIMARIO 26",
 "tmdb": true,
 "v": 3
@@ -3623,7 +3651,7 @@
 "ulo pikkov objetos contra el olvido": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Ülo Pikkov: Objetos contra el olvido",
 "tmdb": true,
 "v": 3
@@ -3631,7 +3659,7 @@
 "contemporaneos cuerpos instintos y otros monstruos": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Contemporáneos: Cuerpos, instintos y otros monstruos",
 "tmdb": true,
 "v": 3
@@ -3639,7 +3667,7 @@
 "clasicos deliciosos para peques": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Clásicos deliciosos para peques",
 "tmdb": true,
 "v": 3
@@ -3647,7 +3675,7 @@
 "mirando al futuro": {
 "url": "",
 "fuente": "",
-"t": "2026-11-18",
+"t": "2026-11-26",
 "titulo": "Mirando al futuro",
 "tmdb": true,
 "v": 3
@@ -3761,6 +3789,30 @@
 "fuente": "",
 "t": "2026-11-25",
 "titulo": "Misión calabaza",
+"tmdb": true,
+"v": 3
+},
+"preseleccionados a mejor cortometraje de animacion": {
+"url": "",
+"fuente": "",
+"t": "2026-11-26",
+"titulo": "Preseleccionados a Mejor Cortometraje de Animación",
+"tmdb": true,
+"v": 3
+},
+"hermanita rebelde|1928": {
+"url": "",
+"fuente": "",
+"t": "2026-11-26",
+"titulo": "La hermanita rebelde",
+"tmdb": true,
+"v": 3
+},
+"mi calle 1960 y mesa redonda": {
+"url": "",
+"fuente": "",
+"t": "2026-11-26",
+"titulo": "Mi calle (1960) y mesa redonda",
 "tmdb": true,
 "v": 3
 }

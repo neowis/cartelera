@@ -3198,6 +3198,14 @@
 "mi calle 1960 y mesa redonda|": {
 "url": "",
 "t": "2026-11-26"
+},
+"presentacion de las residencias de cine 2026 centro residencias artisticas cineteca|": {
+"url": "",
+"t": "2026-11-26"
+},
+"con la muerte en los talones|alfred hitchcock": {
+"url": "https://image.tmdb.org/t/p/w780/rzOQHh5Utbr3x0UvKIbIU5pVA0f.jpg",
+"t": "2026-11-26"
 }
 },
 "sonidos opticos": {
@@ -3813,6 +3821,14 @@
 "fuente": "",
 "t": "2026-11-26",
 "titulo": "Mi calle (1960) y mesa redonda",
+"tmdb": true,
+"v": 3
+},
+"presentacion de las residencias de cine 2026 centro residencias artisticas cineteca": {
+"url": "",
+"fuente": "",
+"t": "2026-11-26",
+"titulo": "Presentación de las Residencias de Cine 2026 (Centro residencias artísticas/Cineteca)",
 "tmdb": true,
 "v": 3
 }

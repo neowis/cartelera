@@ -2,7 +2,7 @@
 "cine chino del nuevo milenio": {
 "url": "",
 "fuente": "",
-"t": "2026-11-19",
+"t": "2026-11-27",
 "titulo": "Cine chino del nuevo milenio",
 "tmdb": true,
 "v": 3
@@ -18,7 +18,7 @@
 "sabados de cine de otono": {
 "url": "",
 "fuente": "",
-"t": "2026-11-19",
+"t": "2026-11-27",
 "titulo": "Sábados de cine de otoño",
 "tmdb": true,
 "v": 3
@@ -33,7 +33,7 @@
 "mejores peliculas de la historia del cine": {
 "url": "",
 "fuente": "",
-"t": "2026-11-19",
+"t": "2026-11-27",
 "titulo": "Las mejores películas de la historia del cine",
 "tmdb": true,
 "v": 3
@@ -41,7 +41,7 @@
 "soledad no deseada": {
 "url": "",
 "fuente": "",
-"t": "2026-11-19",
+"t": "2026-11-27",
 "titulo": "Soledad No Deseada",
 "tmdb": true,
 "v": 3
@@ -63,7 +63,7 @@
 "prevencion del duelo complicado": {
 "url": "",
 "fuente": "",
-"t": "2026-11-19",
+"t": "2026-11-27",
 "titulo": "Prevención del duelo complicado",
 "tmdb": true,
 "v": 3
@@ -87,7 +87,7 @@
 "andrzej zulawski el amor sin limites": {
 "url": "",
 "fuente": "",
-"t": "2026-11-19",
+"t": "2026-11-27",
 "titulo": "Andrzej Zulawski, El amor sin límites",
 "tmdb": true,
 "v": 3
@@ -1468,8 +1468,8 @@
 "t": "2026-11-19"
 },
 "gran fiesta del cine|": {
-"url": "",
-"t": "2026-11-19"
+"url": "https://image.tmdb.org/t/p/w780/bEfj7qTSVs9TQZLp5BaL4nQhezC.jpg",
+"t": "2026-11-27"
 },
 "muerte de dracula|": {
 "url": "https://image.tmdb.org/t/p/w780/xeTenmN0IRvAwOg61t9ybp7TKhB.jpg",
@@ -1901,11 +1901,11 @@
 },
 "algo horrible y maravilloso de patricio ruiz argentina|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "crimenes cotidianos de rafael pence uruguay|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "flores muertas de natalia villamil argentina|": {
 "url": "",
@@ -1961,7 +1961,7 @@
 },
 "andrzej zulawski el amor sin limites|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "shrek 2|": {
 "url": "https://image.tmdb.org/t/p/w780/knRt4E8KyfwEv0SVu9LsLvD28IQ.jpg",
@@ -1977,19 +1977,19 @@
 },
 "cine chino del nuevo milenio|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "prevencion del duelo complicado|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "mejores peliculas de la historia del cine|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "soledad no deseada|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "memoria es nuestra|": {
 "url": "https://image.tmdb.org/t/p/w780/9DU1kj47uZBtEWDUV3qffpr4x17.jpg",
@@ -2137,7 +2137,7 @@
 },
 "sabados de cine de otono|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "teo va al espacio|": {
 "url": "https://image.tmdb.org/t/p/w780/ut2Y23MyxfwFzoeQ3MMdHEtGrFv.jpg",
@@ -2925,7 +2925,7 @@
 },
 "mailin the spiral|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "being heumann|": {
 "url": "https://image.tmdb.org/t/p/w780/2NcNYzSD436UlV7Ar8D2Fr5790.jpg",
@@ -2973,7 +2973,7 @@
 },
 "screening lav 36 no vi que se movieran los petalos|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "septimo cielo|frank borzage": {
 "url": "https://image.tmdb.org/t/p/w780/3ETXMu5PrcVMRJpfN2Z3MwcfXzy.jpg",
@@ -2981,11 +2981,11 @@
 },
 "conciertos sabe sao nuevos territorios marwan|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "entrevista a marwan conciertos alba lamerced angela gonzalez nuevos territorios|": {
 "url": "",
-"t": "2026-11-19"
+"t": "2026-11-27"
 },
 "mulholland drive|david lynch": {
 "url": "https://image.tmdb.org/t/p/w780/kLpwkbimTwTbsYixCO3eAdNCQJ8.jpg",
@@ -3206,6 +3206,26 @@
 "con la muerte en los talones|alfred hitchcock": {
 "url": "https://image.tmdb.org/t/p/w780/rzOQHh5Utbr3x0UvKIbIU5pVA0f.jpg",
 "t": "2026-11-26"
+},
+"una joven prometedora|": {
+"url": "https://image.tmdb.org/t/p/w780/vpWalAz106L7ZjqzXcC1Sdq8bUf.jpg",
+"t": "2026-11-27"
+},
+"preseleccionados a mejor cortometraje documental i|": {
+"url": "",
+"t": "2026-11-27"
+},
+"preseleccionados a mejor cortometraje documental ii|": {
+"url": "",
+"t": "2026-11-27"
+},
+"cortometraje el adios largometraje viaje al cuarto de una madre cima 20 anos|": {
+"url": "",
+"t": "2026-11-27"
+},
+"cortometraje la boda largometraje los ninos salvajes cima 20 anos|": {
+"url": "",
+"t": "2026-11-27"
 }
 },
 "sonidos opticos": {
@@ -3699,7 +3719,7 @@
 "screening lav 36 no vi que se movieran los petalos": {
 "url": "",
 "fuente": "",
-"t": "2026-11-19",
+"t": "2026-11-27",
 "titulo": "Screening LAV #36. No vi que se movieran los pétalos",
 "tmdb": true,
 "v": 3
@@ -3829,6 +3849,38 @@
 "fuente": "",
 "t": "2026-11-26",
 "titulo": "Presentación de las Residencias de Cine 2026 (Centro residencias artísticas/Cineteca)",
+"tmdb": true,
+"v": 3
+},
+"preseleccionados a mejor cortometraje documental i": {
+"url": "",
+"fuente": "",
+"t": "2026-11-27",
+"titulo": "Preseleccionados a Mejor Cortometraje Documental I",
+"tmdb": true,
+"v": 3
+},
+"preseleccionados a mejor cortometraje documental ii": {
+"url": "",
+"fuente": "",
+"t": "2026-11-27",
+"titulo": "Preseleccionados a Mejor Cortometraje Documental II",
+"tmdb": true,
+"v": 3
+},
+"cortometraje el adios largometraje viaje al cuarto de una madre cima 20 anos": {
+"url": "",
+"fuente": "",
+"t": "2026-11-27",
+"titulo": "Cortometraje: El adiós + Largometraje: Viaje al cuarto de una madre – CIMA 20 años",
+"tmdb": true,
+"v": 3
+},
+"cortometraje la boda largometraje los ninos salvajes cima 20 anos": {
+"url": "",
+"fuente": "",
+"t": "2026-11-27",
+"titulo": "Cortometraje: La boda + Largometraje: Los niños salvajes – CIMA 20 años",
 "tmdb": true,
 "v": 3
 }
